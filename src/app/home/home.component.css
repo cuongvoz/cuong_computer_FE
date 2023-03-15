@@ -3,6 +3,10 @@
   src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
 }
 * {
-  font-family: 'Chakra Petch';
-
+  font-family: Chakra Petch;
+  color: #29324e;
+}
+.container {
+  width: 1100px;
+  margin: 10px;
 }
