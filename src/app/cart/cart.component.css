@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
+}
+
+.text {
+  font-family: Chakra Petch;
+
+}
+.card {
+  transition:.3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -ms-transition: .3s;
+  -o-transition: .3s;
+  transition: .3s;
+}
+.card:hover {
+  cursor: pointer;
+  position: relative;
+  bottom: 10px;
+  border: 1px solid #005ec4;
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -o-transform:scale(1.2);
+  transform:scale(1.2);
+  z-index: 30;
+
+}
+.item-cart {
+  background: #005ec4;
+  color: white;
+  width: 200px;
+  padding: 7px 15px 7px 15px;
+  margin-left: 20px;
+  border-left: 1px solid transparent;
+}
+
+.container {
+  width: 1100px;
+  margin: 10px;
+}

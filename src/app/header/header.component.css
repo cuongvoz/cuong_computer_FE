@@ -2,22 +2,26 @@
   font-family: 'Chakra Petch';
   src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
 }
+
 * {
   color: #29324e;
 }
+
 .input {
   vertical-align: baseline;
 }
+
 .dropdown {
   position: relative;
   display: inline-block;
 }
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 
   z-index: 1;
 }
@@ -25,16 +29,40 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
 .category-item {
   padding: 5px 16px;
 
 }
+
 .dropdown-content > .category-item:hover {
   cursor: pointer;
   width: 100%;
-  font-weight:bold;
+  font-weight: bold;
   background: darkgrey;
 }
+
 .icon-margin {
   margin-left: 30px;
+}
+
+.button-search:hover {
+  background: dodgerblue;
+}
+.button-search:active {
+  background: #32be8f;
+
+}
+
+.button-search {
+  cursor: pointer;
+  background: royalblue;
+  padding: 7.1px 15px 10px 15px;
+  margin-right: -30px;
+  color: white;
+  font-size: 20px;
+  font-weight: bold
+}
+.select-item:hover {
+  cursor: pointer;
 }

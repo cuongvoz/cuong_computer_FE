@@ -17,14 +17,14 @@ body{
   z-index: -1;
 }
 
-.container{
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap :7rem;
-  padding: 0 2rem;
-}
+/*.container{*/
+/*  width: 100vw;*/
+/*  height: 100vh;*/
+/*  display: grid;*/
+/*  grid-template-columns: repeat(2, 1fr);*/
+/*  grid-gap :7rem;*/
+/*  padding: 0 2rem;*/
+/*}*/
 
 .img{
   display: flex;
@@ -219,4 +219,59 @@ a:hover{
   .login-content{
     justify-content: center;
   }
+}
+/*@font-face {*/
+/*  font-family: 'Chakra Petch';*/
+/*  src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');*/
+/*}*/
+/** {*/
+/*  font-family: Chakra Petch;*/
+/*  color: #29324e;*/
+/*}*/
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
+}
+* {
+  /*font-family: Chakra Petch;*/
+  color: #29324e;
+}
+.container {
+  width: 1100px;
+  margin: 10px;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background-image: url("https://accgroup.vn/wp-content/uploads/2023/02/Background-la-gi.jpg");
+  background-size: auto;
+  background-position: center;
+}
+/*@font-face {*/
+/*  font-family: workSans;*/
+/*  src: url(font/WorkSans-ExtraLight.ttf);*/
+/*}*/
+ul li a {
+  font-size: 17px;
+  font-family: "workSans";
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+ul li a:hover {
+  color: #443020;
+}
+
+.form-row button {
+  font-size: 17px;
+  font-family: "workSans";
+  font-weight: bold;
+}
+
+h1, p, input {
+  font-family: 'workSans';
+}
+input {
+  font-weight: bold;
 }

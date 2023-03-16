@@ -200,6 +200,6 @@ section {
   font-family: 'Chakra Petch';
   src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
 }
-* {
+.text {
   font-family: Chakra Petch;
 }
