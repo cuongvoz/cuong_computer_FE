@@ -49,6 +49,7 @@
 .button-search:hover {
   background: dodgerblue;
 }
+
 .button-search:active {
   background: #32be8f;
 
@@ -63,6 +64,26 @@
   font-size: 20px;
   font-weight: bold
 }
+
 .select-item:hover {
   cursor: pointer;
+}
+
+.avatar {
+  border: 1px solid #005ec4;
+  object-fit: cover;
+  padding: 0;
+  margin: -10px 5px -7px 0;
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.divTong {
+  border: 1px solid #005ec4;
+  width: 500px;
+  margin-top: 10px;
+  margin-bottom: -100px;
+  height: 100px
 }

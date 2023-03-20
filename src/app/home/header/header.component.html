@@ -1,0 +1,154 @@
+<div style="width: 100%;background: #005ec4">
+  <p
+    style="padding: 7px;color: white;position: relative;right: -600px;font-family: Chakra Petch;font-size: 20px;font-weight: bold">
+    Hotline : (+84) 3333.000.29 • Email: mainvov@gmail.com</p>
+</div>
+<div style="width: 100%;margin-top: -20px;background: white">
+  <img routerLink="/" src="https://upload.wikimedia.org/wikipedia/commons/1/1e/RPC-JP_Logo.png"
+       style="width: 90px;height: 90px;margin-left: 50px;display: inline;cursor: pointer">
+  <div style="display: inline;width: 400px;margin-left: 200px">
+    <div style="padding: 10px;border: 1px solid #005ec4;display: inline">
+      <input id="name" (keyup.enter)="search(name.value,category.value)" class="input form-control " #name style="display: inline;width: 300px;border: 0 solid white"
+             placeholder="Nhập sản phẩm cần phải tìm ..."><span style="color:#005ec4 ">|</span>
+      <select (change)="change(category.value)" class="form-select text-center" #category style="display: inline;width:300px;border: 0 solid;cursor: pointer">
+        <option [value]="1"  class="select-item" selected>Tất cả danh mục</option>
+        <option [value]="2" class="select-item">Laptop</option>
+        <option [value]="3" class="select-item">PC Gaming</option>
+        <option [value]="4" class="select-item">Chuột</option>
+        <option [value]="5" class="select-item">Bàn phím</option>
+        <option [value]="6" class="select-item">Màn hình</option>
+        <option [value]="7" class="select-item">Ghế</option>
+      </select>
+      <span class="button-search" (click)="search(name.value,category.value)">      <i style="color: white" class="fa-solid fa-magnifying-glass"></i>
+      </span>
+    </div>
+  </div>
+  <div (click)="getAllValue()" data-bs-toggle="modal" data-bs-target="#exampleModal"
+       style="display: inline;width: 400px;margin-left: 200px;font-size: 30px;border: 2px solid #005ec4;position: relative"
+       class="btn btn-outline-dark">
+    <i style="color: #005ec4" class="fa-solid fa-cart-shopping"><span style="color: white;background: #cb2027;border-radius: 100%;z-index: 99;font-size: 15px;padding: 5px 7px ;position: absolute;top: -10px;right: -10px">{{quantity}}</span></i>
+  </div>
+</div>
+<div
+  style="width: 100%;background: #eef0f7;font-family: Chakra Petch;font-size: 20px;font-weight: bold;position: sticky;top: 0;z-index: 999">
+  <div style="padding: 10px">
+    <a style="margin-left: 20px;text-decoration: none;color: black" class="dropdown"><span style="cursor: pointer"><i
+      class="fa-sharp fa-solid fa-laptop"></i> DANH MỤC SẢN PHẨM</span>
+      <div class="dropdown-content">
+        <p routerLink="/list/search/1/null"  class="category-item"><i style="margin-right: 5px" class="fa-brands fa-teamspeak"></i> Tất
+          cả</p>
+        <p routerLink="/list/search/2/null" class="category-item"><i style="margin-right: 5px"
+                                                         class="fa-sharp fa-solid fa-laptop"></i> Laptop</p>
+        <p routerLink="/list/search/3/null" class="category-item"><i style="margin-right: 5px"
+                                                     class="fa-sharp fa-solid fa-computer"></i> PC Gaming</p>
+        <p routerLink="/list/search/5/null" class="category-item"><i style="margin-right: 5px"
+                                                           class="fa-sharp fa-solid fa-keyboard"></i> Bàn Phím</p>
+        <p routerLink="/list/search/4/null" class="category-item"><i style="margin-right: 5px"
+                                                        class="fa-sharp fa-solid fa-computer-mouse"></i> Chuột</p>
+        <p routerLink="/list/search/7/null" class="category-item"><i style="margin-right: 5px"
+                                                        class="fa-sharp fa-solid fa-chair"></i> Ghế</p>
+        <p routerLink="/list/search/6/null"  class="category-item"><i style="margin-right: 5px" class="fa-solid fa-tv"></i> Màn Hình
+        </p>
+      </div>
+    </a>
+    <a *ngIf="isLogged == false" routerLink="/login"
+       style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #29324e"><i
+      class="fa-sharp fa-solid fa-user"></i> ĐĂNG NHẬP</a>
+    <!--    <a *ngIf="isLogged == true"  routerLink="/login" style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #29324e"></a>-->
+    <a  *ngIf="isLogged == true" style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #29324e"
+       class="dropdown">
+      <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      <img  src="{{user.avatar}}" alt="Avatar" class="avatar dropdown-toggle"> <span
+      style="text-transform: uppercase;">{{user.name}}</span> </div>
+      <div  class=" dropdown-menu" aria-labelledby="dropdownMenuButton1"  style="top: 35px;font-size: 20px">
+        <p class="category-item dropdown-item" routerLink="/profile"><i class="fa-sharp fa-solid fa-user" style="margin-right: 5px"></i> Thông tin cá nhân</p>
+        <p class="category-item dropdown-item" (click)="logout()"><i class="fa-sharp fa-solid fa-right-from-bracket" style="margin-right: 5px"></i> Đăng xuất
+        </p>
+      </div>
+    </a>
+    <a style="margin-left: 50px;cursor: pointer"><i class="fa-solid fa-newspaper"></i> TIN TỨC</a>
+    <span style="font-weight: bold;position: absolute;right: 50px;top:2px;font-size: 30px">
+      <i class="fa-brands fa-facebook-f icon-margin"></i>
+    <i class="fa-brands fa-youtube icon-margin"></i>
+    <i class="fa-brands fa-instagram icon-margin"></i>
+    <i class="fa-solid fa-store icon-margin"></i>
+    </span>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" style="width: 4100px">
+    <div class="modal-content">
+      <div class="modal-header" style="border-bottom: 0 solid white">
+        <h3 class="modal-title" id="exampleModalLabel">Bạn đang có 4 sản phẩm trong giỏ hàng</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex row" style="font-size: 20px">
+          <div class="col-lg-7 ">
+            <div style="width: 100%;font-size: 18px">
+              <h4 class="text">THÔNG TIN SẢN PHẨM</h4>
+              <div style="height: 500px;overflow: scroll">
+
+                <div  *ngFor="let x of cart" style="border: 1px solid #005ec4;margin-bottom: 10px;width: 410px">
+                  <div style="width: 40px;cursor: pointer;display: inline-block;margin-bottom: 10px;margin-top: -5px;margin-left: 10px">
+                    <img data-bs-dismiss="modal" [routerLink]="['/product/detail/'+x.id]"
+                      src="{{x.image}}"
+                      style="height: 60px;width: 60px;object-fit: cover;margin-top: -25px">
+                  </div>
+                  <div style="width: 300px;display: inline-block;position: relative;;margin-left: 30px">
+                    <h6 data-bs-dismiss="modal" [routerLink]="['/product/detail/'+x.id]" style="cursor: pointer;color: #005ec4;margin-top: 10px;width: 300px" class="text">{{x.name}}</h6>
+                    <span>Số lượng</span> <button (click)="downQuantity(x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> - </button> <span style="color: #005ec4;margin-left: 10px">{{x.quantity}}</span> <button (click)="upQuantity(x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> + </button>
+                    <span class="text" style="position: absolute;right: -10px;top: 10px;font-size: 15px" >{{x.price}} đ</span>
+                    <button (click)="delete(x.id)" style="position: absolute;right: -10px;top: 30px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5" >
+            <div style="background: #f0f3fc;width: 100%;position: relative">
+              <div style="padding: 20px" class="text">
+                <h5>THÔNG TIN GIỎ HÀNG</h5>
+                <p>Số lượng sản phẩm <span style="color: #005ec4;position: absolute;right: 20px">{{quantity}}</span></p>
+                <p style="margin-top: -15px">Tổng chi phí <span style="color: red;position: absolute;right: 20px">{{total}} đ</span>
+                </p>
+                <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 10px">Đã bao gồm VAT
+                  (nếu có)</p>
+                <button data-bs-dismiss="modal" routerLink="/cart" style="width: 100%;border-radius: 0;margin-top: 20px;color: white" class="btn btn-primary">ĐẾN GIỎ HÀNG
+                </button>
+                <button style="width: 100%;border-radius: 0;margin-top: 20px;color: white" (click)="dropCart()"  class="btn btn-danger">XÓA GIỎ HÀNG</button>
+                <button routerLink="/list/search/1/null" data-bs-dismiss="modal" style="width: 100%;border-radius: 0;margin-top: 20px"  class="btn btn-outline-primary">XEM SẢN PHẨM
+                  KHÁC
+                </button>
+              </div>
+            </div>
+            <div style="width: 100%;position: relative;font-size: 14px">
+              <div style="padding: 20px">
+                <p><i style="color: forestgreen" class="fa-sharp fa-solid fa-circle-check"></i> <span class="text"
+                                                                                                      style="margin-left: 5px"> Hỗ trợ trả góp 0%, trả trước 0đ</span>
+                </p>
+                <p style="margin-top: -10px"><i style="color: forestgreen" class="fa-sharp fa-solid fa-circle-check"></i>
+                  <span class="text" style="margin-left: 5px"> Hoàn tiền 200% khi phát hiện hàng giả</span></p>
+                <p style="margin-top: -10px"><i style="color: forestgreen" class="fa-sharp fa-solid fa-circle-check"></i>
+                  <span class="text" style="margin-left: 5px"> Giao hàng nhanh 3H nội thành Hà Nội</span></p>
+                <p style="margin-top: -10px"><i style="color: forestgreen" class="fa-sharp fa-solid fa-circle-check"></i>
+                  <span class="text" style="margin-left: 5px"> Giao hàng từ 5 - 7 ngày toàn quốc</span></p>
+                <p style="margin-top: -10px"><i style="color: forestgreen" class="fa-sharp fa-solid fa-circle-check"></i>
+                  <span class="text" style="margin-left: 5px"> Đội ngũ kĩ thuật hỗ trợ online 7/7</span></p>
+              </div>
+              <div style="width: 100%;margin-top: -30px;margin-left: 15px">
+                <a href=""><img src="https://www.tncstore.vn/catalog/view/theme/default/image/tien-mat.png" alt=""></a>
+                <a href=""><img src="https://www.tncstore.vn/catalog/view/theme/default/image/internet-bank.png" alt=""></a>
+                <a href=""><img src="https://www.tncstore.vn/catalog/view/theme/default/image/mastercard.png" alt=""></a>
+                <a href=""><img src="https://www.tncstore.vn/catalog/view/theme/default/image/visa.png" alt=""></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

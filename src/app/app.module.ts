@@ -4,12 +4,16 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './home/header/header.component';
+import { FooterComponent } from './home/footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import { ProfileComponent } from './profile/profile.component';
+import {HomeModule} from "./home/home.module";
+import {LaptopComponent} from "./home/laptop/laptop.component";
 
 @NgModule({
   declarations: [
@@ -19,13 +23,17 @@ import {FormsModule} from "@angular/forms";
     FooterComponent,
     LoginComponent,
     ProductComponent,
-    CartComponent
+    CartComponent,
+    ProfileComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
+    imports: [
+        HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+      HomeModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

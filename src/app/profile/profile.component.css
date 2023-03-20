@@ -1,0 +1,394 @@
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('./fonts/ChakraPetch-SemiBold.ttf') format('truetype');
+}
+* {
+
+
+}
+.colors {
+  color: #29324e;
+}
+.text {
+  color: #29324e;
+
+  font-family: Chakra Petch;
+}
+.container {
+  width: 1100px;
+  margin: 10px;
+}
+.card:hover {
+  cursor: pointer;
+  border: 1px solid #005ec4;
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -o-transform:scale(1.2);
+  transform:scale(1.2);
+  z-index: 30;
+
+}
+.card {
+  width: 13rem;display: inline-block;margin-left: 40px;margin-top: 20px;
+  transition:.5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
+.top-photo{
+  border: 1px solid #000000;
+  padding: 0;
+  margin:0;
+  z-index: -110;
+
+}
+.top-photo img{
+  width: 100%;
+  max-height: 500px;
+}
+
+.top-photo h3{
+  position: absolute;
+  margin-left: 50%;
+  margin-top: -15%;
+  color: #E0E0E0;
+  font-weight: 800;
+  font-size: 48px;
+  font-family: 'Saira', sans-serif;
+
+
+}
+.top-photo h5{
+  position: absolute;
+  margin-left: 53%;
+  margin-top: -8%;
+  color: #E0E0E0;
+  font-weight: 800;
+  font-size: 24px;
+  font-family: 'Saira', sans-serif;
+
+
+}
+
+.user img{
+  max-height: 300px;
+  max-width: 300px;
+  position: relative;
+  margin-left: 10%;
+  margin-top: -18%;
+  border: 2px solid #ffffff;
+}
+.about{
+  margin:0;
+  padding: 0
+}
+.about h3{
+  position: relative;
+  margin-top: 40px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #000000;
+  font-family: 'Saira', sans-serif;
+}
+
+.about i {
+  color: #C62828;
+}
+
+.about-in button{
+  margin-top: 30px;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: inherit;
+  transition: all .5s;
+  margin-top: 20px;
+}
+
+.about-in a {
+  font-weight: bold;
+}
+.details-left h3{
+  margin-top:-40px;
+}
+
+.details-left li{
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+}
+
+
+.details-right{
+  margin-left: -20px;
+}
+
+ul li:nth-child(4){
+  color: #C62828;
+  font-weight: bold;
+}
+
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+#social {
+  margin: 40px 10px;
+
+
+}
+
+.smGlobalBtn { /* global button class */
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border:2px solid #ddd; /* add border to the buttons */
+  box-shadow: 0 3px 3px #999;
+  padding: 0px;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  font-size: 25px;
+  font-weight: normal;
+  line-height: 2em;
+  border-radius: 27px;
+  -moz-border-radius:27px;
+  -webkit-border-radius:27px;
+}
+
+/* facebook button class*/
+.facebookBtn{
+  background: #BDBDBD;
+}
+
+.facebookBtn:before{ /* use :before to add the relevant icons */
+  font-family: "FontAwesome";
+  content: "\f09a"; /* add facebook icon */
+}
+
+.facebookBtn:hover{
+  color: #4060A5;
+  background: #fff;
+  border-color: #4060A5; /* change the border color on mouse hover */
+}
+
+/* twitter button class*/
+.twitterBtn{
+  background: #BDBDBD;
+}
+
+.twitterBtn:before{
+  font-family: "FontAwesome";
+  content: "\f099"; /* add twitter icon */
+
+}
+
+.twitterBtn:hover{
+  color: #00ABE3;
+  background: #fff;
+  border-color: #00ABE3;
+}
+
+/* google plus button class*/
+.googleplusBtn{
+  background: #BDBDBD;
+}
+
+.googleplusBtn:before{
+  font-family: "FontAwesome";
+  content: "\f0d5"; /* add googleplus icon */
+}
+
+.googleplusBtn:hover{
+  color: #e64522;
+  background: #fff;
+  border-color: #e64522;
+}
+
+/* linkedin button class*/
+.linkedinBtn{
+  background: #BDBDBD;
+}
+
+.linkedinBtn:before{
+  font-family: "FontAwesome";
+  content: "\f0e1"; /* add linkedin icon */
+}
+
+.linkedinBtn:hover{
+  color: #0094BC;
+  background: #fff;
+  border-color: #0094BC;
+}
+
+/* pinterest button class*/
+.pinterestBtn{
+  background: #BDBDBD;
+}
+
+.pinterestBtn:before{
+  font-family: "FontAwesome";
+  content: "\f0d2"; /* add pinterest icon */
+}
+
+.pinterestBtn:hover{
+  color: #cb2027;
+  background: #fff;
+  border-color: #cb2027;
+}
+
+/* tumblr button class*/
+.tumblrBtn{
+  background: #BDBDBD;
+}
+
+.tumblrBtn:before{
+  font-family: "FontAwesome";
+  content: "\f173"; /* add tumblr icon */
+}
+
+.tumblrBtn:hover{
+  color: #3a5876;
+  background: #fff;
+  border-color: #3a5876;
+}
+
+/* rss button class*/
+.rssBtn{
+  background: #BDBDBD;
+}
+
+.rssBtn:before{
+  font-family: "FontAwesome";
+  content: "\f09e"; /* add rss icon */
+}
+
+.rssBtn:hover{
+  color: #e88845;
+  background: #fff;
+  border-color: #e88845;
+}
+
+
+
+
+/* responsive */
+@media (min-width:360px) and (max-width:768px){
+
+  .user img{
+    max-height: 150px;
+    max-width: 150px;
+
+  }
+  .top-photo h3 {
+    font-size: 16px;
+  }
+  .top-photo h5 {
+    font-size: 16px;
+    margin-left: 55%;
+  }
+
+  .btn-outline{
+    margin-bottom:60px;
+  }}
+body{
+  background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+.emp-profile{
+  padding: 3%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+.profile-img{
+  text-align: center;
+}
+.profile-img img{
+  width: 70%;
+  height: 100%;
+}
+.profile-img .file {
+  position: relative;
+  overflow: hidden;
+  margin-top: -20%;
+  width: 70%;
+  border: none;
+  border-radius: 0;
+  font-size: 15px;
+  background: #212529b8;
+}
+.profile-img .file input {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  top: 0;
+}
+.profile-head h5{
+  color: #333;
+}
+.profile-head h6{
+  color: #0062cc;
+}
+.profile-edit-btn{
+  border: none;
+  border-radius: 1.5rem;
+  width: 70%;
+  padding: 2%;
+  font-weight: 600;
+  color: #6c757d;
+  cursor: pointer;
+}
+.proile-rating{
+  font-size: 12px;
+  color: #818182;
+  margin-top: 5%;
+}
+.proile-rating span{
+  color: #495057;
+  font-size: 15px;
+  font-weight: 600;
+}
+.profile-head .nav-tabs{
+  margin-bottom:5%;
+}
+.profile-head .nav-tabs .nav-link{
+  font-weight:600;
+  border: none;
+}
+.profile-head .nav-tabs .nav-link.active{
+  border: none;
+  border-bottom:2px solid #0062cc;
+}
+.profile-work{
+  padding: 14%;
+  margin-top: -15%;
+}
+.profile-work p{
+  font-size: 12px;
+  color: #818182;
+  font-weight: 600;
+  margin-top: 10%;
+}
+.profile-work a{
+  text-decoration: none;
+  color: #495057;
+  font-weight: 600;
+  font-size: 14px;
+}
+.profile-work ul{
+  list-style: none;
+}
+.profile-tab label{
+  font-weight: 600;
+}
+.profile-tab p{
+  font-weight: 600;
+  color: #0062cc;
+}

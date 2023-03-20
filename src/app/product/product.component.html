@@ -11,40 +11,87 @@
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
       <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/">Trang chủ</h4>
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
-      <h4 class="text" style="margin-left: 30px">PC Gaming</h4>
+      <h4 class="text" style="margin-left: 30px">{{product.category.name}}</h4>
     </div>
     <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
       <div class="col-lg-6">
         <img
-          src="https://storage.googleapis.com/cdn.tanphatad.com/tanphatad/2020/12/bo-may-pc-gaming-khung-h410-i3-10100f-ram-16g-ssd-m2-128gb-vga-1070-8gg-case-zeus-5fe933e307bf2.jpg"
+          src="{{product.image}}"
           style="width: 400px;height: 400px;margin-left: 30px;object-fit: cover;border-radius: 20px;border: 1px solid #005ec4">
       </div>
       <div class="col-lg-6" style="border-left: 1px solid #005ec4;padding-left: 50px;margin-left: -30px">
-        <h3 class="text" style="color: #005ec4">PC Gaming - Alpha A3 - BL</h3>
-        <div>
-          <p>- CPU: Ryzen 3 3200G 3.6 GHz (4.0 GHz with boost) / 6MB / 4 cores 4 threads</p>
-          <p>- Mainboard: ASUS Prime A320M-K</p>
-          <p>- SSD: Kingston A400 240GB</p>
-          <p>- RAM: KIMTIGO 8GB DDR4 3200MHz</p>
-          <p>- Nguồn: Antec CSK450 450W 80 Plus Bronze</p>
-          <p>- Vỏ case: Xigmatek Fadil 1F</p>
+        <h3 class="text" style="color: #005ec4">{{product.name}}</h3>
+        <div *ngIf="product.category.id == 2">
+          <p>- CPU: {{product.cpu}}</p>
+          <p>- Mainboard: {{product.mainboard}}</p>
+          <p>- SSD: {{product.ssd}}</p>
+          <p>- RAM: {{product.ram}}</p>
+          <p>- VGA: {{product.vga}}</p>
+          <p>- Nguồn: {{product.psu}}</p>
+          <p>- Vỏ case: {{product.cases}}</p>
+        </div>
+        <div *ngIf="product.category.id == 1" style="font-size: 16px">
+          <p>- CPU: {{product.cpu}}</p>
+          <p>- RAM: {{product.ram}}</p>
+          <p>- Ổ cứng: {{product.hardDrive}}</p>
+          <p>- VGA: {{product.vga}}</p>
+          <p>- Màn hình: {{product.monitor}}</p>
+          <p>- Nguồn: {{product.psu}}</p>
+          <p *ngIf="product.pin">- Pin: {{product.pin}}</p>
+          <p>- Cân Nặng: {{product.weight}}</p>
+          <p *ngIf="product.color">- Màu sắc: {{product.color}}</p>
+          <p>- OS: {{product.os}}</p>
+        </div>
+        <div *ngIf="product.category.id == 6" style="font-size: 16px">
+          <p>- Chất liệu {{product.material}}</p>
+          <p>- Thương hiệu {{product.brand}}</p>
+          <p>- Model {{product.model}}</p>
+          <p>- Kê tay {{product.kneelings}}</p>
+          <p>- Màu sắc {{product.color}}</p>
+          <p>- Trọng tải theo góc đứng {{product.weight}}</p>
+        </div>
+        <div *ngIf="product.category.id == 4" style="font-size: 16px">
+          <p>- Kích thước {{product.screenSize}}</p>
+          <p>- Độ phân giải {{product.resolution}}</p>
+          <p>- Tấm nền {{product.model}}</p>
+          <p>- Tần số quét {{product.scanFrequency}}</p>
+          <p>- Tỉ lệ màn hình {{product.aspectRatio}}</p>
+          <p>- Cổng kết nối: {{product.connector}}</p>
+        </div>
+        <div *ngIf="product.category.id == 3" style="font-size: 16px">
+          <p>- {{product.keyboard}}</p>
+          <p>- Kết nối {{product.connect}}</p>
+          <p>- Keycap {{product.keycap}}</p>
+          <p>- Loại switch {{product.Switch}}</p>
+          <p>- Pin {{product.pin}}</p>
+          <p>- Tương thích {{product.os}}</p>
+        </div>
+        <div *ngIf="product.category.id == 5" style="font-size: 16px">
+          <p>- {{product.dpi}}</p>
+          <p>- {{product.reliability}}</p>
+          <p>- {{product.compatible}}</p>
+          <p>- {{product.sensor}}</p>
+          <p *ngIf="product.connect">- Hỗ trợ kết nối {{product.connect}}</p>
+          <p *ngIf="product.os">- Tương thích {{product.os}}</p>
+          <p *ngIf="product.pin">- Pin {{product.pin}}</p>
+          <p *ngIf="product.weight">- {{product.weight}}</p>
         </div>
         <div style="margin-top: 30px; ">
           <i style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span class="text"
                                                                                          style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
-          <span class="text" style="position: absolute;right: 200px;color: #92999f;text-decoration: line-through;">7.866.000 đ</span>
+          <span class="text" style="position: absolute;right: 200px;color: #92999f;text-decoration: line-through;">{{product.oldPrice}} đ</span>
         </div>
         <div style="margin-top: 30px; ">
           <span class="text">Số lượng</span>
-          <input type="number" class="text text-center"
+          <input #element type="number" [min]="1" class="text text-center"
                  style="margin-left: 20px;border: 1px solid #005ec4;width: 40px;height: 40px;color: #005ec4" value="1">
-          <span class="text" style="position: absolute;right: 200px;color:red;font-size: 40px;line-height: 1">6.290.000 đ</span>
+          <span class="text" style="position: absolute;right: 200px;color:red;font-size: 40px;line-height: 1">{{product.price}} đ</span>
 
         </div>
         <div style="margin-top: 20px; ">
-          <button style="border-radius: 0;font-size: 20px;width: 200px" class="btn btn-outline-primary button-1"><i
+          <button (click)="addToCart(element.value)" style="border-radius: 0;font-size: 20px;width: 200px" class="btn btn-outline-primary button-1"><i
             class="fa-solid fa-plus button-1"></i> <b class="button-1"> THÊM VÀO GIỎ</b></button>
-          <button routerLink="/cart" style="border-radius: 0;margin-left: 40px;font-size: 20px;width:200px;color: white"
+          <button routerLink="/cart" (click)="buy(element.value)" style="border-radius: 0;margin-left: 40px;font-size: 20px;width:200px;color: white"
                   class="btn btn-primary"><i style="color: white" class="fa-solid fa-cart-shopping"></i><b
             style="color: white"> MUA HÀNG</b></button>
         </div>
