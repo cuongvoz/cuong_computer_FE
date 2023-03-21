@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.getAll()
   }
   getAll() {
-    this.productService.getHome().subscribe(
+    this.productService.getHome('?size=4').subscribe(
       data => {
         this.products = data['content']
         this.first = data['first']

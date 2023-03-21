@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
     this.getAll();
     this.check();
     window.scroll(0, 0)
-    this.productService.getHome().subscribe(
+    this.productService.getHome('?size=4').subscribe(
       next => {
         for (let i = 0; i < next['content'].length; i++) {
           if (i == 4) {
@@ -56,11 +56,19 @@ export class CartComponent implements OnInit {
   }
 
   getAll() {
-
     if (this.token.getCart() != undefined) {
       this.cart = this.token.getCart();
       this.getAllValue();
     }
+   this.share.getClickEvent().subscribe(
+     next => {
+       if (this.token.getCart() != undefined) {
+         this.cart = this.token.getCart();
+         this.getAllValue();
+       }
+     }
+   )
+
   }
 
   getAllValue() {
@@ -175,7 +183,7 @@ export class CartComponent implements OnInit {
       this.getAll();
       Swal.fire({
         position: 'center',
-        icon: 'warning',
+        icon: 'success',
         title: 'Bạn đã xóa giỏ hàng thành công!',
         showConfirmButton: false,
         timer: 1500

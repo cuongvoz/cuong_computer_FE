@@ -122,18 +122,42 @@ export class HeaderComponent implements OnInit {
   }
 
   dropCart() {
-    let cart = []
-    this.token.setCart(cart);
-    this.share.sendClickEvent();
-    this.quantity = 0;
-    this.total = 0;
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Bạn đã xóa giỏ hàng thành công!',
-      showConfirmButton: false,
-      timer: 1500
-    });
-    this.getAll();
+    // let cart = []
+    // this.token.setCart(cart);
+    //
+    // this.quantity = 0;
+    // this.total = 0;
+    // Swal.fire({
+    //   position: 'center',
+    //   icon: 'success',
+    //   title: 'Bạn đã xóa giỏ hàng thành công!',
+    //   showConfirmButton: false,
+    //   timer: 1500
+    // });
+    // this.getAll();
+    // this.share.sendClickEvent();
+    if (this.cart.length == 0) {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Giỏ hàng trống ,vui lòng chọn mặt hàng!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    } else {
+      let cart = []
+      this.token.setCart(cart);
+      this.share.sendClickEvent();
+      this.quantity = 0;
+      this.total = 0;
+      this.getAll();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Bạn đã xóa giỏ hàng thành công!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
   }
 }

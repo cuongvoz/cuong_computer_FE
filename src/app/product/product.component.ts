@@ -94,6 +94,7 @@ export class ProductComponent implements OnInit {
         this.cart.push(cart)
       }
       this.token.setCart(this.cart)
+
     }
 
     Swal.fire({

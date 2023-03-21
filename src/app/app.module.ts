@@ -13,7 +13,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { ProfileComponent } from './profile/profile.component';
 import {HomeModule} from "./home/home.module";
-import {LaptopComponent} from "./home/laptop/laptop.component";
 
 @NgModule({
   declarations: [

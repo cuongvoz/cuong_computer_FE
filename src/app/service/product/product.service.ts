@@ -11,55 +11,25 @@ export class ProductService {
   constructor(private http:HttpClient) { }
 
   // @ts-ignore
-  getHome():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products');
+  getHome(size: string):Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:8080/api/products' + size);
   }
   showMore(size:number):Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:8080/api/products?size=' + size );
   }
   getAllProduct():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/list');
+    return this.http.get<Product[]>('http://localhost:8080/api/products/');
   }
-  searchProduct(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/list/search/' + name);
+  getAllProductByName(name:string) {
+    return this.http.get<Product[]>('http://localhost:8080/api/products/all/'+name);
   }
-  getAllLaptop():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/laptops');
+  getProductByCategory(id:string):Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:8080/api/products/category/'+id)
   }
-  searchLaptop(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/laptops/search/' + name);
-  }
-  getAllChairs():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/chairs');
-  }
-  searchChairs(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/chairs/search/' + name);
-  }
-  getAllMonitors():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/monitors');
-  }
-  searchMonitors(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/monitors/search/' + name);
-  }
-  getAllKeyBoard():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/keyboards');
-  }
-  searchKeyBoard(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/keyboards/search/' + name);
-  }
-  getAllPC():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/pc');
-  }
-  searchPC(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/pc/search/' + name);
-  }
-  getAllMouse():Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/mouse');
-  }
-  searchMouse(name:string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products/mouse/search/' + name);
+  getProductByCategoryAndName(id:string,name:string):Observable<Product[]> {
+    return this.http.get<Product[]>('http://localhost:8080/api/products/category/' + id +'/'+name);
   }
   findById(id:string) :Observable<Product> {
-    return this.http.get<Product>('http://localhost:8080/api/products/find/' + id);
+    return this.http.get<Product>('http://localhost:8080/api/products/detail/' + id);
   }
 }

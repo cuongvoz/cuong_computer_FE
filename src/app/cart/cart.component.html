@@ -28,6 +28,11 @@
                 <button (click)="delete(x.id)" style="position: absolute;right: 10px;top: 50px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
               </div>
             </div>
+
+            <div *ngIf="cart.length == 0">
+              <img style="margin: 50px 0 20px 180px;width: 250px;height: 200px" src="https://www.pngkit.com/png/full/116-1169537_cart-png-clipart-icon-gi-hng-png.png" >
+              <h1 class="text text-center" style="color: #92999f">Giỏ hàng trống...</h1>
+            </div>
           </div>
         </div>
           <button routerLink="/" style="margin-top: 20px;border-radius: 0;background: #005ec4" class="btn btn-primary "><i class="fa-solid fa-rotate-left"></i> <span class="text" style="margin-left: 10px">QUAY LẠI TRANG CHỦ</span></button>

@@ -11,13 +11,13 @@
       <input id="name" (keyup.enter)="search(name.value,category.value)" class="input form-control " #name style="display: inline;width: 300px;border: 0 solid white"
              placeholder="Nhập sản phẩm cần phải tìm ..."><span style="color:#005ec4 ">|</span>
       <select (change)="change(category.value)" class="form-select text-center" #category style="display: inline;width:300px;border: 0 solid;cursor: pointer">
-        <option [value]="1"  class="select-item" selected>Tất cả danh mục</option>
-        <option [value]="2" class="select-item">Laptop</option>
-        <option [value]="3" class="select-item">PC Gaming</option>
-        <option [value]="4" class="select-item">Chuột</option>
-        <option [value]="5" class="select-item">Bàn phím</option>
-        <option [value]="6" class="select-item">Màn hình</option>
-        <option [value]="7" class="select-item">Ghế</option>
+        <option [value]="7"  class="select-item" selected>Tất cả danh mục</option>
+        <option [value]="1" class="select-item">Laptop</option>
+        <option [value]="2" class="select-item">PC Gaming</option>
+        <option [value]="5" class="select-item">Chuột</option>
+        <option [value]="3" class="select-item">Bàn phím</option>
+        <option [value]="4" class="select-item">Màn hình</option>
+        <option [value]="6" class="select-item">Ghế</option>
       </select>
       <span class="button-search" (click)="search(name.value,category.value)">      <i style="color: white" class="fa-solid fa-magnifying-glass"></i>
       </span>
@@ -26,7 +26,7 @@
   <div (click)="getAllValue()" data-bs-toggle="modal" data-bs-target="#exampleModal"
        style="display: inline;width: 400px;margin-left: 200px;font-size: 30px;border: 2px solid #005ec4;position: relative"
        class="btn btn-outline-dark">
-    <i style="color: #005ec4" class="fa-solid fa-cart-shopping"><span style="color: white;background: #cb2027;border-radius: 100%;z-index: 99;font-size: 15px;padding: 5px 7px ;position: absolute;top: -10px;right: -10px">{{quantity}}</span></i>
+    <i style="color: #005ec4" class="fa-solid fa-cart-shopping"><span *ngIf="quantity != 0" style="color: white;background: #cb2027;border-radius: 100%;z-index: 99;font-size: 15px;padding: 5px 7px ;position: absolute;top: -10px;right: -10px">{{quantity}}</span></i>
   </div>
 </div>
 <div
@@ -35,19 +35,19 @@
     <a style="margin-left: 20px;text-decoration: none;color: black" class="dropdown"><span style="cursor: pointer"><i
       class="fa-sharp fa-solid fa-laptop"></i> DANH MỤC SẢN PHẨM</span>
       <div class="dropdown-content">
-        <p routerLink="/list/search/1/null"  class="category-item"><i style="margin-right: 5px" class="fa-brands fa-teamspeak"></i> Tất
+        <p routerLink="/list/search/7/null"  class="category-item"><i style="margin-right: 5px" class="fa-brands fa-teamspeak"></i> Tất
           cả</p>
-        <p routerLink="/list/search/2/null" class="category-item"><i style="margin-right: 5px"
+        <p routerLink="/list/search/1/null" class="category-item"><i style="margin-right: 5px"
                                                          class="fa-sharp fa-solid fa-laptop"></i> Laptop</p>
-        <p routerLink="/list/search/3/null" class="category-item"><i style="margin-right: 5px"
+        <p routerLink="/list/search/2/null" class="category-item"><i style="margin-right: 5px"
                                                      class="fa-sharp fa-solid fa-computer"></i> PC Gaming</p>
-        <p routerLink="/list/search/5/null" class="category-item"><i style="margin-right: 5px"
+        <p routerLink="/list/search/3/null" class="category-item"><i style="margin-right: 5px"
                                                            class="fa-sharp fa-solid fa-keyboard"></i> Bàn Phím</p>
-        <p routerLink="/list/search/4/null" class="category-item"><i style="margin-right: 5px"
+        <p routerLink="/list/search/5/null" class="category-item"><i style="margin-right: 5px"
                                                         class="fa-sharp fa-solid fa-computer-mouse"></i> Chuột</p>
-        <p routerLink="/list/search/7/null" class="category-item"><i style="margin-right: 5px"
+        <p routerLink="/list/search/6/null" class="category-item"><i style="margin-right: 5px"
                                                         class="fa-sharp fa-solid fa-chair"></i> Ghế</p>
-        <p routerLink="/list/search/6/null"  class="category-item"><i style="margin-right: 5px" class="fa-solid fa-tv"></i> Màn Hình
+        <p routerLink="/list/search/4/null"  class="category-item"><i style="margin-right: 5px" class="fa-solid fa-tv"></i> Màn Hình
         </p>
       </div>
     </a>
@@ -62,6 +62,9 @@
       style="text-transform: uppercase;">{{user.name}}</span> </div>
       <div  class=" dropdown-menu" aria-labelledby="dropdownMenuButton1"  style="top: 35px;font-size: 20px">
         <p class="category-item dropdown-item" routerLink="/profile"><i class="fa-sharp fa-solid fa-user" style="margin-right: 5px"></i> Thông tin cá nhân</p>
+        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-handshake"></i> Quản lý sản phẩm</p>
+        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-cart-shopping" style="margin-right: 5px"></i> Quản lý mua hàng</p>
+        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-money-bill-1-wave" style="margin-right: 5px"></i> Quản lý doanh thu</p>
         <p class="category-item dropdown-item" (click)="logout()"><i class="fa-sharp fa-solid fa-right-from-bracket" style="margin-right: 5px"></i> Đăng xuất
         </p>
       </div>
@@ -105,6 +108,10 @@
                     <button (click)="delete(x.id)" style="position: absolute;right: -10px;top: 30px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
                   </div>
                 </div>
+                <div *ngIf="cart.length == 0">
+                  <img style="margin: 100px 0 20px 80px;width: 210px;height: 180px" src="https://www.pngkit.com/png/full/116-1169537_cart-png-clipart-icon-gi-hng-png.png" >
+                  <h1 class="text text-center" style="color: #92999f">Giỏ hàng trống...</h1>
+                </div>
               </div>
             </div>
           </div>
@@ -119,8 +126,8 @@
                   (nếu có)</p>
                 <button data-bs-dismiss="modal" routerLink="/cart" style="width: 100%;border-radius: 0;margin-top: 20px;color: white" class="btn btn-primary">ĐẾN GIỎ HÀNG
                 </button>
-                <button style="width: 100%;border-radius: 0;margin-top: 20px;color: white" (click)="dropCart()"  class="btn btn-danger">XÓA GIỎ HÀNG</button>
-                <button routerLink="/list/search/1/null" data-bs-dismiss="modal" style="width: 100%;border-radius: 0;margin-top: 20px"  class="btn btn-outline-primary">XEM SẢN PHẨM
+                <button data-bs-dismiss="modal" style="width: 100%;border-radius: 0;margin-top: 20px;color: white" (click)="dropCart()"  class="btn btn-danger">XÓA GIỎ HÀNG</button>
+                <button routerLink="/list/search/7/null" data-bs-dismiss="modal" style="width: 100%;border-radius: 0;margin-top: 20px"  class="btn btn-outline-primary">XEM SẢN PHẨM
                   KHÁC
                 </button>
               </div>

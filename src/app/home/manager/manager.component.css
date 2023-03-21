@@ -1,0 +1,54 @@
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
+}
+
+
+.text {
+  color: #29324e;
+
+  font-family: Chakra Petch;
+}
+.container {
+  width: 1100px;
+  margin: 10px;
+}
+/*---*/
+.input-field{
+  margin: 10px 0;
+  border: 2px solid #005ec4;
+  border-radius: 10px;
+  position: relative;
+}
+.input-field input{
+  width: 350px;
+  height: 40px;
+  border-radius: 6px;
+  font-size: 18px;
+  padding: 0 15px;
+  border: 0 solid #fff;
+  background: transparent;
+  color: #3a5876;
+  outline: none;
+}
+.input-field label{
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #3a5876;
+  font-size: 19px;
+  pointer-events: none;
+  transition: 0.3s;
+}
+input:focus{
+  border: 2px solid #18ffff;
+}
+input:focus ~ label,
+input:valid ~ label{
+  top: 0;
+  left: 15px;
+  font-size: 16px;
+  padding: 0 10px;
+  background: white;
+}
