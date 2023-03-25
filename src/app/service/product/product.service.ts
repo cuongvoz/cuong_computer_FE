@@ -12,10 +12,10 @@ export class ProductService {
 
   // @ts-ignore
   getHome(size: string):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products' + size);
+    return this.http.get<Product[]>('http://localhost:8080/api/products/hot' + size);
   }
   showMore(size:number):Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:8080/api/products?size=' + size );
+    return this.http.get<Product[]>('http://localhost:8080/api/products/hot?size=' + size );
   }
   getAllProduct():Observable<Product[]> {
     return this.http.get<Product[]>('http://localhost:8080/api/products/');
@@ -31,5 +31,30 @@ export class ProductService {
   }
   findById(id:string) :Observable<Product> {
     return this.http.get<Product>('http://localhost:8080/api/products/detail/' + id);
+  }
+  createPC(obj):Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/products/PC/',obj)
+  }
+
+  createChair(obj):Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/products/Chair/',obj)
+  }
+
+  createKeyboard(obj):Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/products/Keyboard/',obj)
+  }
+  createLaptop(obj):Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/products/Laptop/',obj)
+  }
+  createMonitor(obj):Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/products/Monitor/',obj)
+  }
+
+
+  createMouse(obj):Observable<any> {
+    return this.http.post<any>('http://localhost:8080/api/products/Mouse/',obj)
+  }
+  deleteProduct(id):Observable<any> {
+    return this.http.delete<any>('http://localhost:8080/api/products/delete/' + id)
   }
 }

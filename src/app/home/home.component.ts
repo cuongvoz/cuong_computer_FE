@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import {Cart} from "../entity/cart";
 import {TokenService} from "../service/login/token.service";
 import {ShareService} from "../service/login/share.service";
+import {User} from "../entity/user";
+import {LoginService} from "../service/login/login.service";
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,16 +18,25 @@ export class HomeComponent implements OnInit {
   cart: Cart[] = [];
   products: Product[];
   more = 'Xem thêm';
+  user:User;
+  isLogged = false;
   first: boolean;
   last:boolean;
-  constructor(private share:ShareService,private title:Title,private productService:ProductService,private token:TokenService) { }
+  constructor(private login:LoginService,private share:ShareService,private title:Title,private productService:ProductService,private token:TokenService) { }
 
   ngOnInit(): void {
+    this.isLogged = this.token.isLogger()
+
     this.title.setTitle('Cường Computer')
     window.scroll(0,0)
     this.getAll()
   }
   getAll() {
+    if (this.isLogged) {
+        this.login.profile(this.token.getId()).subscribe(
+        next => this.user =next
+      )
+    }
     this.productService.getHome('?size=4').subscribe(
       data => {
         this.products = data['content']
@@ -35,51 +46,39 @@ export class HomeComponent implements OnInit {
     )
   }
   click(product:Product) {
-    console.log(this.token.getCart())
-    if (this.token.getCart() == undefined) {
+    if (this.isLogged) {
+      this.token.addToCart(product,this.user);
+      this.share.sendClickEvent()
+    } else {
       let cart = {
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
+        product: product,
         quantity: 1
       }
-      this.cart.push(cart);
-      this.token.setCart(this.cart);
-    } else {
-      this.cart = this.token.getCart();
-      if (this.token.checkExist(product.id)) {
-        this.token.upQuantity(product.id,this.cart);
-      } else {
-        let cart = {
-          id: product.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          quantity: 1
-        }
-        this.cart.push(cart)
+      let cart2 = {
+        product: product,
+        quantity: 1
       }
-      this.token.setCart(this.cart)
+      let cart3 = {
+        product: product,
+        quantity: 1
+      }
+      this.cart.push(cart,cart2,cart3)
+      this.token.setCart(this.cart);
+      // this.token.setCart(this.token.getCartSession())
+      window.sessionStorage.setItem('Cart_key',JSON.stringify(this.cart))
+      this.share.sendClickEvent();
+
     }
 
-    Swal.fire({
-      title:'Bạn đã thêm sản phẩm ' + product.name +' vào giỏ!',
-      imageUrl: product.image,
-      showConfirmButton: false,
-      timer: 2000,
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: 'Custom image',
-    })
-    this.share.sendClickEvent();
   }
   showMore() {
-
     if (!this.last) {
       this.productService.showMore(this.products.length + 4).subscribe(
         next => {this.products = next['content']
         this.last = next['last']
+          if (this.products.length >= 8) {
+            this.last = true
+          }
           if (this.last) {
             this.more = 'Ẩn đi'
           }

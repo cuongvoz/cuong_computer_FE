@@ -1,0 +1,108 @@
+<div class="side-banner banner-left row d-flex"
+     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a><img
+  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+<div class="container row " style="margin: 10px;display: inline-block;float: left">
+  <img style="margin-left: 25px;height: 100px;object-fit: cover"
+       src="https://media1.giphy.com/media/NKEt9elQ5cR68/giphy.gif">
+
+  <div style="margin-top: 30px;margin-left: 25px">
+    <h2 style="width: 100%;background: #92999f;height: 15px"><p
+      style="background: white;margin: auto;width: 400px;line-height: 10px;padding-bottom: 10px"
+      class="text text-center">{{nameTitle}}</p></h2>
+    <form [formGroup]="formLaptop" style="border-bottom: 5px solid #005ec4" (ngSubmit)="createLaptop()">
+      <div class="d-flex row">
+        <div class="col-lg-8">
+          <div  class="d-flex row text" style="margin: -5px 0 -5px 1px">
+            <div  [class.error]="errorLaptop.name == true" [class.input-field]="errorLaptop.name == false" class=" col-lg-6" style="width: 320px;">
+              <input   type="text" [placeholder]="errorMessageLaptop.name" formControlName="name" required spellcheck="false">
+              <label  >Tên của laptop</label>
+            </div>
+            <div [class.error]="errorLaptop.cpu == true" [class.input-field]="errorLaptop.cpu == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input  type="text" required [placeholder]="errorMessageLaptop.cpu" formControlName="cpu" spellcheck="false">
+              <label>CPU</label>
+            </div>
+            <div [class.error]="errorLaptop.oldPrice == true"  [class.input-field]="errorLaptop.oldPrice == false" class=" col-lg-6" style="width: 320px">
+              <input type="number" [placeholder]="errorMessageLaptop.oldPrice" formControlName="oldPrice" required spellcheck="false">
+              <label>Giá cũ</label>
+            </div>
+            <div [class.error]="errorLaptop.price == true" [class.input-field]="errorLaptop.price == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="number" required  [placeholder]="errorMessageLaptop.price" formControlName="price" spellcheck="false">
+              <label>Giá mới</label>
+            </div>
+
+
+
+            <div [class.error]="errorLaptop.ram == true" [class.input-field]="errorLaptop.ram == false" class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessageLaptop.ram" formControlName="ram" required spellcheck="false">
+              <label>RAM</label>
+            </div>
+            <div [class.error]="errorLaptop.hardDrive == true" [class.input-field]="errorLaptop.hardDrive == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessageLaptop.hardDrive" formControlName="hardDrive" required  spellcheck="false">
+              <label>Ổ Cứng</label>
+            </div>
+
+
+            <div [class.error]="errorLaptop.vga == true" [class.input-field]="errorLaptop.vga == false"  class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessageLaptop.vga" formControlName="vga" required spellcheck="false">
+              <label>VGA</label>
+            </div>
+            <div [class.error]="errorLaptop.monitor == true" [class.input-field]="errorLaptop.monitor == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessageLaptop.monitor" formControlName="monitor" required  spellcheck="false">
+              <label>Màn hình</label>
+            </div>
+            <div [class.error]="errorLaptop.pin == true" [class.input-field]="errorLaptop.pin == false" class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessageLaptop.pin"  formControlName="pin" required spellcheck="false">
+              <label>Pin</label>
+            </div>
+            <div [class.error]="errorLaptop.color == true" [class.input-field]="errorLaptop.color == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessageLaptop.color" formControlName="color" required  spellcheck="false">
+              <label>Màu sắc</label>
+            </div>
+            <div [class.error]="errorLaptop.weight == true" [class.input-field]="errorLaptop.weight == false" class=" col-lg-6" style="width: 320px;">
+              <input type="text" [placeholder]="errorMessageLaptop.weight" formControlName="weight" required  spellcheck="false">
+              <label>Trọng lượng</label>
+            </div>
+            <div [class.error]="errorLaptop.os == true" [class.input-field]="errorLaptop.os == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessageLaptop.os" formControlName="os" required  spellcheck="false">
+              <label>Hệ điều hành</label>
+            </div>
+          </div>
+        </div>
+        <div  class="col-lg-3" style="margin-left: 10px;margin-top: 20px;border-left: 5px solid #005ec4 ;height: 320px">
+          <label class="hoverable"  for="fileInput" style="position: relative">
+            <img [class.errorImage]="errorLaptop.image == true" [class.loading]="isLoading==true" class="img" src="{{fb}}">
+            <!--            <div (change)="showPreview($event)" class="hover-text">Choose file</div>-->
+            <input id="fileInput" type='file'  class="hover-text" (change)="showPreview($event)">
+            <div class="hover-text"  ><i style="margin-bottom: 50px;font-size: 100px" class="fa-sharp fa-solid fa-image"></i></div>
+            <div class="hover-text text" style="margin-top: 50px">Chọn Ảnh</div>
+            <div [class.loader]="isLoading" style="z-index: 999" *ngIf="isLoading ==true" class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+              <div class="rect6"></div>
+              <div class="rect7"></div>
+              <div class="rect8"></div>
+            </div>
+            <div  class="background"></div>
+          </label>
+          <br/>
+          <!--          <input id="fileInput" type='file' (change)="showPreview($event)">-->
+        </div>
+
+      </div>
+      <button style="margin: 10px 0 20px 300px" class="btn btn-primary font" type="submit">Xác nhận</button>
+    </form>
+  </div>
+  <img style="margin-left: 25px;height: 340px;object-fit: cover"
+       src="https://www.acervietnam.com.vn/wp-content/uploads/2021/02/banner-kv-codegame.jpg">
+
+</div>
+
+<div class="side-banner banner-right row "
+     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
+  alt="Helios 16 - 2023"><img
+  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+
+

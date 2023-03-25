@@ -18,14 +18,14 @@
 
               <div style="width: 80px;display: inline-block;margin-bottom: 10px;margin-top: -5px">
                 <img
-                  src="{{x.image}}" [routerLink]="['/product/detail/'+x.id]"
+                  src="{{x.product.image}}" [routerLink]="['/product/detail/'+x.id]"
                   style="height: 90px;width: 90px;object-fit: cover;margin-top: -20px;margin-left: 10px;cursor: pointer">
               </div>
               <div  style="width: 500px;display: inline-block;position: relative;margin-left: 30px">
-                <h4 [routerLink]="['/product/detail/'+x.id]"  style="color: #005ec4;margin-top: 10px;cursor: pointer" class="text">{{x.name}}</h4>
-                <span>Số lượng</span> <button (click)="downQuantity(x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> - </button> <span style="color: #005ec4;margin-left: 10px">{{x.quantity}}</span> <button (click)="upQuantity(x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> + </button>
-                <span class="text" style="position: absolute;right: 10px;top: 20px" >{{x.price}} đ</span>
-                <button (click)="delete(x.id)" style="position: absolute;right: 10px;top: 50px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
+                <h4 [routerLink]="['/product/detail/'+x.id]"  style="color: #005ec4;margin-top: 10px;cursor: pointer" class="text">{{x.product.name}}</h4>
+                <span>Số lượng</span> <button (click)="changeQuantity('-',x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> - </button> <span style="color: #005ec4;margin-left: 10px">{{x.quantity}}</span> <button (click)="changeQuantity('+',x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> + </button>
+                <span class="text" style="position: absolute;right: 10px;top: 20px" >{{x.product.price}} đ</span>
+                <button (click)="deleteCart(x.id)" style="position: absolute;right: 10px;top: 50px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
               </div>
             </div>
 

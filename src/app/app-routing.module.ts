@@ -9,7 +9,8 @@ const routes: Routes = [
   {path: 'login',loadChildren: () => import('./login/login-routing.module').then(module => module.LoginRoutingModule),canActivate:[LoginGuard]},
   {path: 'product',loadChildren: () => import('./product/product-routing.module').then(module => module.ProductRoutingModule)},
   {path: 'cart',loadChildren: () => import('./cart/cart-routing.module').then(module => module.CartRoutingModule)},
-  {path:'profile',loadChildren: () => import('./profile/profile-routing.module').then(module => module.ProfileRoutingModule),canActivate:[AuthGuard]}
+  {path:'profile',loadChildren: () => import('./profile/profile-routing.module').then(module => module.ProfileRoutingModule),canActivate:[AuthGuard]},
+  {path: 'manager',loadChildren: () => import('./manager/manager-routing.module').then(module => module.ManagerRoutingModule)}
 ];
 
 @NgModule({

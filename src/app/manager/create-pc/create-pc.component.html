@@ -1,0 +1,102 @@
+<div class="side-banner banner-left row d-flex"
+     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a><img
+  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+<div class="container row " style="margin: 10px;display: inline-block;float: left">
+  <img style="margin-left: 25px;height: 100px;object-fit: cover"
+       src="https://media1.giphy.com/media/NKEt9elQ5cR68/giphy.gif">
+
+  <div style="margin-top: 30px;margin-left: 25px;margin-bottom: 0px">
+    <h2 style="width: 100%;background: #92999f;height: 15px"><p
+      style="background: white;margin: auto;width: 400px;line-height: 10px;padding-bottom: 10px"
+      class="text text-center">{{nameTitle}}</p></h2>
+    <form [formGroup]="formPC" style="margin-top: 30px;border-bottom: 5px solid #005ec4" (ngSubmit)="createPC()">
+      <div class="d-flex row">
+        <div class="col-lg-8">
+          <div  class="d-flex row text" style="margin: -5px 0 -5px 1px">
+            <div  [class.error]="errorPC.name == true" [class.input-field]="errorPC.name == false" class=" col-lg-6" style="width: 320px;">
+              <input style="overflow: hidden"  type="text" [placeholder]="errorMessagePC.name" formControlName="name" required spellcheck="false">
+              <label  >Tên</label>
+            </div>
+            <div [class.error]="errorPC.cpu == true" [class.input-field]="errorPC.cpu == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input  type="text" required [placeholder]="errorMessagePC.cpu" formControlName="cpu" spellcheck="false">
+              <label>CPU</label>
+            </div>
+            <div [class.error]="errorPC.oldPrice == true"  [class.input-field]="errorPC.oldPrice == false" class=" col-lg-6" style="width: 320px">
+              <input type="number" [placeholder]="errorMessagePC.oldPrice" formControlName="oldPrice" required spellcheck="false">
+              <label>Giá cũ</label>
+            </div>
+            <div [class.error]="errorPC.price == true" [class.input-field]="errorPC.price == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="number" required  [placeholder]="errorMessagePC.price" formControlName="price" spellcheck="false">
+              <label>Giá mới</label>
+            </div>
+
+
+
+            <div [class.error]="errorPC.ram == true" [class.input-field]="errorPC.ram == false" class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessagePC.ram" formControlName="ram" required spellcheck="false">
+              <label>RAM</label>
+            </div>
+            <div [class.error]="errorPC.mainboard == true" [class.input-field]="errorPC.mainboard == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessagePC.mainboard" formControlName="mainboard" required  spellcheck="false">
+              <label>Mainboard</label>
+            </div>
+
+
+            <div [class.error]="errorPC.vga == true" [class.input-field]="errorPC.vga == false"  class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessagePC.vga" formControlName="vga" required spellcheck="false">
+              <label>VGA</label>
+            </div>
+            <div [class.error]="errorPC.ssd == true" [class.input-field]="errorPC.ssd == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessagePC.ssd" formControlName="ssd" required  spellcheck="false">
+              <label>SSD</label>
+            </div>
+            <div [class.error]="errorPC.psu == true" [class.input-field]="errorPC.psu == false" class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessagePC.psu"  formControlName="psu" required spellcheck="false">
+              <label>PSU</label>
+            </div>
+            <div [class.error]="errorPC.cases == true" [class.input-field]="errorPC.cases == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessagePC.cases" formControlName="cases" required  spellcheck="false">
+              <label>CASE</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3"  style="margin-left: 10px;border-left: 5px solid #005ec4 ;height: 320px">
+          <label class="hoverable"  for="fileInput" style="position: relative">
+            <img [class.errorImage]="errorPC.image == true" [class.loading]="isLoading==true" class="img"  src="{{fb}}">
+            <!--            <div (change)="showPreview($event)" class="hover-text">Choose file</div>-->
+            <input id="fileInput" type='file'  class="hover-text" (change)="showPreview($event)">
+            <div class="hover-text"  ><i style="margin-bottom: 50px;font-size: 100px" class="fa-sharp fa-solid fa-image"></i></div>
+            <div class="hover-text text" style="margin-top: 50px">Chọn Ảnh</div>
+            <div [class.loader]="isLoading" style="z-index: 999" *ngIf="isLoading ==true" class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+              <div class="rect6"></div>
+              <div class="rect7"></div>
+              <div class="rect8"></div>
+            </div>
+            <div  class="background"></div>
+          </label>
+
+          <br/>
+          <!--          <input id="fileInput" type='file' (change)="showPreview($event)">-->
+        </div>
+
+      </div>
+      <button style="margin-left: 300px;margin-bottom: 20px;z-index: 99" class="btn btn-primary font" type="submit">Xác nhận</button>
+    </form>
+  </div>
+
+  <img style="margin-left: 25px;height: 340px;margin-top: -10px;border-top: 5px solid #005ec4;object-fit: cover;"
+       src="https://hoanghapc.vn/template/2022/images/static-sale-12-2022-banner-4.png">
+</div>
+
+<div class="side-banner banner-right row "
+     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
+  alt="Helios 16 - 2023"><img
+  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+
+

@@ -62,14 +62,18 @@
       style="text-transform: uppercase;">{{user.name}}</span> </div>
       <div  class=" dropdown-menu" aria-labelledby="dropdownMenuButton1"  style="top: 35px;font-size: 20px">
         <p class="category-item dropdown-item" routerLink="/profile"><i class="fa-sharp fa-solid fa-user" style="margin-right: 5px"></i> Thông tin cá nhân</p>
-        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-handshake"></i> Quản lý sản phẩm</p>
-        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-cart-shopping" style="margin-right: 5px"></i> Quản lý mua hàng</p>
+        <p class="category-item dropdown-item" routerLink="/manager/create/2/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới PC</p>
+        <p class="category-item dropdown-item" routerLink="/manager/create/1/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Laptop</p>
+        <p class="category-item dropdown-item" routerLink="/manager/create/5/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Chuột</p>
+        <p class="category-item dropdown-item" routerLink="/manager/create/4/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Màn hình</p>
+        <p class="category-item dropdown-item" routerLink="/manager/create/6/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Ghế</p>
+        <p class="category-item dropdown-item" routerLink="/manager/create/3/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Bàn phím</p>
         <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-money-bill-1-wave" style="margin-right: 5px"></i> Quản lý doanh thu</p>
         <p class="category-item dropdown-item" (click)="logout()"><i class="fa-sharp fa-solid fa-right-from-bracket" style="margin-right: 5px"></i> Đăng xuất
         </p>
       </div>
     </a>
-    <a style="margin-left: 50px;cursor: pointer"><i class="fa-solid fa-newspaper"></i> TIN TỨC</a>
+    <a (click)="chec2k()" style="margin-left: 50px;cursor: pointer"><i class="fa-solid fa-newspaper"></i> TIN TỨC</a>
     <span style="font-weight: bold;position: absolute;right: 50px;top:2px;font-size: 30px">
       <i class="fa-brands fa-facebook-f icon-margin"></i>
     <i class="fa-brands fa-youtube icon-margin"></i>
@@ -85,7 +89,10 @@
   <div class="modal-dialog modal-lg" style="width: 4100px">
     <div class="modal-content">
       <div class="modal-header" style="border-bottom: 0 solid white">
-        <h3 class="modal-title" id="exampleModalLabel">Bạn đang có 4 sản phẩm trong giỏ hàng</h3>
+        <h3 class="modal-title" id="exampleModalLabel">
+          <span *ngIf="quantity != 0">Bạn đang có {{quantity}} sản phẩm trong giỏ hàng</span>
+          <span *ngIf="quantity == 0">Không có sản phẩm nào trong giỏ hàng</span>
+        </h3>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -98,14 +105,14 @@
                 <div  *ngFor="let x of cart" style="border: 1px solid #005ec4;margin-bottom: 10px;width: 410px">
                   <div style="width: 40px;cursor: pointer;display: inline-block;margin-bottom: 10px;margin-top: -5px;margin-left: 10px">
                     <img data-bs-dismiss="modal" [routerLink]="['/product/detail/'+x.id]"
-                      src="{{x.image}}"
+                      src="{{x.product.image}}"
                       style="height: 60px;width: 60px;object-fit: cover;margin-top: -25px">
                   </div>
                   <div style="width: 300px;display: inline-block;position: relative;;margin-left: 30px">
-                    <h6 data-bs-dismiss="modal" [routerLink]="['/product/detail/'+x.id]" style="cursor: pointer;color: #005ec4;margin-top: 10px;width: 300px" class="text">{{x.name}}</h6>
-                    <span>Số lượng</span> <button (click)="downQuantity(x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> - </button> <span style="color: #005ec4;margin-left: 10px">{{x.quantity}}</span> <button (click)="upQuantity(x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> + </button>
-                    <span class="text" style="position: absolute;right: -10px;top: 10px;font-size: 15px" >{{x.price}} đ</span>
-                    <button (click)="delete(x.id)" style="position: absolute;right: -10px;top: 30px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
+                    <h6 data-bs-dismiss="modal" [routerLink]="['/product/detail/'+x.id]" style="cursor: pointer;color: #005ec4;margin-top: 10px;width: 300px" class="text">{{x.product.name}}</h6>
+                    <span>Số lượng</span> <button (click)="changeQuantity('-',x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> - </button> <span style="color: #005ec4;margin-left: 10px">{{x.quantity}}</span> <button (click)="changeQuantity('+',x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> + </button>
+                    <span class="text" style="position: absolute;right: -10px;top: 10px;font-size: 15px" >{{x.product.price}} đ</span>
+                    <button (click)="deleteCart(x.id)" style="color: #005ec4; position: absolute;right: -10px;top: 30px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px;color: #005ec4"></i> <span class="text" style="margin-left: 3px;color: #005ec4">XÓA</span></button>
                   </div>
                 </div>
                 <div *ngIf="cart.length == 0">

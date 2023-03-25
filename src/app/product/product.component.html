@@ -12,6 +12,8 @@
       <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/">Trang chủ</h4>
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
       <h4 class="text" style="margin-left: 30px">{{product.category.name}}</h4>
+      <button [routerLink]="['/manager/create/' + product.category.id +'/'+ product.id]" style="position: absolute;right: 150px;" class="btn btn-primary"><i style="color: white" class="fa-sharp fa-solid fa-gears"></i></button>
+      <button (click)="isDelete()" style="position: absolute;right: 200px;" class="btn btn-danger"><i style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
     </div>
     <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
       <div class="col-lg-6">
@@ -30,7 +32,7 @@
           <p>- Nguồn: {{product.psu}}</p>
           <p>- Vỏ case: {{product.cases}}</p>
         </div>
-        <div *ngIf="product.category.id == 1" style="font-size: 16px">
+        <div *ngIf="product.category.id == 1" style="font-size: 19px">
           <p>- CPU: {{product.cpu}}</p>
           <p>- RAM: {{product.ram}}</p>
           <p>- Ổ cứng: {{product.hardDrive}}</p>
@@ -62,7 +64,7 @@
           <p>- {{product.keyboard}}</p>
           <p>- Kết nối {{product.connect}}</p>
           <p>- Keycap {{product.keycap}}</p>
-          <p>- Loại switch {{product.Switch}}</p>
+          <p>- Loại switch {{product.switchKeyboard}}</p>
           <p>- Pin {{product.pin}}</p>
           <p>- Tương thích {{product.os}}</p>
         </div>

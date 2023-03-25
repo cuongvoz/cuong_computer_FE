@@ -9,7 +9,7 @@ export interface Product {
   keyboard: string;
   connect: string;
   keycap: string;
-  Switch: string;
+  switchKeyboard: string;
   reliability: string;
   compatible: string;
   cpu: string;

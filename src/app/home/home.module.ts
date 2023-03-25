@@ -6,17 +6,17 @@ import { ListComponent } from './list/list.component';
 import {AppRoutingModule} from "../app-routing.module";
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
-import { ManagerComponent } from './manager/manager.component';
-
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
-  declarations: [ListComponent, ManagerComponent],
-  imports: [
-    RouterModule,
-    AppRoutingModule,
-    CommonModule,
-    HomeRoutingModule,
-    BrowserModule
-  ]
+  declarations: [ListComponent],
+    imports: [
+        RouterModule,
+        AppRoutingModule,
+        CommonModule,
+        HomeRoutingModule,
+        BrowserModule,
+        ReactiveFormsModule
+    ]
 })
 export class HomeModule { }

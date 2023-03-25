@@ -3,9 +3,20 @@ import {FormControl, FormGroup} from "@angular/forms";
 import {Title} from "@angular/platform-browser";
 import {LoginService} from "../service/login/login.service";
 import {TokenService} from "../service/login/token.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ShareService} from "../service/login/share.service";
-
+import Swal from "sweetalert2";
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -19,13 +30,20 @@ export class LoginComponent implements OnInit {
   });
   name = 'Thông tin cá nhân';
   message = ''
+  isBuying = false;
   islogged = false;
-  constructor(private title:Title,private loginService: LoginService, private token: TokenService, private router: Router, private share: ShareService) {
+  constructor(private activate:ActivatedRoute,private title:Title,private loginService: LoginService, private token: TokenService, private router: Router, private share: ShareService) {
 
   }
 
 
   ngOnInit(): void {
+    this.activate.paramMap.subscribe(next => {
+      let cart = next.get('cart');
+      if (cart == 'true') {
+        this.isBuying = true;
+      }
+    })
     this.title.setTitle('Trang Đăng Nhập');
     this.islogged = this.token.isLogger();
     if (this.islogged) {
@@ -43,8 +61,17 @@ export class LoginComponent implements OnInit {
             next.gender, next.dateOfBirth, next.avatar, next.roles, 'session');
         }
       console.log(next)
+      Toast.fire({
+        icon: 'success',
+        title: 'Chào mừng ' + next.name + ' đã quay trở lại'
+      })
         this.share.sendClickEvent();
-        this.router.navigateByUrl('/')
+        if (this.isBuying) {
+          this.router.navigateByUrl('/cart')
+        } else {
+          this.router.navigateByUrl('/')
+
+        }
       }, error => {
         console.log(error)
         if (error.error) {

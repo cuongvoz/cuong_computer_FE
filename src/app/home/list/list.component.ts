@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Product} from "../../entity/product";
-import {LaptopService} from "../../service/laptop/laptop.service";
 import {ProductService} from "../../service/product/product.service";
 import {Title} from "@angular/platform-browser";
 import Swal from "sweetalert2";
 import {Cart} from "../../entity/cart";
 import {TokenService} from "../../service/login/token.service";
 import {ShareService} from "../../service/login/share.service";
+import {User} from "../../entity/user";
+import {LoginService} from "../../service/login/login.service";
 
 @Component({
   selector: 'app-list',
@@ -18,18 +19,23 @@ export class ListComponent implements OnInit {
   category = '';
   cart: Cart[] =[]
   products:Product[];
+  user:User;
+  isLogged = false;
   id:number;
   nameSearch= ''
-  constructor(private share:ShareService,private token:TokenService,private title:Title,private router:Router,private productService:ProductService,private activate:ActivatedRoute) {
+  constructor(private loginService:LoginService,private share:ShareService,private token:TokenService,private title:Title,private router:Router,private productService:ProductService,private activate:ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
-
+    this.isLogged = this.token.isLogger()
     window.scroll(0,0)
     this.loader();
   }
   loader() {
+    if (this.isLogged) {
+      this.loginService.profile(this.token.getId()).subscribe(next => this.user = next)
+    }
     this.activate.paramMap.subscribe(next => {
       let name = next.get('name');
       this.nameSearch = name
@@ -95,44 +101,7 @@ export class ListComponent implements OnInit {
     }
  }
   click(product:Product) {
-    console.log(this.token.getCart())
-    if (this.token.getCart() == undefined) {
-      let cart = {
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        quantity: 1
-      }
-      this.cart.push(cart);
-      this.token.setCart(this.cart);
-    } else {
-      this.cart = this.token.getCart();
-      if (this.token.checkExist(product.id)) {
-        this.token.upQuantity(product.id,this.cart);
-      } else {
-        let cart = {
-          id: product.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          quantity: 1
-        }
-        this.cart.push(cart)
-      }
-      this.token.setCart(this.cart)
-    }
-
-    Swal.fire({
-      title:'Bạn đã thêm sản phẩm ' + product.name +' vào giỏ!',
-      imageUrl: product.image,
-      showConfirmButton: false,
-      timer: 2000,
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: 'Custom image',
-    })
-    this.share.sendClickEvent();
+   this.token.addToCart(product,this.user)
   }
   goHome() {
     this.router.navigateByUrl('/')

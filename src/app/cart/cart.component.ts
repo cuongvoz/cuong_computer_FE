@@ -22,14 +22,14 @@ export class CartComponent implements OnInit {
   quantity = 0;
   total = 0;
   user: User;
-
+  isLogged = false;
   constructor(private token: TokenService, private share: ShareService, private title: Title, private cartService: CartService, private router: Router, private loginService: LoginService, private productService: ProductService) {
   }
 
   ngOnInit(): void {
+    this.isLogged = this.token.isLogger();
+    this.check()
     this.title.setTitle('Giỏ hàng');
-    this.getAll();
-    this.check();
     window.scroll(0, 0)
     this.productService.getHome('?size=4').subscribe(
       next => {
@@ -38,131 +38,81 @@ export class CartComponent implements OnInit {
             break;
           }
           this.products.push(next['content'][i])
-
         }
       }
     )
-    console.log(this.products)
   }
 
   check() {
-    if (this.token.isLogger()) {
+    if (this.isLogged) {
       this.loginService.profile(this.token.getId()).subscribe(
         next => {
           this.user = next;
+          this.cartService.getCartByUser(this.user.id).subscribe(
+            next => {
+              this.cart = next
+              this.getAllValue();
+            }
+          );
         }
       )
     }
   }
 
   getAll() {
-    if (this.token.getCart() != undefined) {
-      this.cart = this.token.getCart();
-      this.getAllValue();
-    }
-   this.share.getClickEvent().subscribe(
-     next => {
-       if (this.token.getCart() != undefined) {
-         this.cart = this.token.getCart();
-         this.getAllValue();
-       }
-     }
-   )
+    this.cartService.getCartByUser(this.user.id).subscribe(
+      next => {this.cart = next
+        this.getAllValue();
+      }
+    );
+      this.share.getClickEvent().subscribe(
+        next => {
+       this.cartService.getCartByUser(this.user.id).subscribe(
+            next => {this.cart = next
+              this.getAllValue();
+            }
+          );
+        }
+      )
 
   }
+  changeQuantity(operator:string,id:number) {
+    this.cartService.changeQuantity(operator,id).subscribe(next => {
+      this.share.sendClickEvent()
+      this.cartService.getCartByUser(this.user.id).subscribe(
+        next => {this.cart = next
+          this.getAllValue();
+        }
+      )
+    })
+  }
+  deleteCart(id:number) {
+    this.cartService.deleteCart(id).subscribe(next => {
+      this.share.sendClickEvent()
+      this.share.getClickEvent().subscribe(next => {
+        this.cartService.getCartByUser(this.user.id).subscribe(
+          next => {this.cart = next
+            this.getAllValue();
+          }
+        )
+      })
 
+    });
+  }
   getAllValue() {
     this.quantity = 0;
     this.total = 0;
     for (let i = 0; i < this.cart.length; i++) {
       this.quantity += this.cart[i].quantity;
-      this.total += this.cart[i].price * this.cart[i].quantity
+      this.total += this.cart[i].product.price * this.cart[i].quantity
     }
-    // for (let i = 0; i < this.cart.length; i++) {
-    //   this.total += this.cart[i].price * this.cart[i].quantity
-    // }
   }
 
-  delete(id: number) {
-    for (let i = 0; i < this.cart.length; i++) {
-      if (this.cart[i].id == id) {
-        this.cart.splice(i, 1);
-        break;
-      }
-    }
-    this.token.setCart(this.cart);
-    this.share.sendClickEvent();
-    this.getAll();
-    this.getAllValue();
-  }
-
-  upQuantity(id: number) {
-    for (let i = 0; i < this.cart.length; i++) {
-      if (this.cart[i].id == id) {
-        this.cart[i].quantity += 1;
-        break;
-      }
-    }
-    this.token.setCart(this.cart);
-    this.share.sendClickEvent();
-    this.getAll();
-  }
-
-  downQuantity(id: number) {
-    for (let i = 0; i < this.cart.length; i++) {
-      if (this.cart[i].id == id) {
-        if (this.cart[i].quantity == 1) {
-          this.cart.splice(i, 1);
-        } else {
-          this.cart[i].quantity -= 1;
-        }
-        break;
-      }
-    }
-    this.token.setCart(this.cart);
-    this.share.sendClickEvent();
-    this.getAll();
-  }
 
   click(product: Product) {
-    console.log(this.token.getCart())
-    if (this.token.getCart() == undefined) {
-      let cart = {
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        quantity: 1
-      }
-      this.cart.push(cart);
-      this.token.setCart(this.cart);
-    } else {
-      this.cart = this.token.getCart();
-      if (this.token.checkExist(product.id)) {
-        this.token.upQuantity(product.id, this.cart);
-      } else {
-        let cart = {
-          id: product.id,
-          name: product.name,
-          image: product.image,
-          price: product.price,
-          quantity: 1
-        }
-        this.cart.push(cart)
-      }
-      this.token.setCart(this.cart)
-      this.getAllValue();
-    }
-    Swal.fire({
-      title:'Bạn đã thêm sản phẩm ' + product.name +' vào giỏ!',
-      imageUrl: product.image,
-      showConfirmButton: false,
-      timer: 2000,
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: 'Custom image',
-    })
-    this.share.sendClickEvent();
+    this.token.addToCart(product, this.user)
+    this.getAll()
+    this.getAllValue();
   }
 
   dropCart() {
@@ -175,12 +125,9 @@ export class CartComponent implements OnInit {
         timer: 1500
       });
     } else {
-      let cart = []
-      this.token.setCart(cart);
-      this.share.sendClickEvent();
-      this.quantity = 0;
-      this.total = 0;
+      this.token.dropCart(this.user.id)
       this.getAll();
+      this.share.sendClickEvent()
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -189,7 +136,22 @@ export class CartComponent implements OnInit {
         timer: 1500
       });
     }
+  }
 
+  detail(): string {
+    let detail = '';
+    let currentTime = new Date();
+    let formattedTime = currentTime.toLocaleString();
+    for (let i = 0; i < this.cart.length; i++) {
+      if (i + 1 == this.cart.length) {
+
+        detail += this.cart[i].quantity + ' ' + this.cart[i].product.category.name.toLowerCase() + ' ' + this.cart[i].product.name
+      } else {
+        detail += this.cart[i].quantity + ' ' + this.cart[i].product.category.name.toLowerCase() + ' ' + this.cart[i].product.name + ' và '
+      }
+    }
+    detail += ' vào lúc ' + formattedTime;
+    return detail
   }
 
   buy() {
@@ -203,31 +165,38 @@ export class CartComponent implements OnInit {
       });
     } else if (!this.token.isLogger()) {
       Swal.fire({
-        position: 'center',
-        icon: 'warning',
-        title: 'Bạn chưa đăng nhập, vui lòng đăng nhập để mua hàng!',
-        showConfirmButton: false,
-        timer: 1500
+        title: 'Bạn chưa đăng nhập, hãy đăng nhập để tiếp tục thanh toán!',
+        imageUrl: 'https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png',
+        showConfirmButton: true,
+        imageWidth: 200,
+        imageHeight: 200,
+        imageAlt: 'Custom image',
+        confirmButtonColor: '#005ec4',
+        confirmButtonText: 'Đăng nhập',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.router.navigate(['/login/true'])
+        }
       });
-      this.router.navigateByUrl('/login')
     } else {
       let currentTime = new Date();
       let formattedTime = currentTime.toLocaleString();
       console.log(formattedTime)
-      this.cartService.buy(this.total, this.cart, formattedTime).subscribe(
+      this.cartService.buy(this.total,this.quantity, this.user.id, formattedTime).subscribe(
         next => {
           Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Chúc mừng bạn ' + this.user.name + ' đã mua hàng thành công :D',
-            showConfirmButton: false,
-            timer: 1500
+            title: 'Chúc mừng bạn ' + this.user.name + ' đã mua hàng thành công!',
+            imageUrl: 'https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png',
+            text: 'Bạn đã mua ' + this.detail() +
+              ', tổng hóa đơn thanh toán của bạn là ' + this.total + ' VNĐ!',
+            showConfirmButton: true,
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            confirmButtonText: 'Xác nhận',
+            confirmButtonColor: '#005ec4',
           });
-          let cart = []
-          this.token.setCart(cart);
           this.share.sendClickEvent();
-          this.quantity = 0;
-          this.total = 0;
           this.getAll();
         }
       )

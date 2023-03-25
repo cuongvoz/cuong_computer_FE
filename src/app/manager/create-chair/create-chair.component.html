@@ -1,0 +1,92 @@
+<div class="side-banner banner-left row d-flex"
+     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a><img
+  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+<div class="container row " style="margin: 10px;display: inline-block;float: left">
+  <img style="margin-left: 25px;height: 100px;object-fit: cover"
+       src="https://media1.giphy.com/media/NKEt9elQ5cR68/giphy.gif">
+
+  <div style="margin-top: 30px;margin-left: 25px">
+    <h2 style="width: 100%;background: #92999f;height: 15px"><p
+      style="background: white;margin: auto;width: 400px;line-height: 10px;padding-bottom: 10px"
+      class="text text-center">Thêm mới ghế</p></h2>
+    <form [formGroup]="formChair" style="border-bottom: 5px solid #005ec4" (ngSubmit)="createChair()">
+      <div class="d-flex row">
+        <div class="col-lg-8">
+          <div  class="d-flex row text" style="margin: 20px 0 -5px 1px">
+            <div  [class.error]="errorChair.name == true" [class.input-field]="errorChair.name == false" class=" col-lg-6" style="width: 320px;">
+              <input   type="text" [placeholder]="errorMessageChair.name" formControlName="name" required spellcheck="false">
+              <label  >Tên của ghế</label>
+            </div>
+            <div [class.error]="errorChair.model == true" [class.input-field]="errorChair.model == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input  type="text" required [placeholder]="errorMessageChair.model" formControlName="model" spellcheck="false">
+              <label>Model</label>
+            </div>
+            <div [class.error]="errorChair.oldPrice == true"  [class.input-field]="errorChair.oldPrice == false" class=" col-lg-6" style="width: 320px">
+              <input type="number" [placeholder]="errorMessageChair.oldPrice" formControlName="oldPrice" required spellcheck="false">
+              <label>Giá cũ</label>
+            </div>
+            <div [class.error]="errorChair.price == true" [class.input-field]="errorChair.price == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="number" required  [placeholder]="errorMessageChair.price" formControlName="price" spellcheck="false">
+              <label>Giá mới</label>
+            </div>
+
+
+
+            <div [class.error]="errorChair.material == true" [class.input-field]="errorChair.material == false" class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessageChair.material" formControlName="material" required spellcheck="false">
+              <label>Chất liệu</label>
+            </div>
+            <div [class.error]="errorChair.kneelings == true" [class.input-field]="errorChair.kneelings == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessageChair.kneelings" formControlName="kneelings" required  spellcheck="false">
+              <label>Loại kê tay</label>
+            </div>
+
+
+            <div [class.error]="errorChair.brand == true" [class.input-field]="errorChair.brand == false"  class=" col-lg-6" style="width: 320px">
+              <input type="text" [placeholder]="errorMessageChair.brand" formControlName="brand" required spellcheck="false">
+              <label>Hãng sản xuất</label>
+            </div>
+            <div [class.error]="errorChair.backrest == true" [class.input-field]="errorChair.backrest == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
+              <input type="text" [placeholder]="errorMessageChair.backrest" formControlName="backrest" required  spellcheck="false">
+              <label>Kiểu ngả lưng</label>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3" style="margin-left: 10px;border-left: 5px solid #005ec4 ;height: 320px">
+          <label class="hoverable"  for="fileInput" style="position: relative">
+            <img [class.errorImage]="errorChair.image == true" [class.loading]="isLoading==true" class="img" src="{{fb}}">
+            <!--            <div (change)="showPreview($event)" class="hover-text">Choose file</div>-->
+            <input id="fileInput" type='file'  class="hover-text" (change)="showPreview($event)">
+            <div class="hover-text"  ><i style="margin-bottom: 50px;font-size: 100px" class="fa-sharp fa-solid fa-image"></i></div>
+            <div class="hover-text text" style="margin-top: 50px">Chọn Ảnh</div>
+            <div [class.loader]="isLoading" style="z-index: 999" *ngIf="isLoading ==true" class="spinner">
+              <div class="rect1"></div>
+              <div class="rect2"></div>
+              <div class="rect3"></div>
+              <div class="rect4"></div>
+              <div class="rect5"></div>
+              <div class="rect6"></div>
+              <div class="rect7"></div>
+              <div class="rect8"></div>
+            </div>
+            <div  class="background"></div>
+          </label>
+          <br/>
+          <!--          <input id="fileInput" type='file' (change)="showPreview($event)">-->
+        </div>
+
+      </div>
+      <button style="margin:-50px 0 20px 300px;" class="btn btn-primary font" type="submit">Xác nhận</button>
+    </form>
+  </div>
+  <img style="margin-left: 25px;margin-bottom: -300px;height: 340px;object-fit: cover"
+       src="https://bucket.nhanh.vn/9beff9-35631/ps/20190816_9ijCw3A3a6BOrp3UuyAWzUkE.jpg">
+
+</div>
+
+<div class="side-banner banner-right row "
+     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
+  alt="Helios 16 - 2023"><img
+  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+
+
