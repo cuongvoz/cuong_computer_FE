@@ -17,18 +17,25 @@ import {LoginService} from "../../service/login/login.service";
 })
 export class ListComponent implements OnInit {
   category = '';
-  cart: Cart[] =[]
-  products:Product[];
+  cart: Cart[] =[{},{}]
+  products:Product[] = [];
   user:User;
   isLogged = false;
   id:number;
   nameSearch= ''
+  load = 'yes'
   constructor(private loginService:LoginService,private share:ShareService,private token:TokenService,private title:Title,private router:Router,private productService:ProductService,private activate:ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
     this.isLogged = this.token.isLogger()
+    this.share.getClickEvent().subscribe(
+      next => {
+        this.isLogged = this.token.isLogger()
+        this.loader();
+      }
+    )
     window.scroll(0,0)
     this.loader();
   }
@@ -63,7 +70,11 @@ export class ListComponent implements OnInit {
            )
          }
        }
-
+        if (this.products.length == 0) {
+          this.load = 'none'
+        } else {
+          this.load = 'yes'
+        }
     })
 
   }
@@ -101,7 +112,44 @@ export class ListComponent implements OnInit {
     }
  }
   click(product:Product) {
-   this.token.addToCart(product,this.user)
+    this.share.sendClickEvent();
+    if (this.isLogged) {
+      if (product.quantity > 0) {
+        this.token.addToCart(product,this.user)
+      } else {
+        Swal.fire({
+          title: 'Hết mất rồi :(',
+          imageUrl: 'https://i.imgur.com/dKc3V77.png',
+          text: 'Hiện tại ' + product.category.name.toLowerCase() + ' ' + product.name + ' của bên mình đã hết' +
+            ' mong quý khách thông cảm cho sự bất tiện này, quý khách vui lòng chọn sản phẩm khác.',
+          showConfirmButton: true,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          confirmButtonColor: '#005ec4',
+          confirmButtonText: 'Xác nhận',
+        })
+      }
+    } else {
+      if (product.quantity > 0) {
+        this.token.addCartSession(product)
+        this.share.sendClickEvent()
+      } else {
+        Swal.fire({
+          title: 'Hết mất rồi :(',
+          imageUrl: 'https://i.imgur.com/dKc3V77.png',
+          text: 'Hiện tại ' + product.category.name.toLowerCase() + ' ' + product.name + ' của bên mình đã hết' +
+            ' mong quý khách thông cảm cho sự bất tiện này, quý khách vui lòng chọn sản phẩm khác.',
+          showConfirmButton: true,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          confirmButtonColor: '#005ec4',
+          confirmButtonText: 'Xác nhận',
+        })
+      }
+
+    }
   }
   goHome() {
     this.router.navigateByUrl('/')

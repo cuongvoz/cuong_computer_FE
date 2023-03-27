@@ -20,6 +20,7 @@ export interface Product {
   psu: string;
   cases: string;
   sensor: string;
+  quantity:number;
   dpi: string;
   material: string;
   kneelings: string;

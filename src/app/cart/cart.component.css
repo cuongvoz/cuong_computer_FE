@@ -18,6 +18,10 @@
   z-index: 30;
 
 }
+.newText2 {
+  font-family: Chakra Petch;
+  color: #29324e;
+}
 .card {
   transition:.5s;
   -webkit-transition: .5s;

@@ -9,6 +9,9 @@
   font-family: Chakra Petch;
 
 }
+.line-high {
+  margin-bottom: 0;
+}
 .container {
   width: 1100px;
   margin: 10px;

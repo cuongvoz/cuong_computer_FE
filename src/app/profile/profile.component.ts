@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
       })
   }
   loader() {
-
     this.isLogged = this.token.isLogger()
     if (this.isLogged) {
       this.loginService.profile(this.token.getId()).subscribe(next => {

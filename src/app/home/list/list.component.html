@@ -1,6 +1,6 @@
 <div class="side-banner banner-left row d-flex"
      style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a
-  href="https://www.tncstore.vn/laptop-acer-predator-helios-16-ph16-71-94n1-nh-qjssv-002-i9-13900hx-32gb-2tb-rtx-4080-12gb-16-inch-wqxga-win-11"><img
+><img
   src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
 
 <div class="container row " style="margin: 10px;display: inline-block;float: left">
@@ -11,10 +11,10 @@
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
       <h4 class="text" style="margin-left: 30px;cursor: pointer" (click)="goHome()" routerLink="/body">Trang chủ</h4>
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
-      <h4 class="text" style="margin-left: 30px">{{category}}</h4>
+      <h4 class="text" [routerLink]="['/list/search/' + id + '/null']" style="margin-left: 30px;cursor: pointer">{{category}}</h4>
     </div>
     <div class="d-flex row" style="font-size: 20px;margin-top: -20px;margin-left: -30px">
-      <div *ngIf="products.length == 0" style="width: 100%;margin: 60px 0 30px 0">
+      <div *ngIf="products.length == 0 && nameSearch != '' && nameSearch != null && nameSearch != 'null'" style="width: 100%;margin: 60px 0 30px 0">
         <img style="width: 200px;height: 200px;margin-left: 430px"
                                     src="https://static-00.iconduck.com/assets.00/thinking-face-emoji-484x512-jzitc78e.png">
    <h1 class="text text-center" style="margin: 20px">Có vẻ như sản phẩm "{{nameSearch}}" không tồn tại ..</h1>
@@ -27,7 +27,7 @@
                      alt="Card image cap">
                 <div class="card-body">
                   <span style="font-weight: bold;font-size: 15px">{{x.name}}</span>
-                  <p style="position: relative" class="text-danger">{{x.price}} đ <span style="position: absolute;right: 1px;bottom:3px;font-size: 12px;color: #92999f;text-decoration: line-through">{{x.oldPrice}} đ</span></p>
+                  <p style="position: relative" class="text-danger">{{x.price | number}} đ <span style="position: absolute;right: 1px;bottom:3px;font-size: 12px;color: #92999f;text-decoration: line-through;margin-bottom: -13px">{{x.oldPrice | number}} đ</span></p>
 
                   <button (click)="click(x)" class="btn btn-primary d-flex justify-content-center" style="color: white;margin-left: 33px">Thêm vào giỏ</button>
                 </div>
@@ -35,17 +35,17 @@
             </div>
     </div>
     <div>
-      <img *ngIf="id == 1" style="width: 100%;margin-left: 5px"
+      <img *ngIf="id == 7" style="width: 100%;margin-left: 5px"
            src="https://anphat.com.vn/media/lib/22-07-2021/2021-pba-banner_black-1920x740.jpg">
-      <img *ngIf="id == 4 || id== 5" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/ivtFTvc.png">
-      <img *ngIf="id == 7" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/OHkTpsf.png">
-      <img *ngIf="id == 6" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/HQ1qBxX.png">
-      <img *ngIf="id == 3" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/QcmBq2t.png">
-      <img *ngIf="id == 2" style="width: 100%;margin-left: 5px;margin-top: -10px" src="https://i.imgur.com/aCusUYG.png">
+      <img *ngIf="id == 3 || id== 5" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/ivtFTvc.png">
+      <img *ngIf="id == 6" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/OHkTpsf.png">
+      <img *ngIf="id == 4" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/HQ1qBxX.png">
+      <img *ngIf="id == 2" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/QcmBq2t.png">
+      <img *ngIf="id == 1" style="width: 100%;margin-left: 5px;margin-top: -10px" src="https://i.imgur.com/aCusUYG.png">
     </div>
   </div>
 </div>
 <div class="side-banner banner-right row "
      style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  href="https://www.tncstore.vn/gaming-laptop.html" alt="Helios 16 - 2023"><img
+  alt="Helios 16 - 2023"><img
   src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>

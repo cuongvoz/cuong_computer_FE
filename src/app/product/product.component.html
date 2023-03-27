@@ -1,6 +1,6 @@
 <div class="side-banner banner-left row d-flex"
      style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a
-  href="https://www.tncstore.vn/laptop-acer-predator-helios-16-ph16-71-94n1-nh-qjssv-002-i9-13900hx-32gb-2tb-rtx-4080-12gb-16-inch-wqxga-win-11"><img
+><img
   src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
 
 <div class="container row " style="margin: 10px;display: inline-block;float: left">
@@ -11,9 +11,13 @@
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
       <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/">Trang chủ</h4>
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
-      <h4 class="text" style="margin-left: 30px">{{product.category.name}}</h4>
-      <button [routerLink]="['/manager/create/' + product.category.id +'/'+ product.id]" style="position: absolute;right: 150px;" class="btn btn-primary"><i style="color: white" class="fa-sharp fa-solid fa-gears"></i></button>
-      <button (click)="isDelete()" style="position: absolute;right: 200px;" class="btn btn-danger"><i style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
+      <h4 class="text" [routerLink]="['/list/search/' +product.category.id +'/null']" style="margin-left: 30px;cursor: pointer">{{product.category.name}}</h4>
+      <button [routerLink]="['/manager/create/' + product.category.id +'/'+ product.id]"
+              style="position: absolute;right: 150px;" class="btn btn-primary"><i style="color: white"
+                                                                                  class="fa-sharp fa-solid fa-gears"></i>
+      </button>
+      <button (click)="isDelete()" style="position: absolute;right: 200px;" class="btn btn-danger"><i
+        style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
     </div>
     <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
       <div class="col-lg-6">
@@ -24,76 +28,84 @@
       <div class="col-lg-6" style="border-left: 1px solid #005ec4;padding-left: 50px;margin-left: -30px">
         <h3 class="text" style="color: #005ec4">{{product.name}}</h3>
         <div *ngIf="product.category.id == 2">
-          <p>- CPU: {{product.cpu}}</p>
-          <p>- Mainboard: {{product.mainboard}}</p>
-          <p>- SSD: {{product.ssd}}</p>
-          <p>- RAM: {{product.ram}}</p>
-          <p>- VGA: {{product.vga}}</p>
-          <p>- Nguồn: {{product.psu}}</p>
-          <p>- Vỏ case: {{product.cases}}</p>
+          <p class="line-high">- CPU: {{product.cpu}}</p>
+          <p class="line-high">- Mainboard: {{product.mainboard}}</p>
+          <p class="line-high">- SSD: {{product.ssd}}</p>
+          <p class="line-high">- RAM: {{product.ram}}</p>
+          <p class="line-high">- VGA: {{product.vga}}</p>
+          <p class="line-high">- Nguồn: {{product.psu}}</p>
+          <p class="line-high">- Vỏ case: {{product.cases}}</p>
         </div>
-        <div *ngIf="product.category.id == 1" style="font-size: 19px">
-          <p>- CPU: {{product.cpu}}</p>
-          <p>- RAM: {{product.ram}}</p>
-          <p>- Ổ cứng: {{product.hardDrive}}</p>
-          <p>- VGA: {{product.vga}}</p>
-          <p>- Màn hình: {{product.monitor}}</p>
-          <p>- Nguồn: {{product.psu}}</p>
-          <p *ngIf="product.pin">- Pin: {{product.pin}}</p>
-          <p>- Cân Nặng: {{product.weight}}</p>
-          <p *ngIf="product.color">- Màu sắc: {{product.color}}</p>
-          <p>- OS: {{product.os}}</p>
+        <div *ngIf="product.category.id == 1">
+          <p class="line-high">- CPU: {{product.cpu}}</p>
+          <p class="line-high">- RAM: {{product.ram}}</p>
+          <p class="line-high">- Ổ cứng: {{product.hardDrive}}</p>
+          <p class="line-high">- VGA: {{product.vga}}</p>
+          <p class="line-high">- Màn hình: {{product.monitor}}</p>
+          <p class="line-high">- Nguồn: {{product.psu}}</p>
+          <p class="line-high" *ngIf="product.pin">- Pin: {{product.pin}}</p>
+          <p class="line-high">- Cân Nặng: {{product.weight}}</p>
+          <p class="line-high" *ngIf="product.color">- Màu sắc: {{product.color}}</p>
+          <p class="line-high">- OS: {{product.os}}</p>
         </div>
-        <div *ngIf="product.category.id == 6" style="font-size: 16px">
-          <p>- Chất liệu {{product.material}}</p>
-          <p>- Thương hiệu {{product.brand}}</p>
-          <p>- Model {{product.model}}</p>
-          <p>- Kê tay {{product.kneelings}}</p>
-          <p>- Màu sắc {{product.color}}</p>
-          <p>- Trọng tải theo góc đứng {{product.weight}}</p>
+        <div *ngIf="product.category.id == 6">
+          <p class="line-high">- Chất liệu {{product.material}}</p>
+          <p class="line-high">- Thương hiệu {{product.brand}}</p>
+          <p class="line-high">- Model {{product.model}}</p>
+          <p class="line-high">- Kê tay {{product.kneelings}}</p>
+          <p class="line-high">- Màu sắc {{product.color}}</p>
+          <p class="line-high">- Trọng tải theo góc đứng {{product.weight}}</p>
         </div>
-        <div *ngIf="product.category.id == 4" style="font-size: 16px">
-          <p>- Kích thước {{product.screenSize}}</p>
-          <p>- Độ phân giải {{product.resolution}}</p>
-          <p>- Tấm nền {{product.model}}</p>
-          <p>- Tần số quét {{product.scanFrequency}}</p>
-          <p>- Tỉ lệ màn hình {{product.aspectRatio}}</p>
-          <p>- Cổng kết nối: {{product.connector}}</p>
+        <div *ngIf="product.category.id == 4">
+          <p class="line-high">- Kích thước {{product.screenSize}}</p>
+          <p class="line-high">- Độ phân giải {{product.resolution}}</p>
+          <p class="line-high">- Tấm nền {{product.model}}</p>
+          <p class="line-high">- Tần số quét {{product.scanFrequency}}</p>
+          <p class="line-high">- Tỉ lệ màn hình {{product.aspectRatio}}</p>
+          <p class="line-high">- Cổng kết nối {{product.connector}}</p>
         </div>
-        <div *ngIf="product.category.id == 3" style="font-size: 16px">
-          <p>- {{product.keyboard}}</p>
-          <p>- Kết nối {{product.connect}}</p>
-          <p>- Keycap {{product.keycap}}</p>
-          <p>- Loại switch {{product.switchKeyboard}}</p>
-          <p>- Pin {{product.pin}}</p>
-          <p>- Tương thích {{product.os}}</p>
+        <div *ngIf="product.category.id == 3">
+          <p class="line-high">- {{product.keyboard}}</p>
+          <p class="line-high">- Kết nối {{product.connect}}</p>
+          <p class="line-high">- Keycap {{product.keycap}}</p>
+          <p class="line-high">- Loại switch {{product.switchKeyboard}}</p>
+          <p class="line-high">- Pin {{product.pin}}</p>
+          <p class="line-high">- Tương thích {{product.os}}</p>
         </div>
-        <div *ngIf="product.category.id == 5" style="font-size: 16px">
-          <p>- {{product.dpi}}</p>
-          <p>- {{product.reliability}}</p>
-          <p>- {{product.compatible}}</p>
-          <p>- {{product.sensor}}</p>
-          <p *ngIf="product.connect">- Hỗ trợ kết nối {{product.connect}}</p>
-          <p *ngIf="product.os">- Tương thích {{product.os}}</p>
-          <p *ngIf="product.pin">- Pin {{product.pin}}</p>
-          <p *ngIf="product.weight">- {{product.weight}}</p>
+        <div *ngIf="product.category.id == 5">
+          <p class="line-high">- {{product.dpi}}</p>
+          <p class="line-high">- {{product.reliability}}</p>
+          <p class="line-high">- {{product.compatible}}</p>
+          <p class="line-high">- {{product.sensor}}</p>
+          <p class="line-high" *ngIf="product.connect">- Hỗ trợ kết nối {{product.connect}}</p>
+          <p class="line-high" *ngIf="product.os">- Tương thích {{product.os}}</p>
+          <p class="line-high" *ngIf="product.pin">- Pin {{product.pin}}</p>
+          <p class="line-high" *ngIf="product.weight">- {{product.weight}}</p>
         </div>
-        <div style="margin-top: 30px; ">
-          <i style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span class="text"
+        <div style="margin-top: 30px;margin-bottom: -20px ">
+          <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span *ngIf="product.quantity > 0" class="text"
                                                                                          style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
-          <span class="text" style="position: absolute;right: 200px;color: #92999f;text-decoration: line-through;">{{product.oldPrice}} đ</span>
+          <i *ngIf="product.quantity == 0" style="color: #cb2027" class="fa-sharp fa-solid fa-circle-xmark"></i> <span *ngIf="product.quantity == 0" class="text"
+                                                                                         style="color: #cb2027;margin-left: 10px">  HẾT HÀNG</span>
+          <span class="text"
+                style="position: absolute;right: 200px;color: #92999f;text-decoration: line-through;">{{product.oldPrice | number:'1.0-0'}}
+            đ</span>
         </div>
         <div style="margin-top: 30px; ">
           <span class="text">Số lượng</span>
           <input #element type="number" [min]="1" class="text text-center"
                  style="margin-left: 20px;border: 1px solid #005ec4;width: 40px;height: 40px;color: #005ec4" value="1">
-          <span class="text" style="position: absolute;right: 200px;color:red;font-size: 40px;line-height: 1">{{product.price}} đ</span>
+          <span class="text"
+                style="position: absolute;right: 200px;color:red;font-size: 40px;line-height: 1">{{ product.price | number}}
+            đ</span>
 
         </div>
         <div style="margin-top: 20px; ">
-          <button (click)="addToCart(element.value)" style="border-radius: 0;font-size: 20px;width: 200px" class="btn btn-outline-primary button-1"><i
+          <button (click)="addToCart(element.value)" style="border-radius: 0;font-size: 20px;width: 200px"
+                  class="btn btn-outline-primary button-1"><i
             class="fa-solid fa-plus button-1"></i> <b class="button-1"> THÊM VÀO GIỎ</b></button>
-          <button routerLink="/cart" (click)="buy(element.value)" style="border-radius: 0;margin-left: 40px;font-size: 20px;width:200px;color: white"
+          <button (click)="buy(element.value)"
+                  style="border-radius: 0;margin-left: 40px;font-size: 20px;width:200px;color: white"
                   class="btn btn-primary"><i style="color: white" class="fa-solid fa-cart-shopping"></i><b
             style="color: white"> MUA HÀNG</b></button>
         </div>
@@ -166,5 +178,5 @@
 </div>
 <div class="side-banner banner-right row "
      style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  href="https://www.tncstore.vn/gaming-laptop.html" alt="Helios 16 - 2023"><img
+ alt="Helios 16 - 2023"><img
   src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>

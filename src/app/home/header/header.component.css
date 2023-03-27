@@ -79,7 +79,21 @@
   height: 45px;
   border-radius: 50%;
 }
+.button-hover:hover  {
+  color: white;
+}
+.newText {
+  font-family: Chakra Petch;
 
+}
+.newText2 {
+  font-family: Chakra Petch;
+  color: #29324e;
+}
+.newText:hover {
+  font-family: Chakra Petch;
+  margin-left: 3px;color: white;
+}
 .divTong {
   border: 1px solid #005ec4;
   width: 500px;

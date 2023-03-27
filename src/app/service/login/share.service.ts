@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable, Subject} from "rxjs";
+import {Product} from "../../entity/product";
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,10 @@ export class ShareService {
   sendClickEvent() {
     this.subject.next();
   }
-  sendDataToSubscribers(data: any) {
-    this.subject.next(data);
+  sendIsLogged() {
+    this.subject.next(true);
   }
+
   getClickEvent(): Observable<any> {
     return this.subject.asObservable();
   }

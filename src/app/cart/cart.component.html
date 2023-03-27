@@ -1,6 +1,6 @@
 <div class="side-banner banner-left row d-flex"
      style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a
-  href="https://www.tncstore.vn/laptop-acer-predator-helios-16-ph16-71-94n1-nh-qjssv-002-i9-13900hx-32gb-2tb-rtx-4080-12gb-16-inch-wqxga-win-11"><img
+><img
   src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
 <div class="container row " style="margin: 10px;display: inline-block;float: left">
   <div style="margin: 10px 20px 10px 20px">
@@ -14,18 +14,18 @@
           </div>
           <h4 class="text">THÔNG TIN SẢN PHẨM</h4>
           <div  style="height: 400px;overflow: scroll">
-            <div *ngFor="let x of cart" style="border: 1px solid #005ec4;height:110px;width: 640px;margin-top: 10px;margin-left: 10px;padding-bottom: -20px;">
+            <div *ngFor="let x of cart;index as i" style="border: 1px solid #005ec4;height:110px;width: 640px;margin-top: 10px;margin-left: 10px;padding-bottom: -20px;">
 
               <div style="width: 80px;display: inline-block;margin-bottom: 10px;margin-top: -5px">
                 <img
-                  src="{{x.product.image}}" [routerLink]="['/product/detail/'+x.id]"
+                  src="{{x.product.image}}" [routerLink]="['/product/detail/'+x.product.id]"
                   style="height: 90px;width: 90px;object-fit: cover;margin-top: -20px;margin-left: 10px;cursor: pointer">
               </div>
               <div  style="width: 500px;display: inline-block;position: relative;margin-left: 30px">
-                <h4 [routerLink]="['/product/detail/'+x.id]"  style="color: #005ec4;margin-top: 10px;cursor: pointer" class="text">{{x.product.name}}</h4>
-                <span>Số lượng</span> <button (click)="changeQuantity('-',x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> - </button> <span style="color: #005ec4;margin-left: 10px">{{x.quantity}}</span> <button (click)="changeQuantity('+',x.id)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px"> + </button>
-                <span class="text" style="position: absolute;right: 10px;top: 20px" >{{x.product.price}} đ</span>
-                <button (click)="deleteCart(x.id)" style="position: absolute;right: 10px;top: 50px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
+                <h4 [routerLink]="['/product/detail/'+x.product.id]"  style="color: #005ec4;margin-top: 10px;cursor: pointer" class="text">{{x.product.name}}</h4>
+                <span class="newText2">Số lượng</span> <button (click)="changeQuantity('-',x.id,i)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px;font-weight: bold;color: #005ec4"> - </button> <span style="color: #005ec4;margin-left: 10px;font-weight: bold;">{{x.quantity}}</span> <button (click)="changeQuantity('+',x.id,i)" style="border: 0 solid white;height: 30px;width: 30px;margin-left: 10px;font-weight: bold;color: #005ec4"> + </button>
+                <span class="text" style="position: absolute;right: 10px;top: 20px" >{{ x.product.price | number}} đ</span>
+                <button (click)="deleteCart(x.id,i)" style="position: absolute;right: 10px;top: 50px;border: 2px solid;border-radius: 0" class="btn btn-outline-primary"><i class="fa-sharp fa-solid fa-trash" style="margin-right: 10px"></i> <span class="text" style="margin-left: 10px">XÓA</span></button>
               </div>
             </div>
 
@@ -42,7 +42,7 @@
           <div style="padding: 20px" class="text">
             <h4>THÔNG TIN GIỎ HÀNG</h4>
             <p>Số lượng sản phẩm <span style="color: #005ec4;position: absolute;right: 20px">{{quantity}}</span></p>
-            <p style="margin-top: -15px">Tổng chi phí <span style="color: red;position: absolute;right: 20px">{{total}} đ</span>
+            <p style="margin-top: -15px">Tổng chi phí <span style="color: red;position: absolute;right: 20px">{{total | number}} đ</span>
             </p>
             <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 13px">Đã bao gồm VAT
               (nếu có)</p>
@@ -106,5 +106,5 @@
 
 <div class="side-banner banner-right row "
      style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  href="https://www.tncstore.vn/gaming-laptop.html" alt="Helios 16 - 2023"><img
+ alt="Helios 16 - 2023"><img
   src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>

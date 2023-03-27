@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {Product} from "../entity/product";
 import {ProductService} from "../service/product/product.service";
@@ -9,6 +9,7 @@ import {TokenService} from "../service/login/token.service";
 import {ShareService} from "../service/login/share.service";
 import {User} from "../entity/user";
 import {LoginService} from "../service/login/login.service";
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,23 +19,32 @@ export class HomeComponent implements OnInit {
   cart: Cart[] = [];
   products: Product[];
   more = 'Xem thêm';
-  user:User;
+  user: User;
   isLogged = false;
   first: boolean;
-  last:boolean;
-  constructor(private login:LoginService,private share:ShareService,private title:Title,private productService:ProductService,private token:TokenService) { }
+  last: boolean;
+
+  constructor(private login: LoginService,
+              private share: ShareService,
+              private title: Title,
+              private productService: ProductService,
+              private token: TokenService) {
+  }
 
   ngOnInit(): void {
     this.isLogged = this.token.isLogger()
-
+    this.share.getClickEvent().subscribe(next => {
+      this.isLogged =this.token.isLogger()
+    })
     this.title.setTitle('Cường Computer')
-    window.scroll(0,0)
+    window.scroll(0, 0)
     this.getAll()
   }
+
   getAll() {
     if (this.isLogged) {
-        this.login.profile(this.token.getId()).subscribe(
-        next => this.user =next
+      this.login.profile(this.token.getId()).subscribe(
+        next => this.user = next
       )
     }
     this.productService.getHome('?size=4').subscribe(
@@ -45,37 +55,56 @@ export class HomeComponent implements OnInit {
       }
     )
   }
-  click(product:Product) {
+
+  click(product: Product) {
+    this.share.sendClickEvent();
     if (this.isLogged) {
-      this.token.addToCart(product,this.user);
-      this.share.sendClickEvent()
+      if (product.quantity > 0) {
+        this.token.addToCart(product, this.user);
+
+        this.share.sendClickEvent()
+      } else {
+        Swal.fire({
+          title: 'Hết mất rồi :(',
+          imageUrl: 'https://i.imgur.com/dKc3V77.png',
+          text: 'Hiện tại ' + product.category.name.toLowerCase() + ' ' + product.name + ' của bên mình đã hết' +
+            ' mong quý khách thông cảm cho sự bất tiện này, quý khách vui lòng chọn sản phẩm khác.',
+          showConfirmButton: true,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          confirmButtonColor: '#005ec4',
+          confirmButtonText: 'Xác nhận',
+        })
+      }
     } else {
-      let cart = {
-        product: product,
-        quantity: 1
+      if (product.quantity > 0) {
+        this.token.addCartSession(product)
+        this.share.sendClickEvent()
+      } else {
+        Swal.fire({
+          title: 'Hết mất rồi :(',
+          imageUrl: 'https://i.imgur.com/dKc3V77.png',
+          text: 'Hiện tại ' + product.category.name.toLowerCase() + ' ' + product.name + ' của bên mình đã hết' +
+            ' mong quý khách thông cảm cho sự bất tiện này, quý khách vui lòng chọn sản phẩm khác.',
+          showConfirmButton: true,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          confirmButtonColor: '#005ec4',
+          confirmButtonText: 'Xác nhận',
+        })
       }
-      let cart2 = {
-        product: product,
-        quantity: 1
-      }
-      let cart3 = {
-        product: product,
-        quantity: 1
-      }
-      this.cart.push(cart,cart2,cart3)
-      this.token.setCart(this.cart);
-      // this.token.setCart(this.token.getCartSession())
-      window.sessionStorage.setItem('Cart_key',JSON.stringify(this.cart))
-      this.share.sendClickEvent();
-
     }
-
+       this.share.sendClickEvent()
   }
+
   showMore() {
     if (!this.last) {
       this.productService.showMore(this.products.length + 4).subscribe(
-        next => {this.products = next['content']
-        this.last = next['last']
+        next => {
+          this.products = next['content']
+          this.last = next['last']
           if (this.products.length >= 8) {
             this.last = true
           }
@@ -85,11 +114,12 @@ export class HomeComponent implements OnInit {
         }
       )
     } else {
-      window.scroll(0,1000)
+      window.scroll(0, 1000)
       this.productService.showMore(4).subscribe(
-        next => {this.products = next['content']
+        next => {
+          this.products = next['content']
           this.last = next['last']
-            this.more = 'Xem thêm'
+          this.more = 'Xem thêm'
         }
       )
     }
