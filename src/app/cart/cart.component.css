@@ -5,7 +5,7 @@
 
 .text {
   font-family: Chakra Petch;
-
+  color: #3a5876;
 }
 .card:hover {
   cursor: pointer;

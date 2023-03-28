@@ -18,6 +18,7 @@ import {AngularFireModule} from "@angular/fire";
 import {environment} from "../environments/environment";
 import {ManagerModule} from "./manager/manager.module";
 import {ManagerComponent} from "./manager/manager.component";
+import {CartModule} from "./cart/cart.module";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {ManagerComponent} from "./manager/manager.component";
     FormsModule,
     ReactiveFormsModule,
     HomeModule,
+    CartModule,
     ManagerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],

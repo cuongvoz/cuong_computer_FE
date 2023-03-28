@@ -6,7 +6,7 @@ import { ListComponent } from './list/list.component';
 import {AppRoutingModule} from "../app-routing.module";
 import {RouterModule} from "@angular/router";
 import {BrowserModule} from "@angular/platform-browser";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [ListComponent],
@@ -16,7 +16,8 @@ import {ReactiveFormsModule} from "@angular/forms";
         CommonModule,
         HomeRoutingModule,
         BrowserModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormsModule
     ]
 })
 export class HomeModule { }

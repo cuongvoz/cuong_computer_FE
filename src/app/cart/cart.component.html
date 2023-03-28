@@ -29,13 +29,13 @@
               </div>
             </div>
 
-            <div *ngIf="cart.length == 0">
+            <div *ngIf="quantity == 0">
               <img style="margin: 50px 0 20px 180px;width: 250px;height: 200px" src="https://www.pngkit.com/png/full/116-1169537_cart-png-clipart-icon-gi-hng-png.png" >
               <h1 class="text text-center" style="color: #92999f">Giỏ hàng trống...</h1>
             </div>
           </div>
         </div>
-          <button routerLink="/" style="margin-top: 20px;border-radius: 0;background: #005ec4" class="btn btn-primary "><i class="fa-solid fa-rotate-left"></i> <span class="text" style="margin-left: 10px">QUAY LẠI TRANG CHỦ</span></button>
+          <button routerLink="/" style="margin-top: 20px;border-radius: 0;background: #005ec4" class="btn btn-primary "><i class="fa-solid fa-rotate-left"></i> <span class="text" style="margin-left: 10px;color: white">QUAY LẠI TRANG CHỦ</span></button>
       </div>
       <div class="col-lg-4">
         <div style="background: #f0f3fc;width: 100%;position: relative">
@@ -46,7 +46,7 @@
             </p>
             <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 13px">Đã bao gồm VAT
               (nếu có)</p>
-            <button (click)="buy()" style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-primary">XÁC NHẬN ĐƠN HÀNG
+            <button routerLink="/cart/buy" style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-primary">XÁC NHẬN ĐƠN HÀNG
             </button>
             <button style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-danger" (click)="dropCart()">XÓA GIỎ HÀNG</button>
             <button style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-outline-primary" routerLink="/list/search/1/null">XEM SẢN PHẨM
