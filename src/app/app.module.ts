@@ -19,6 +19,7 @@ import {environment} from "../environments/environment";
 import {ManagerModule} from "./manager/manager.module";
 import {ManagerComponent} from "./manager/manager.component";
 import {CartModule} from "./cart/cart.module";
+import {CurrencyPipe, DatePipe, DecimalPipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,10 @@ import {CartModule} from "./cart/cart.module";
     ManagerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [DatePipe,
+    CurrencyPipe,
+    DecimalPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

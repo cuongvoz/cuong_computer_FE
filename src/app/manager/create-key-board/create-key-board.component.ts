@@ -8,6 +8,8 @@ import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ListService} from "../../service/product/list.service";
+import {ShareService} from "../../service/login/share.service";
 
 @Component({
   selector: 'app-create-key-board',
@@ -30,6 +32,7 @@ export class CreateKeyBoardComponent implements OnInit {
     switchKey: new FormControl(),
     reliability: new FormControl(),
     compatible: new FormControl(),
+    localBrand:new FormControl({name: 'Newmen', id: 3,}),
     category: new FormControl({id: 3,name:'Bàn phím'}),
   })
   errorKeyboard = {
@@ -87,10 +90,27 @@ export class CreateKeyBoardComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   fb: string | undefined= 'https://phucanhcdn.com/media/product/28563_ba__n_phi__m_c___logitech_g_pro_gaming__usb__1.jpg';
   src: string | undefined;
-  constructor(private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
+  constructor(private shareService:ShareService,private listService:ListService,private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
   isLoading = false;
+  brand = []
   ngOnInit(): void {
-    this.loader()
+    this.loader();
+    this.loadlist();
+  }
+  compareFun(item1,item2){
+    return item1 && item2 ? item1.id === item2.id : item1 === item2
+  }
+  loadlist() {
+    let brands = this.listService.getBrandKeyboard();
+    if (brands != undefined) {
+      for (let i = 0; i < brands.length; i++) {
+        let brand = {
+          id: brands[i].id,
+          name: brands[i].name
+        }
+        this.brand.push(brand)
+      }
+    }
   }
   loader() {
     this.activate.paramMap.subscribe(next => {
@@ -163,8 +183,9 @@ export class CreateKeyBoardComponent implements OnInit {
             imageAlt: 'Custom image',
           })
         }
+        this.shareService.sendClickEvent()
         this.formKeyBoard.reset()
-        this.router.navigateByUrl('/manager')
+        this.router.navigateByUrl('/manager/product')
       },error => {
         for (let i = 0; i < error.error.length; i++) {
           if (error.error[i].field == 'name') {

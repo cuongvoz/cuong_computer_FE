@@ -5,11 +5,16 @@
 * {
   color: #29324e;
 }
+body{
+  margin: 0;
+  padding: 0;
+}
 .text {
   font-family: Chakra Petch;
-
 }
+
 .line-high {
+  font-family: Chakra Petch;
   margin-bottom: 0;
 }
 .container {

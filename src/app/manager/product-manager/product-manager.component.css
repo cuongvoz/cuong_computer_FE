@@ -1,0 +1,60 @@
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Chakra Petch2';
+  src: url('./fonts/ChakraPetch-Bold.ttf') format('truetype');
+}
+
+/** {*/
+
+/*  font-family: Chakra Petch;*/
+/*  color: #29324e;*/
+/*}*/
+.colors {
+  color: #29324e;
+}
+.textButton {
+  font-family: Chakra Petch2;
+
+}
+.text {
+  color: #29324e;
+
+  font-family: Chakra Petch;
+}
+.text2 {
+
+
+  font-family: Chakra Petch;
+}
+.marginBottom {
+  margin-bottom: 0;
+}
+.line-high {
+  font-family: Chakra Petch;
+  margin-bottom: 3px;
+  font-size: 17px;
+}
+.table-text {
+  width: 1400px;
+  margin-left: 25px;
+  border: 1px solid #005ec4;;
+  font-size: 15px;
+}
+.container {
+  width: 1100px;
+  margin: 10px;
+}
+.text3 {
+
+  font-family: Chakra Petch2;
+}
+.text3 > th {
+  text-align: center;
+  padding: 5px 10px;
+}
+.tbody > tr{
+  text-align: center;
+}

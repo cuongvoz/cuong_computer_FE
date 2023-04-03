@@ -15,16 +15,227 @@
           style="margin-left: 30px;cursor: pointer">{{category}}</h4>
     </div>
     <div class="d-flex row" style="font-size: 20px;margin-top: -20px;margin-left: -30px">
-      <div *ngIf="products.length == 0 && nameSearch != '' && nameSearch != null && nameSearch != 'null'"
-           style="width: 100%;margin: 60px 0 30px 0">
-        <img style="width: 200px;height: 200px;margin-left: 430px"
-             src="https://static-00.iconduck.com/assets.00/thinking-face-emoji-484x512-jzitc78e.png">
-        <h1 class="text text-center" style="margin: 20px">Có vẻ như sản phẩm "{{nameSearch}}" không tồn tại ..</h1>
 
-      </div>
       <div style="margin: 20px 20px 20px 15px">
         <div class="d-flex row">
           <div class="col-3">
+
+
+            <div style="background: #eef0f7;width: 290px;margin-top: 10px" *ngIf="id == 7 ">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Hãng sản xuất</h5>
+                </div>
+                <div style="padding-bottom: 25px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <div *ngFor="let x of brandAll;index as i">
+                      <input  class="inputCheckBox form-check-input"  (change)="checkBoxBrandAll(i)"
+                              [value]=""  type="checkbox"> {{x.name}} <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="background: #eef0f7;width: 290px;margin-top: 10px" *ngIf="id == 7">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Mức giá</h5>
+                </div>
+                <div style="padding-bottom: 20px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <button (click)="searchByPrice('1000000','2000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">1Tr - 2Tr
+                    </button>
+                    <button (click)="searchByPrice('2000000','4000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">2Tr - 4Tr
+                    </button>
+                    <button (click)="searchByPrice('4000000','7000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">4Tr - 7Tr
+                    </button>
+                    <button (click)="searchByPrice('7000000','10000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">7Tr - 10Tr
+                    </button>
+                    <button (click)="searchByPrice('10000000','15000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">10Tr - 15Tr
+                    </button>
+                    <button (click)="searchByPrice('15000000','99990000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">Trên 15Tr
+                    </button>
+                    <p style="font-size: 15px;margin-left: 11px;margin-bottom: 3px">Hoặc nhập mức giá dưới đây</p>
+                    <input type="number" #price style="width: 100px;border: 1px solid #005ec4;margin-left: 11px;padding: 5px;font-size: 13px">
+                    <input type="number" #oldPrice style="width: 100px;border:  1px solid #005ec4;margin-left: 20px;padding: 5px;font-size: 13px">
+                    <button class="btn btn-primary  " (click)="searchByPrice(price.value,oldPrice.value)" style="border-radius: 0;width: 100px;margin: 10px 0 0 11px">Áp
+                      Dụng
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div style="background: #eef0f7;width: 290px;margin-top: 10px" *ngIf="id == 4 ">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Hãng sản xuất</h5>
+                </div>
+                <div style="padding-bottom: 25px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <div *ngFor="let x of brandMonitor;index as i">
+                      <input  class="inputCheckBox form-check-input"  (change)="checkBoxBrandMonitor(i)"
+                              [value]=""  type="checkbox"> {{x.name}} <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="background: #eef0f7;width: 290px;margin-top: 20px" *ngIf="id == 4">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Mức giá</h5>
+                </div>
+                <div style="padding-bottom: 20px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <button (click)="searchByPrice('2000000','4999999')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">2Tr - 4Tr
+                    </button>
+                    <button (click)="searchByPrice('4000000','7000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">4Tr - 7Tr
+                    </button>
+                    <button (click)="searchByPrice('7000000','10000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">7Tr - 10Tr
+                    </button>
+                    <button (click)="searchByPrice('10000000','99995000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">Trên 10Tr
+                    </button>
+                    <p style="font-size: 15px;margin-left: 11px;margin-bottom: 3px">Hoặc nhập mức giá dưới đây</p>
+                    <input type="number" #price style="width: 100px;border: 1px solid #005ec4;margin-left: 11px;padding: 5px;font-size: 13px">
+                    <input type="number" #oldPrice style="width: 100px;border:  1px solid #005ec4;margin-left: 20px;padding: 5px;font-size: 13px">
+                    <button class="btn btn-primary  " (click)="searchByPrice(price.value,oldPrice.value)" style="border-radius: 0;width: 100px;margin: 10px 0 0 11px">Áp
+                      Dụng
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div style="background: #eef0f7;width: 290px;margin-top: 10px" *ngIf="id == 6 ">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Hãng sản xuất</h5>
+                </div>
+                <div style="padding-bottom: 25px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <div *ngFor="let x of brandChair;index as i">
+                      <input class="inputCheckBox form-check-input"  (change)="checkBoxBrandChair(i)"
+                              [value]=""  type="checkbox"> {{x.name}} <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="background: #eef0f7;width: 290px;margin-top: 40px" *ngIf="id == 6">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Mức giá</h5>
+                </div>
+                <div style="padding-bottom: 20px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <button (click)="searchByPrice('1000000','2000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">1Tr - 2Tr
+                    </button>
+                    <button (click)="searchByPrice('2000000','4000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">2Tr - 4Tr
+                    </button>
+                    <button (click)="searchByPrice('4000000','7000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">4Tr - 7Tr
+                    </button>
+                    <button (click)="searchByPrice('7000000','10000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">7Tr - 10Tr
+                    </button>
+                    <button (click)="searchByPrice('10000000','15000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">10Tr - 15Tr
+                    </button>
+                    <button (click)="searchByPrice('15000000','20000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">15Tr - 20Tr
+                    </button>
+                    <p style="font-size: 15px;margin-left: 11px;margin-bottom: 3px">Hoặc nhập mức giá dưới đây</p>
+                    <input type="number" #price style="width: 100px;border: 1px solid #005ec4;margin-left: 11px;padding: 5px;font-size: 13px">
+                    <input type="number" #oldPrice style="width: 100px;border:  1px solid #005ec4;margin-left: 20px;padding: 5px;font-size: 13px">
+                    <button class="btn btn-primary  " (click)="searchByPrice(price.value,oldPrice.value)" style="border-radius: 0;width: 100px;margin: 10px 0 0 11px">Áp
+                      Dụng
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div style="background: #eef0f7;width: 290px;margin-top: 10px" *ngIf="id == 3 ">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Hãng sản xuất</h5>
+                </div>
+                <div style="padding-bottom: 25px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <div *ngFor="let x of brandKeyboard;index as i">
+                      <input  class="inputCheckBox form-check-input"  (change)="checkBoxBrandKeyBoard(i)"
+                              [value]=""  type="checkbox"> {{x.name}} <br>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div style="background: #eef0f7;width: 290px;margin-top: 20px" *ngIf="id == 3">
+              <div class="checkBoxItem ">
+                <div>
+                  <h5 style="padding: 15px 10px 5px 20px">Mức giá</h5>
+                </div>
+                <div style="padding-bottom: 20px">
+                  <div style="margin-top: 10px;margin-left: 20px">
+                    <hr style="width: 95%;margin-left: -6px">
+                    <button (click)="searchByPrice('0','500000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">Dưới 500,000đ
+                    </button>
+                    <button (click)="searchByPrice('500000','1000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">500,000 - 1 Tr
+                    </button>
+                    <button (click)="searchByPrice('1000000','2000000')" class="btn btn-outline-primary"
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">1Tr - 2Tr
+                    </button>
+                    <button (click)="searchByPrice('2000000','4000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">2Tr - 4Tr
+                    </button>
+                    <button (click)="searchByPrice('4000000','9999000000')" class="btn btn-outline-primary  "
+                            style="border-radius: 0;width: 110px;margin: 2px 0 10px 10px">Trên 4Tr
+                    </button>
+                    <p style="font-size: 15px;margin-left: 11px;margin-bottom: 3px">Hoặc nhập mức giá dưới đây</p>
+                    <input type="number" #price style="width: 100px;border: 1px solid #005ec4;margin-left: 11px;padding: 5px;font-size: 13px">
+                    <input type="number" #oldPrice style="width: 100px;border:  1px solid #005ec4;margin-left: 20px;padding: 5px;font-size: 13px">
+                    <button class="btn btn-primary  " (click)="searchByPrice(price.value,oldPrice.value)" style="border-radius: 0;width: 100px;margin: 10px 0 0 11px">Áp
+                      Dụng
+                    </button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
             <div style="background: #eef0f7;width: 290px;margin-top: 10px" *ngIf="id == 5">
               <div class="checkBoxItem ">
                 <div>
@@ -85,16 +296,16 @@
                     <hr style="width: 95%;margin-left: -6px">
                     <div *ngFor="let x of priceOfPC;index as i" style="margin-top: 5px">
                       <input  class="inputCheckBox form-check-input"  (change)="checkBoxPricePC(i)"
-                               type="checkbox"> {{x.name}} <br>
+                              type="checkbox"> {{x.name}} <br>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div style="background: #eef0f7;width: 290px;margin-top: 20px" *ngIf="id == 2">
+            <div style="background: #eef0f7;width: 290px;margin-top: 40px" *ngIf="id == 2">
               <div class="checkBoxItem ">
                 <div>
-                  <h5 style="padding: 15px 10px 5px 20px">Phân Khúc PC Gaming</h5>
+                  <h5 style="padding: 15px 10px 5px 20px">Phân loại CPU</h5>
                 </div>
                 <div style="padding-bottom: 25px">
                   <div style="margin-top: 10px;margin-left: 20px">
@@ -118,10 +329,10 @@
                 <div style="padding-bottom: 25px">
                   <div style="margin-top: 10px;margin-left: 20px">
                     <hr style="width: 95%;margin-left: -6px">
-                     <div *ngFor="let x of brand;index as i">
-                       <input  class="inputCheckBox form-check-input"  (change)="checkBoxBrand(i)"
-                               [value]="" #brand2 type="checkbox"> {{x.name}} <br>
-                     </div>
+                    <div *ngFor="let x of brand;index as i">
+                      <input  class="inputCheckBox form-check-input"  (change)="checkBoxBrand(i)"
+                              [value]="" #brand2 type="checkbox"> {{x.name}} <br>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -152,31 +363,65 @@
                     <button class="btn btn-primary  " (click)="searchByPrice(price.value,oldPrice.value)" style="border-radius: 0;width: 100px;margin: 10px 0 0 11px">Áp
                       Dụng
                     </button>
-
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div style="margin-left: 12px" class="col-9 row">
-            <div *ngFor="let x of products" class="card"
-                 style="width: 14rem;display: inline-block;margin: 10px 10px 10px 23px">
-              <img [routerLink]="['/product/detail/'+x.id]" class="card-img-top"
-                   style="margin-left: -12px;height: 200px;width: 222px;object-fit: cover"
-                   src="{{x.image}}"
-                   alt="Card image cap">
-              <div class="card-body">
-                <p
-                  style="font-weight: bold;font-size: 15px;margin-left: -15px;width: 200px;margin-bottom: 0">{{x.name}}</p>
-                <p style="position: relative" class="text-danger">{{x.price | number}} đ <span
-                  style="position: absolute;right: 1px;bottom:3px;font-size: 12px;color: #92999f;text-decoration: line-through;margin-bottom: -13px">{{x.oldPrice | number}}
-                  đ</span></p>
 
-                <button (click)="click(x)" class="btn btn-primary d-flex justify-content-center"
-                        style="color: white;margin-left: 33px">Thêm vào giỏ
-                </button>
-              </div>
+            <div  style="margin-top: 25px">
+              <img *ngIf="id == 1" routerLink="/product/detail/22" style="width: 290px;height: 290px;cursor: pointer" src="https://i.imgur.com/7RMKKSu.png">
+              <img *ngIf="id == 3" routerLink="/product/detail/4" style="width: 290px;height: 290px;cursor: pointer;margin-top: -10px" src="https://i.imgur.com/AMoNs8Z.png">
+              <img *ngIf="id == 2" routerLink="/product/detail/111" style="width: 290px;height: 290px;cursor: pointer;margin-top: 23px" src="https://i.imgur.com/YUY1xep.png">
+              <img *ngIf="id == 6" routerLink="/product/detail/30" style="width: 290px;height: 290px;cursor: pointer;margin-top: 23px" src="https://i.imgur.com/v03Zi47.png">
+              <img *ngIf="id == 4" routerLink="/product/detail/42" style="width: 290px;height: 290px;cursor: pointer" src="https://i.imgur.com/7zAFwXF.png">
+              <img *ngIf="id == 5" routerLink="/product/detail/67" style="width: 290px;height: 290px;cursor: pointer;margin-top: 8px" src="https://i.imgur.com/mIAUw4i.png">
             </div>
+          </div>
+          <div style="margin-left: 12px;width:800px ;display: inline" class="col-9 row">
+            <div class="row d-flex" style="margin-left: 10px">
+              <div *ngIf="products.length == 0 && nameSearch != '' && nameSearch != null && nameSearch != 'null'"
+                   style="width: 100%;margin: 60px 0 30px 0">
+                <img style="width: 200px;height: 200px;margin-left: 280px"
+                     src="https://static-00.iconduck.com/assets.00/thinking-face-emoji-484x512-jzitc78e.png">
+                <h1 class="text text-center" style="margin: 20px">Có vẻ như sản phẩm "{{nameSearch}}" không tồn tại ..</h1>
+
+              </div>
+
+              <div *ngFor="let x of products" class="card"
+                   style="width: 14rem;display: inline-block;margin: 10px 10px 10px 15px">
+                <img [routerLink]="['/product/detail/'+x.id]" class="card-img-top"
+                     style="margin-left: -12px;height: 200px;width: 222px;object-fit: cover"
+                     src="{{x.image}}"
+                     alt="Card image cap">
+                <div class="card-body">
+                  <p
+                    style="font-weight: bold;font-size: 15px;margin-left: -15px;width: 200px;margin-bottom: 0">{{x.name}}</p>
+                  <p style="position: relative" class="text-danger">{{x.price | number}} đ <span
+                    style="position: absolute;right: 1px;bottom:3px;font-size: 12px;color: #92999f;text-decoration: line-through;margin-bottom: -13px">{{x.oldPrice | number}}
+                    đ</span></p>
+
+                  <button (click)="click(x)" class="btn btn-primary d-flex justify-content-center"
+                          style="color: white;margin-left: 23px">Thêm vào giỏ
+                  </button>
+                </div>
+              </div>
+              <div style="position: absolute;top: 960px">
+                <div style="margin-left: 185px">
+                  <button class="btn btn-outline-primary" [disabled]="first == true" (click)="changePage(number -1)" style="border-radius: 0;margin: 10px"><i style="margin-right: 8px" class="fa-solid fa-circle-chevron-left"></i> <span class="text2">Trang trước</span> </button>
+                  <button class="btn btn-outline-primary" style="border-radius: 0;"><span class="text2">{{number + 1}}</span></button>
+                  <button class="btn btn-outline-primary" [disabled]="last == true" (click)="changePage(number + 1)"  style="border-radius: 0;margin: 10px"><span class="text2" style="margin-right: 8px">Trang sau</span> <i class="fa-solid fa-circle-chevron-right"></i></button>
+                </div>
+                <img *ngIf="id == 2" style="width:742px;height: 141px;margin-left: -8px;object-fit: cover;margin-top: 10px" src="https://i.imgur.com/QcmBq2t.png">
+                <img *ngIf="id == 7" style="width:742px;height: 281px;margin-left: -8px;object-fit: cover;margin-top: 10px"
+                     src="https://i.imgur.com/eyUJhdP.jpg">
+                <img *ngIf="id == 3 || id== 5" style="width:742px;height: 141px;margin-left: -8px;object-fit: cover;margin-top: 10px" src="https://i.imgur.com/ivtFTvc.png">
+                <img *ngIf="id == 6" style="width:742px;height: 141px;margin-left: -8px;object-fit: cover;margin-top: 10px" src="https://i.imgur.com/OHkTpsf.png">
+                <img *ngIf="id == 4" style="width:742px;height: 141px;margin-left: -8px;object-fit: cover;margin-top: 10px" src="https://i.imgur.com/HQ1qBxX.png">
+                <img *ngIf="id == 1" style="width:742px;height: 141px;margin-left: -8px;object-fit: cover;margin-top: 10px" src="https://laptophuyhoang.vn/wp-content/uploads/2022/02/banner-laptop-gaming-1024x302.jpg">
+              </div>
+
+            </div>
+
           </div>
         </div>
 
@@ -184,13 +429,7 @@
       </div>
     </div>
     <div>
-      <img *ngIf="id == 7" style="width: 100%;margin-left: 5px"
-           src="https://anphat.com.vn/media/lib/22-07-2021/2021-pba-banner_black-1920x740.jpg">
-      <img *ngIf="id == 3 || id== 5" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/ivtFTvc.png">
-      <img *ngIf="id == 6" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/OHkTpsf.png">
-      <img *ngIf="id == 4" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/HQ1qBxX.png">
-      <img *ngIf="id == 2" style="width: 100%;margin-left: 5px" src="https://i.imgur.com/QcmBq2t.png">
-      <img *ngIf="id == 1" style="width: 100%;margin-left: 5px;margin-top: -10px" src="https://i.imgur.com/aCusUYG.png">
+
     </div>
   </div>
 </div>

@@ -1,3 +1,4 @@
+
 <div style="width: 100%;background: #005ec4">
   <p
     style="padding: 7px;color: white;position: relative;right: -600px;font-family: Chakra Petch;font-size: 20px;font-weight: bold">
@@ -23,7 +24,7 @@
       </span>
     </div>
   </div>
-  <div (click)="getAllValue()" data-bs-toggle="modal" data-bs-target="#exampleModal"
+  <div *ngIf="isBuying == false" (click)="getAllValue()" data-bs-toggle="modal" data-bs-target="#exampleModal"
        style="display: inline;width: 400px;margin-left: 200px;font-size: 30px;border: 2px solid #005ec4;position: relative"
        class="btn btn-outline-dark">
     <i style="color: #005ec4" class="fa-solid fa-cart-shopping"><span *ngIf="quantity != 0" style="color: white;background: #cb2027;border-radius: 100%;z-index: 99;font-size: 15px;padding: 5px 7px ;position: absolute;top: -10px;right: -10px">{{quantity}}</span></i>
@@ -59,16 +60,11 @@
        class="dropdown">
       <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
       <img  src="{{user.avatar}}" alt="Avatar" class="avatar dropdown-toggle"> <span
-      style="text-transform: uppercase;">{{user.name}}</span> </div>
+      style="text-transform: uppercase;font-family: Chakra Petch2">{{user.name}}</span> </div>
       <div  class=" dropdown-menu" aria-labelledby="dropdownMenuButton1"  style="top: 35px;font-size: 20px">
         <p class="category-item dropdown-item" routerLink="/profile"><i class="fa-sharp fa-solid fa-user" style="margin-right: 5px"></i> Thông tin cá nhân</p>
-<!--        <p class="category-item dropdown-item" routerLink="/manager/create/2/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới PC</p>-->
-<!--        <p class="category-item dropdown-item" routerLink="/manager/create/1/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Laptop</p>-->
-<!--        <p class="category-item dropdown-item" routerLink="/manager/create/5/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Chuột</p>-->
-<!--        <p class="category-item dropdown-item" routerLink="/manager/create/4/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Màn hình</p>-->
-<!--        <p class="category-item dropdown-item" routerLink="/manager/create/6/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Ghế</p>-->
-<!--        <p class="category-item dropdown-item" routerLink="/manager/create/3/null" ><i class="fa-sharp fa-solid fa-handshake" style="margin-right: 5px"></i> Thêm mới Bàn phím</p>-->
-        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-money-bill-1-wave" style="margin-right: 5px"></i> Quản lý doanh thu</p>
+        <p class="category-item dropdown-item" routerLink="/manager" ><i class="fa-sharp fa-solid fa-money-bill-1-wave" style="margin-right: 5px"></i> Quản lý bán hàng</p>
+        <p class="category-item dropdown-item" routerLink="/manager/product" ><i class="fa-sharp fa-solid fa-laptop-file"></i> Quản lý sản phẩm</p>
         <p class="category-item dropdown-item" (click)="logout()"><i class="fa-sharp fa-solid fa-right-from-bracket" style="margin-right: 5px"></i> Đăng xuất
         </p>
       </div>
@@ -166,3 +162,5 @@
     </div>
   </div>
 </div>
+
+

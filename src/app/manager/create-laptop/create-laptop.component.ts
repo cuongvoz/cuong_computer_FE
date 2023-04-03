@@ -8,6 +8,8 @@ import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {ListService} from "../../service/product/list.service";
+import {ShareService} from "../../service/login/share.service";
 
 @Component({
   selector: 'app-create-laptop',
@@ -18,6 +20,7 @@ export class CreateLaptopComponent implements OnInit {
   nameTitle = 'THÊM MỚI LAPTOP'
   isCreate = true;
   products:Product[];
+  brand = [];
   formLaptop = new FormGroup({
     id: new FormControl(),
     name: new FormControl(),
@@ -33,6 +36,7 @@ export class CreateLaptopComponent implements OnInit {
     color: new FormControl(),
     weight: new FormControl(),
     os: new FormControl(),
+    localBrand: new FormControl({id:2,name:'Lenovo'}),
     category: new FormControl({id: 1,name:'Laptop'}),
   })
   errorLaptop = {
@@ -103,10 +107,23 @@ export class CreateLaptopComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   fb: string | undefined= 'https://hanoicomputercdn.com/media/product/66311_hacom_asus_gaming_zephyrus_duo_gx650rw_12.png';
   src: string | undefined;
-  constructor(private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
+  constructor(private shareService:ShareService,private listService:ListService,private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
   isLoading = false;
   ngOnInit(): void {
+    this.loadlist();
     this.loader()
+  }
+  loadlist() {
+    let brands = this.listService.getBrandLaptop();
+    if (brands != undefined) {
+      for (let i = 0; i < brands.length; i++) {
+        let brand = {
+          id: brands[i].id,
+          name: brands[i].name
+        }
+        this.brand.push(brand)
+      }
+    }
   }
   loader() {
     this.activate.paramMap.subscribe(next => {
@@ -117,8 +134,11 @@ export class CreateLaptopComponent implements OnInit {
         this.nameTitle = 'CHỈNH SỬA LAPTOP'
         this.productService.findById(id).subscribe(
           next => {
+
             this.formLaptop.patchValue(next)
+            console.log(next)
             this.fb = next.image
+            console.log(this.formLaptop.value)
           }
         )
         this.fb = this.formLaptop.controls.image.value
@@ -126,6 +146,10 @@ export class CreateLaptopComponent implements OnInit {
       }
     })
   }
+  compareFun(item1,item2){
+    return item1 && item2 ? item1.id === item2.id : item1 === item2
+  }
+
   showPreview(event: any) {
     this.errorLaptop.image = false;
     this.selectedImage = event.target.files[0];
@@ -155,6 +179,7 @@ export class CreateLaptopComponent implements OnInit {
 
   createLaptop() {
     this.reload();
+
     this.productService.createLaptop(this.formLaptop.value).subscribe(
       next => {
         let image = this.formLaptop.controls.image.value
@@ -179,8 +204,9 @@ export class CreateLaptopComponent implements OnInit {
             imageAlt: 'Custom image',
           })
         }
+        this.shareService.sendClickEvent()
         this.formLaptop.reset()
-        this.router.navigateByUrl('/manager')
+        this.router.navigateByUrl('/manager/product')
       },error => {
         console.log(error)
         for (let i = 0; i < error.error.length; i++) {

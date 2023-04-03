@@ -56,7 +56,7 @@ export class TokenService {
   public addToCart(product: Product, user: User) {
     this.cartService.addToCart(product, user).subscribe(next => {
       Toast.fire({
-        iconHtml: '<img style="width: 90px;height: 90px;object-fit: cover;padding: 10px"  src="'+ product.image+'">',
+        iconHtml: '<img style="background: white;width: 90px;height: 90px;object-fit: cover;padding: 10px"  src="'+ product.image+'">',
         title: 'Bạn đã thêm ' + product.category.name.toLowerCase() + ' ' + product.name + ' vào giỏ!'
       })
     })

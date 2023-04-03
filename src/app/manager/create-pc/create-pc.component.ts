@@ -8,6 +8,7 @@ import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
+import {ShareService} from "../../service/login/share.service";
 
 @Component({
   selector: 'app-create-pc',
@@ -91,7 +92,7 @@ export class CreatePCComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   fb: string | undefined= 'https://anphat.com.vn/media/product/34713_untitled_1.png';
   src: string | undefined;
-  constructor(private router:Router,private title:Title,private productService:ProductService,private storage: AngularFireStorage,private activate:ActivatedRoute) { }
+  constructor(private shareService:ShareService,private router:Router,private title:Title,private productService:ProductService,private storage: AngularFireStorage,private activate:ActivatedRoute) { }
   isLoading = false;
   ngOnInit(): void {
     this.title.setTitle('Thêm mới PC')
@@ -169,8 +170,9 @@ export class CreatePCComponent implements OnInit {
             imageAlt: 'Custom image',
           })
         }
+        this.shareService.sendClickEvent()
         this.formPC.reset()
-        this.router.navigateByUrl('/manager')
+        this.router.navigateByUrl('/manager/product')
       },error => {
         for (let i = 0; i < error.error.length; i++) {
           if (error.error[i].field == 'name') {

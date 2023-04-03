@@ -22,6 +22,12 @@ export class ListComponent implements OnInit {
   cart: Cart[] = [{}, {}]
   products: Product[] = [];
   user: User;
+  first:boolean;
+  typePaging = 0;
+  minPrice = 0;
+  maxPrice = 0;
+  last:boolean;
+  number: number;
   isLogged = false;
   id: number;
   nameSearch = ''
@@ -30,17 +36,22 @@ export class ListComponent implements OnInit {
   priceOfPC = []
   brand = [];
   brandMouse = [];
-
-
+  brandKeyboard = [];
+  brandMonitor = [];
+  brandChair = [];
+  brandAll = []
+  brandSearch = [];
   constructor(private listService:ListService,private loginService: LoginService, private share: ShareService, private token: TokenService, private title: Title, private router: Router, private productService: ProductService, private activate: ActivatedRoute) {
 
   }
 
   ngOnInit(): void {
+    this.loadlist()
     this.loadCheckBox()
     this.isLogged = this.token.isLogger()
     this.share.getClickEvent().subscribe(
       next => {
+        this.loadCheckBox()
         this.isLogged = this.token.isLogger()
         this.loader();
       }
@@ -48,11 +59,7 @@ export class ListComponent implements OnInit {
     window.scroll(0, 0)
     this.loader();
   }
-
-  loader() {
-    if (this.isLogged) {
-      this.loginService.profile(this.token.getId()).subscribe(next => this.user = next)
-    }
+  loadlist() {
     this.activate.paramMap.subscribe(next => {
       let name = next.get('name');
       this.nameSearch = name
@@ -62,22 +69,26 @@ export class ListComponent implements OnInit {
       if (name != null && name != 'null') {
         if (category != '7') {
           this.productService.getProductByCategoryAndName(category, name).subscribe(
-            next => this.products = next['content']
+            next => this.getProductList(next)
           )
+          this.typePaging = 3;
         } else {
           this.productService.getAllProductByName(name).subscribe(
-            next => this.products = next['content']
+            next => this.getProductList(next)
           )
+          this.typePaging = 2;
         }
       } else {
         if (category != '7') {
           this.productService.getProductByCategory(category).subscribe(
-            next => this.products = next['content']
+            next => this.getProductList(next)
           )
+          this.typePaging = 1;
         } else {
           this.productService.getAllProduct().subscribe(
-            next => this.products = next['content']
+            next => this.getProductList(next)
           )
+          this.typePaging = 0;
         }
       }
       if (this.products.length == 0) {
@@ -86,9 +97,13 @@ export class ListComponent implements OnInit {
         this.load = 'yes'
       }
     })
+  }
+  loader() {
+    if (this.isLogged) {
+      this.loginService.profile(this.token.getId()).subscribe(next => this.user = next)
+    }
 
   }
-
   findCategory(id: string) {
     switch (id) {
       case '7':
@@ -162,29 +177,43 @@ export class ListComponent implements OnInit {
 
     }
   }
-
+  changePage(page: number) {
+    this.productService.paging('?page='+page,this.id,this.nameSearch,this.typePaging,this.minPrice,this.maxPrice,this.brandSearch).subscribe(next => this.getProductList(next));
+  }
   goHome() {
     this.router.navigateByUrl('/')
   }
   loadCheckBox() {
-    this.brand = this.listService.brand;
-    this.priceOfPC = this.listService.priceOfPC;
-    this.CPUofPC = this.listService.CPUofPC;
-    this.brandMouse = this.listService.brandMouse;
+
+    this.brandAll = this.listService.getAllBrand()
+    this.brandChair = this.listService.getBrandChair();
+    this.brandMonitor = this.listService.getBrandMonitor()
+    this.brandKeyboard = this.listService.getBrandKeyboard();
+    this.brand = this.listService.getBrandLaptop();
+    this.priceOfPC = this.listService.getPricePC();
+    this.CPUofPC = this.listService.getCPUPC();
+    this.brandMouse = this.listService.getBrandMouse();
   }
   getProductList(products: any) {
     this.products = products['content']
+    this.first = products['first'];
+    this.last = products['last'];
+    this.number = products['number'];
   }
 
 
   searchByPrice(price: string, oldPrice: string) {
+    this.minPrice = parseInt(price);
+    this.maxPrice = parseInt(oldPrice);
     this.productService.searchPrice(price, oldPrice, this.id).subscribe(
       next => {
         this.getProductList(next);
       }
     )
+    this.typePaging = 4;
   }
   searchCpu(index:number) {
+    this.typePaging = 6
     this.CPUofPC[index].check = !this.CPUofPC[index].check;
     let cpu = []
     for (let i = 0; i < this.CPUofPC.length; i++) {
@@ -192,6 +221,7 @@ export class ListComponent implements OnInit {
         cpu.push(this.CPUofPC[i].value)
       }
     }
+    this.brandSearch = cpu;
     if (cpu.length == 0) {
       if (this.id == 7) {
         this.productService.getAllProduct().subscribe(
@@ -214,36 +244,107 @@ export class ListComponent implements OnInit {
     }
 
   }
-  checkBoxBrand(index: number) {
-    this.brand[index].check = !this.brand[index].check;
+  checkBoxBrandAll(index: number) {
+    this.brandAll[index].check = !this.brandAll[index].check;
     let brand = []
-    for (let i = 0; i < this.brand.length; i++) {
-      if (this.brand[i].check) {
-        brand.push(this.brand[i].name)
+    for (let i = 0; i < this.brandAll.length; i++) {
+      if (this.brandAll[i].check) {
+        brand.push(this.brandAll[i].id)
       }
     }
+    this.typePaging = 5;
+    this.brandSearch = brand;
     if (brand.length == 0) {
-      if (this.id == 7) {
-        this.productService.getAllProduct().subscribe(
-          next => this.getProductList(next)
-        )
-      } else {
-        this.productService.getProductByCategory(this.id+'').subscribe(
-          next => this.getProductList(next)
-        )
-      }
+      this.productService.getAllProduct().subscribe(
+        next => {this.getProductList(next)
+          this.typePaging = 0;
+        }
+      )
     } else {
-      this.productService.searchBrand(brand).subscribe(
+      this.productService.searchBrand(this.id,brand).subscribe(
         next => {
           this.getProductList(next)
         }
       )
     }
-
   }
+  checkBoxBrand(index: number) {
+    this.brand[index].check = !this.brand[index].check;
+    let brand = []
+    for (let i = 0; i < this.brand.length; i++) {
+      if (this.brand[i].check) {
+        brand.push(this.brand[i].id)
+      }
+    }
+    this.typePaging = 5;
+    this.brandSearch = brand;
+    if (brand.length == 0) {
+        this.productService.getProductByCategory(this.id.toString()).subscribe(
+          next => {
+            this.getProductList(next)
+            this.typePaging = 1;
+          })
+    } else {
+      this.productService.searchBrand(this.id,brand).subscribe(
+        next => {
+          this.getProductList(next)
+        }
+      )
+    }
+  }
+  checkBoxBrandChair(index: number) {
+    this.brandChair[index].check = !this.brandChair[index].check;
+    let brand = []
+    for (let i = 0; i < this.brandChair.length; i++) {
+      if (this.brandChair[i].check) {
+        brand.push(this.brandChair[i].id)
+      }
+    }
+    this.typePaging = 5;
+    this.brandSearch = brand;
 
+    if (brand.length == 0) {
+      this.productService.getProductByCategory(this.id+'').subscribe(
+        next => {
+          this.getProductList(next)
+          this.typePaging = 1;
+        })
+    } else {
+      this.productService.searchBrand(this.id,brand).subscribe(
+        next => {
+          this.getProductList(next)
+        }
+      )
+    }
+  }
+  checkBoxBrandMonitor(index: number) {
+    this.brandMonitor[index].check = !this.brandMonitor[index].check;
+    let brand = []
+    for (let i = 0; i < this.brandMonitor.length; i++) {
+      if (this.brandMonitor[i].check) {
+        brand.push(this.brandMonitor[i].id)
+      }
+    }
+    this.typePaging = 5;
+    this.brandSearch = brand;
+
+    if (brand.length == 0) {
+      this.productService.getProductByCategory(this.id+'').subscribe(
+        next => {
+          this.getProductList(next)
+          this.typePaging = 1;
+        })
+    } else {
+      this.productService.searchBrand(this.id,brand).subscribe(
+        next => {
+          this.getProductList(next)
+        }
+      )
+    }
+  }
   checkBoxPricePC(index: number) {
     let price = []
+    this.typePaging = 4;
     this.priceOfPC[index].check =!this.priceOfPC[index].check;
     for (let i = 0; i < this.priceOfPC.length; i++) {
       if (this.priceOfPC[i].check) {
@@ -253,12 +354,14 @@ export class ListComponent implements OnInit {
     if (price.length == 0) {
       this.productService.getProductByCategory(this.id+'').subscribe(next => {
         this.getProductList(next)
+        this.typePaging = 1;
       })
     } else {
       if (price[0] != undefined && price[price.length-1] != undefined) {
         let minPrice = price[0].split(",")[0];
         let maxPrice = price[price.length-1].split(",")[1];
-        console.log(minPrice +'-' + maxPrice)
+        this.minPrice = minPrice;
+        this.maxPrice = maxPrice;
         this.productService.searchPrice(minPrice,maxPrice,this.id).subscribe(next => this.getProductList(next))
       }
     }
@@ -271,21 +374,43 @@ export class ListComponent implements OnInit {
     let brand = []
     for (let i = 0; i < this.brandMouse.length; i++) {
       if (this.brandMouse[i].check) {
-        brand.push(this.brandMouse[i].name)
+        brand.push(this.brandMouse[i].id)
       }
     }
+    this.typePaging = 5;
+    this.brandSearch = brand;
     if (brand.length == 0) {
-      if (this.id == 7) {
-        this.productService.getAllProduct().subscribe(
-          next => this.getProductList(next)
-        )
-      } else {
         this.productService.getProductByCategory(this.id+'').subscribe(
-          next => this.getProductList(next)
-        )
-      }
+          next => {
+            this.getProductList(next)
+            this.typePaging = 1;
+          } )
     } else {
-      this.productService.searchBrandMouse(brand).subscribe(
+      this.productService.searchBrand(this.id,brand).subscribe(
+        next => {
+          this.getProductList(next)
+        }
+      )
+    }
+  }
+
+  checkBoxBrandKeyBoard(index: number) {
+    this.brandKeyboard[index].check = !this.brandKeyboard[index].check;
+    let brand = []
+    for (let i = 0; i < this.brandKeyboard.length; i++) {
+      if (this.brandKeyboard[i].check) {
+        brand.push(this.brandKeyboard[i].id)
+      }
+    }
+    this.typePaging = 5;
+    this.brandSearch = brand;
+    if (brand.length == 0) {
+        this.productService.getProductByCategory(this.id+'').subscribe(
+          next => {this.getProductList(next)
+      this.typePaging = 1}
+        )
+    } else {
+      this.productService.searchBrand(this.id,brand).subscribe(
         next => {
           this.getProductList(next)
         }

@@ -54,9 +54,17 @@
               <input type="text" [placeholder]="errorMessageMouse.connect"  formControlName="connect" required spellcheck="false">
               <label>Cổng kết nối</label>
             </div>
+
+
             <div [class.error]="errorMouse.os == true" [class.input-field]="errorMouse.os == false" class=" col-lg-6" style="width: 320px;margin-left: 35px">
               <input type="text" [placeholder]="errorMessageMouse.os" formControlName="os" required  spellcheck="false">
               <label>Hệ điều hành hỗ trợ</label>
+            </div>
+            <div  class=" col-lg-6" style="width: 150px;border: 0;margin-left: -10px">
+              <select [compareWith]="compareFun" formControlName="localBrand" class="form-select text" style="width: 150px;display: inline;border: 2px solid #005ec4;margin-top: 0">
+                <option  *ngFor="let x of brand" [ngValue]="x">{{x.name}}</option>
+              </select>
+
             </div>
           </div>
         </div>
@@ -84,7 +92,7 @@
         </div>
 
       </div>
-      <button style="margin-left: 300px;margin-bottom: 20px" class="btn btn-primary font" type="submit">Xác nhận</button>
+      <button style="margin: -60px 0 0 300px " class="btn btn-primary font" type="submit">Xác nhận</button>
     </form>
   </div>
   <img style="margin-left: 25px;height: 340px;object-fit: cover"

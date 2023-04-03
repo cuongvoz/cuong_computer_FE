@@ -92,7 +92,10 @@
         </div>
 
       </div>
-      <button style="margin: 10px 0 20px 300px" class="btn btn-primary font" type="submit">Xác nhận</button>
+      <select [compareWith]="compareFun" formControlName="localBrand" class="form-select text" style="width: 150px;display: inline;border: 2px solid #005ec4;margin-top: -40px">
+        <option  *ngFor="let x of brand" [ngValue]="x">{{x.name}}</option>
+      </select>
+      <button style="margin: 15px 0 20px 140px" class="btn btn-primary font" type="submit">Xác nhận</button>
     </form>
   </div>
   <img style="margin-left: 25px;height: 340px;object-fit: cover"

@@ -1,0 +1,160 @@
+<div class="side-banner banner-left row d-flex"
+     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a><img
+  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+<div class="container row " style="margin: 10px;display: inline-block;float: left">
+  <div style="margin: 10px;">
+    <h2 style="width: 100%;background: #92999f;margin-left: 13px;height: 10px;margin-top: 20px">  <div class="text-center text" style="margin: 0 auto;line-height: 5px;padding-bottom:10px;background: white;width: 480px">QUẢN LÝ SẢN PHẨM</div></h2>
+    <a   style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #29324e;position: relative"
+        class="dropdown">
+      <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn btn-primary textButton dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: #005ec4;border-radius: 0;border: 1px solid #29324e">Thêm mới <i class="fa-sharp fa-solid fa-laptop-medical"></i></button>
+      </div>
+      <div  class=" dropdown-menu text" aria-labelledby="dropdownMenuButton1"  style="top: 55px;left:0;font-size: 20px;position: absolute">
+                <p class="category-item dropdown-item" routerLink="/manager/create/2/null" ><i class="fa-sharp fa-solid fa-computer" style="margin-right: 5px"></i> Thêm mới PC</p>
+                <p class="category-item dropdown-item" routerLink="/manager/create/1/null" ><i style="margin-right: 5px" class="fa-sharp fa-solid fa-laptop"></i> Thêm mới Laptop</p>
+                <p class="category-item dropdown-item" routerLink="/manager/create/5/null" ><i class="fa-sharp fa-solid fa-computer-mouse" style="margin-right: 5px"></i> Thêm mới Chuột</p>
+                <p class="category-item dropdown-item" routerLink="/manager/create/4/null" ><i class="fa-solid fa-tv" style="margin-right: 5px"></i> Thêm mới Màn hình</p>
+                <p class="category-item dropdown-item" routerLink="/manager/create/6/null" ><i class="fa-sharp fa-solid fa-chair" style="margin-right: 5px"></i> Thêm mới Ghế</p>
+                <p class="category-item dropdown-item" routerLink="/manager/create/3/null" ><i class="fa-sharp fa-solid fa-keyboard" style="margin-right: 5px"></i> Thêm mới Bàn phím</p>
+      </div>
+      <div class="d-flex row text" style="position: absolute;top: 24px;border: 2px solid #005ec4;right: 0;width: 476px">
+        <input class="input form-control " #name (keyup.enter)="searchName(name.value,select.value)" placeholder="Nhập tên cần tìm.." style="height: 35px;border: 0;display: inline;width: 220px"> <span style="display: inline;width: 1px;color: #005ec4;margin-top: 5px">|</span>
+        <select (change)="searchCategory(select.value)" #select class="form-select text-center" style=";width: 220px;height: 35px;border: 0 solid white;display: inline;">
+          <option [value]="7">Tất cả danh mục</option>
+          <option [value]="1">Laptop</option>
+          <option [value]="2">PC gaming</option>
+          <option [value]="5">Chuột</option>
+          <option [value]="3">Bàn phím</option>
+          <option [value]="6">Ghế</option>
+          <option [value]="4">Màn hình</option>
+        </select>
+      </div>
+    </a>
+
+
+  </div>
+  <table class="table-text table" >
+    <thead>
+    <tr style="background: #005ec4;color: white" class="text3">
+      <th>STT</th>
+      <th>Hình ảnh</th>
+      <th>Tên sản phẩm</th>
+      <th>Giá</th>
+      <th>Số lượng</th>
+      <th>Danh mục</th>
+      <th>Chức năng</th>
+    </tr>
+    </thead>
+    <tbody class="tbody">
+    <tr *ngFor="let x of products;index as i">
+      <th>{{i + 1}}</th>
+      <th><img src="{{x.image}}" style="width: 50px;height: 50px;object-fit: cover"></th>
+      <th>{{x.name}}</th>
+      <th>{{x.price | number}} đ</th>
+      <th>{{x.quantity}}</th>
+      <th>{{x.category.name}}</th>
+      <th>
+        <button (click)="checkProduct(x)" data-bs-toggle="modal" data-bs-target="#addQuantity" class="btn btn-success" style="margin-right: 5px"><i class="fa-solid fa-laptop-code"></i></button>
+        <button style="margin-right: 5px" [routerLink]="['/manager/create/' + x.category.id +'/'+ x.id]" class="btn btn-primary"><i style="color: white"
+                   class="fa-sharp fa-solid fa-gears"></i></button>
+        <button (click)="isDelete(x.id,x.category.name,x.name,x.image)" class="btn btn-danger"><i
+          style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <div style="margin-left: 375px;margin-top: -10px">
+    <button class="btn btn-outline-primary" [disabled]="first == true" (click)="changePage(page -1)" style="border-radius: 0;margin: 10px"><i style="margin-right: 8px" class="fa-solid fa-circle-chevron-left"></i> <span class="text2">Trang trước</span> </button>
+    <button class="btn btn-outline-primary" style="border-radius: 0;"><span class="text2">{{page +1}}</span></button>
+    <button class="btn btn-outline-primary" [disabled]="last == true" (click)="changePage(page +1)"  style="border-radius: 0;margin: 10px"><span class="text2" style="margin-right: 8px">Trang sau</span> <i class="fa-solid fa-circle-chevron-right"></i></button>
+  </div>
+</div>
+<div class="side-banner banner-right row "
+     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
+  alt="Helios 16 - 2023"><img
+  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="addQuantity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg ">
+    <div class="modal-content" >
+      <div class="modal-header" style="height: 10px;border-bottom: 0 solid white">
+        <h3 class="modal-title text" id="exampleModalLabel" style="padding-top: 10px">Nhập kho</h3>
+        <button id="dissmiss" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex row">
+          <div class="col-lg-5">
+            <img src="{{product.image}}" style="height: 300px;width: 300px;object-fit: cover;border: 1px solid #005ec4;border-radius: 10px ">
+
+          </div>
+          <div class="col-lg-7" style="border-left: 2px solid #005ec4">
+            <div style="display: inline;width: 100px;margin-left: 10px;">
+              <p class="text" style="margin-bottom: 10px;font-size: 30px;color: #005ec4;margin-top: -34px">{{product.name}}</p>
+              <div *ngIf="product.category.id == 2">
+                <p class="line-high">- CPU: {{product.cpu}}</p>
+                <p class="line-high">- Mainboard: {{product.mainboard}}</p>
+                <p class="line-high">- RAM: {{product.ram}}</p>
+                <p class="line-high">- VGA: {{product.vga}}</p>
+              </div>
+              <div *ngIf="product.category.id == 1">
+                <p class="line-high">- CPU: {{product.cpu}}</p>
+                <p class="line-high">- RAM: {{product.ram}}</p>
+                <p class="line-high">- VGA: {{product.vga}}</p>
+                <p class="line-high">- Màn hình: {{product.monitor}}</p>
+              </div>
+              <div *ngIf="product.category.id == 6">
+                <p class="line-high">- Chất liệu {{product.material}}</p>
+                <p class="line-high">- Thương hiệu {{product.brand}}</p>
+                <p class="line-high">- Model {{product.model}}</p>
+                <p class="line-high">- Trọng tải theo góc đứng {{product.weight}}</p>
+              </div>
+              <div *ngIf="product.category.id == 4">
+                <p class="line-high">- Kích thước {{product.screenSize}}</p>
+                <p class="line-high">- Độ phân giải {{product.resolution}}</p>
+                <p class="line-high">- Tấm nền {{product.model}}</p>
+                <p class="line-high">- Tần số quét {{product.scanFrequency}}</p>
+              </div>
+              <div *ngIf="product.category.id == 3">
+                <p class="line-high">- {{product.keyboard}}</p>
+                <p class="line-high">- Kết nối {{product.connect}}</p>
+                <p class="line-high">- Keycap {{product.keycap}}</p>
+                <p  class="line-high">- Loại switch {{product.switchKey}}</p>
+              </div>
+              <div  *ngIf="product.category.id == 5">
+                <p class="line-high">- {{product.dpi}}</p>
+                <p class="line-high">- {{product.reliability}}</p>
+                <p class="line-high">- {{product.compatible}}</p>
+                <p class="line-high">- {{product.sensor}}</p>
+              </div>
+              <div style="margin-top: 10px; ">
+                <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span *ngIf="product.quantity > 0" class="text"
+                                                                                                                            style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
+                <i *ngIf="product.quantity == 0" style="color: #cb2027" class="fa-sharp fa-solid fa-circle-xmark"></i> <span *ngIf="product.quantity == 0" class="text"
+                                                                                                                             style="color: #cb2027;margin-left: 10px">  HẾT HÀNG</span>
+                <span class="text"
+                      style="position: absolute;right: 20px;color: #92999f;text-decoration: line-through;">{{product.oldPrice | number:'1.0-0'}}
+                  đ</span>
+              </div>
+              <div >
+                <span class="text">Số lượng</span>
+                <span  class=" text"
+                      style="margin-left: 10px;width: 40px;height: 40px;color: #005ec4" >{{product.quantity}}</span>
+                <span class="text"
+                      style="position: absolute;right: 20px;color:red;font-size: 20px;line-height: 1">{{ product.price | number}}
+                  đ</span>
+
+              </div>
+              <div style="margin-top: 5px">
+                <input #quantity [min]="1" style="border-radius: 0;border: 1px solid #005ec4;width: 390px;display: inline" class="form-control text" type="number" placeholder="Nhập số lượng muốn thêm.."><button data-bs-dismiss="modal" aria-label="Close" (click)="upQuantity(quantity.value)" class="btn btn-primary" style="display: inline;border-radius: 0;border: 1px solid #29324e;margin-bottom: 2px"><i class="fa-sharp fa-solid fa-circle-check"></i></button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit {
   isLogged = false;
   quantity = 0;
   total = 0;
-
+  isBuying = false;
   constructor(private cartService: CartService, private login: LoginService, private token: TokenService, private router: Router, private share: ShareService) {
 
     this.share.getClickEvent().subscribe(next => {
@@ -141,6 +141,7 @@ export class HeaderComponent implements OnInit {
           }
         )
       })
+      this.share.sendClickEvent()
     } else {
       this.token.changeQuantitySession(operator, index);
       this.share.sendClickEvent();

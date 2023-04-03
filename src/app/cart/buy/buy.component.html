@@ -13,53 +13,60 @@
             <p class="text item-cart text-center">3. Thanh toán</p>
           </div>
           <h4 class="text">THÔNG TIN KHÁCH HÀNG</h4>
-         <p>Trường bắt buộc</p>
+         <p class="text2">Trường bắt buộc</p>
           <div class="d-flex row">
             <div class="col-4">
-              <p> Họ tên quý khách *</p>
-              <p> Địa chỉ email *</p>
-              <p> Số điện thoại *</p>
-              <p> Địa chỉ thường trú *</p>
+              <p class="text textFont"> Họ tên quý khách *</p>
+              <p class="text textFont"> Địa chỉ email *</p>
+              <p class="text textFont"> Số điện thoại *</p>
+              <p class="text textFont"> Địa chỉ thường trú *</p>
             </div>
-            <div class="col-4" style="">
-              <input placeholder="Nhập tên khách hàng"  style="width: 445px">
-              <input placeholder="Nhập email" style="width: 445px;margin-top: 10px">
-              <input placeholder="Nhập số điện thoại" style="width: 445px;margin-top: 10px">
-              <input placeholder="Nhập địa chỉ" style="width: 445px;margin-top: 10px">
+            <div class="col-4" style="margin-top: -5px">
+              <form [formGroup]="form">
+                <input formControlName="name" placeholder="Nhập tên khách hàng" class="text inputText">
+                <input formControlName="email" placeholder="Nhập email" class="text inputText">
+                <input formControlName="phoneNumber" placeholder="Nhập số điện thoại" class="text inputText">
+                <input formControlName="address" placeholder="Nhập địa chỉ" class="text inputText">
+              </form>
+
             </div>
           </div>
       </div>
         <hr>
         <div style="width: 100%;position: relative;font-size: 18px">
           <h4 class="text">THÔNG TIN GIAO HÀNG</h4>
-          <input type="checkbox"> <span>Sử dụng thông tin khách hàng để giao hàng</span>
-          <p>Trường bắt buộc</p>
-          <div class="d-flex row">
-            <div class="col-4">
-              <p> Họ tên quý khách *</p>
-              <p> Địa chỉ email *</p>
-              <p> Số điện thoại *</p>
-              <p> Địa chỉ thường trú *</p>
+          <input (change)="userInfo = !userInfo" style="margin-right: 10px;" class="form-check-input" type="checkbox"> <span class="text2">Sử dụng thông tin khách hàng để giao hàng</span>
+          <p class="text2">Trường bắt buộc</p>
+          <div class="d-flex row " >
+            <div class="col-4 ">
+              <p class="text textFont" > Họ tên quý khách *</p>
+              <div *ngIf="userInfo == true">
+                <p class="text textFont"> Địa chỉ email *</p>
+                <p class="text textFont"> Số điện thoại *</p>
+                <p class="text textFont"> Ghi chú *</p>
+              </div>
             </div>
-            <div class="col-4" style="">
-              <input placeholder="Nhập tên khách hàng"  style="width: 445px">
-              <input placeholder="Nhập email" style="width: 445px;margin-top: 10px">
-              <input placeholder="Nhập số điện thoại" style="width: 445px;margin-top: 10px">
-              <input placeholder="Nhập địa chỉ" style="width: 445px;margin-top: 10px">
+            <div class="col-4" style="margin-top: -5px">
+              <div *ngIf="userInfo == true">
+              <input  placeholder="Nhập tên khách hàng" class="text inputText" >
+              <input class="text inputText" placeholder="Nhập email" >
+              <input class="text inputText" placeholder="Nhập số điện thoại">
+              </div>
+              <textarea class="text inputText" style="height: 80px" placeholder="Nhập ghi chú" ></textarea>
             </div>
           </div>
         </div>
         <hr>
-        <div style="width: 100%;position: relative;font-size: 18px">
+        <div class="text2" style="width: 100%;position: relative;font-size: 18px">
           <h4 class="text">HÌNH THỨC THANH TOÁN</h4>
           <div>
-            <input type="radio" checked name="totalPayment"> <span style="margin-left: 10px">Thanh toán tại nơi giao hàng</span>
+            <input class="form-check-input" type="radio" checked name="totalPayment"> <span style="margin-left: 10px">Thanh toán tại nơi giao hàng</span>
           </div>
          <div>
-           <input type="radio" name="totalPayment"> <span  style="margin-left: 10px">Thanh toán bằng chuyển khoản</span>
-           <p style="margin-bottom: 0">Tại Ngân hàng TMCP Công Thương Việt Nam (Vietinbank) – CN Đống Đa (Hà Nội)</p>
-           <p style="margin-bottom: 0">Số tài khoản : 113000009229</p>
-           <p style="margin-bottom: 0">Tên TK: CT TNHH TM VA TIN HOC TU NGUYET.</p>
+           <input class="form-check-input" type="radio" name="totalPayment"> <span  style="margin-left: 10px">Thanh toán bằng chuyển khoản</span>
+           <p style="margin-bottom: 0">Tại Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam (Agribank) – CN Phú Thiện (Gia Lai)</p>
+           <p style="margin-bottom: 0">Số tài khoản : 5023205201210</p>
+           <p style="margin-bottom: 0">Tên TK: CT VO VAN CUONG.</p>
          </div>
         </div>
       </div>
@@ -68,18 +75,19 @@
           <div style="padding: 20px" class="text">
             <h4>THÔNG TIN GIỎ HÀNG</h4>
             <p>Số lượng sản phẩm <span style="color: #005ec4;position: absolute;right: 20px">{{quantity}}</span></p>
-            <p style="margin-top: -15px">Tổng chi phí <span style="color: red;position: absolute;right: 20px">{{total}} đ</span>
+            <p style="margin-top: -15px">Tổng chi phí <span style="color: red;position: absolute;right: 20px">{{total | number}} đ</span>
             </p>
             <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 13px">Đã bao gồm VAT
               (nếu có)</p>
             <div *ngFor="let x of cart" style="margin-top: 20px">
               <hr>
               <div >
-                <span style="margin-top: -10px">{{x.product.category.name + ' ' + x.product.name}}</span>
+                <span style="margin-top: -10px">{{x.product.category.name + ' ' + x.product.name}} x {{x.quantity}}</span>
               </div>
             </div>
           </div>
-          <button class="btn btn-primary textButton" style="margin-left: 50px;border-radius: 0;padding: 10px 30px">XÁC NHẬN MUA HÀNG</button>
+          <div style="width: 100px;margin-left: 60px;"  id="payments"></div>
+          <button *ngIf="isShow == false" class="btn btn-primary textButton" (click)="show()" style="margin-left: 50px;margin-bottom: 20px;border-radius: 0;padding: 10px 30px">XÁC NHẬN MUA HÀNG</button>
 
         </div>
 

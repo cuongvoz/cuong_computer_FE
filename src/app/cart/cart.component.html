@@ -10,7 +10,7 @@
           <div class="d-flex row">
             <p class="text item-cart text-center">1. Chọn sản phẩm</p>
             <p class="text item-cart text-center" style="width: 230px">2. Xác nhận đơn hàng</p>
-            <p class="text item-cart text-center">3. Thanh toán</p>
+            <p class="text item-cart text-center" style="background: #dddddd;color: #29324e">3. Thanh toán</p>
           </div>
           <h4 class="text">THÔNG TIN SẢN PHẨM</h4>
           <div  style="height: 400px;overflow: scroll">
@@ -46,7 +46,7 @@
             </p>
             <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 13px">Đã bao gồm VAT
               (nếu có)</p>
-            <button routerLink="/cart/buy" style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-primary">XÁC NHẬN ĐƠN HÀNG
+            <button (click)="buy()" style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-primary">XÁC NHẬN ĐƠN HÀNG
             </button>
             <button style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-danger" (click)="dropCart()">XÓA GIỎ HÀNG</button>
             <button style="width: 100%;border-radius: 0;margin-top: 20px" class="btn btn-outline-primary" routerLink="/list/search/1/null">XEM SẢN PHẨM
@@ -85,7 +85,7 @@
       SẢN PHẨM ĐANG HOT</h3></h3>
     <div style="margin: 20px;" >
  <div style="margin-left:10px">
-   <div *ngFor="let x of products" class="card" style="width: 14rem;display: inline-block;margin: 10px 10px 10px 10px">
+   <div *ngFor="let x of products" class="card newText2" style="width: 14rem;display: inline-block;margin: 10px 10px 10px 10px">
      <img [routerLink]="['/product/detail/'+x.id]" class="card-img-top" style="height: 222px;width: 222px;object-fit: cover"
           src="{{x.image}}"
           alt="Card image cap">

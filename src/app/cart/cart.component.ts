@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
   total = 0;
   user: User;
   isLogged = false;
+
   constructor(private token: TokenService, private share: ShareService, private title: Title, private cartService: CartService, private router: Router, private loginService: LoginService, private productService: ProductService) {
   }
 
@@ -75,43 +76,49 @@ export class CartComponent implements OnInit {
 
   getAll() {
     this.cartService.getCartByUser(this.user.id).subscribe(
-      next => {this.cart = next
+      next => {
+        this.cart = next
         this.getAllValue();
       }
     );
-      this.share.getClickEvent().subscribe(
-        next => {
-       this.cartService.getCartByUser(this.user.id).subscribe(
-            next => {this.cart = next
-              this.getAllValue();
-            }
-          );
-        }
-      )
+    this.share.getClickEvent().subscribe(
+      next => {
+        this.cartService.getCartByUser(this.user.id).subscribe(
+          next => {
+            this.cart = next
+            this.getAllValue();
+          }
+        );
+      }
+    )
 
   }
-  changeQuantity(operator:string,id:number,index:number) {
+
+  changeQuantity(operator: string, id: number, index: number) {
     if (this.isLogged) {
-      this.cartService.changeQuantity(operator,id).subscribe(next => {
+      this.cartService.changeQuantity(operator, id).subscribe(next => {
         this.share.sendClickEvent()
         this.cartService.getCartByUser(this.user.id).subscribe(
-          next => {this.cart = next
+          next => {
+            this.cart = next
             this.getAllValue();
           }
         )
       })
     } else {
-      this.token.changeQuantitySession(operator,index);
+      this.token.changeQuantitySession(operator, index);
       this.share.sendClickEvent();
     }
   }
-  deleteCart(id:number,index:number) {
+
+  deleteCart(id: number, index: number) {
     if (this.isLogged) {
       this.cartService.deleteCart(id).subscribe(next => {
         this.share.sendClickEvent()
         this.share.getClickEvent().subscribe(next => {
           this.cartService.getCartByUser(this.user.id).subscribe(
-            next => {this.cart = next
+            next => {
+              this.cart = next
               this.getAllValue();
             }
           )
@@ -123,6 +130,7 @@ export class CartComponent implements OnInit {
     }
 
   }
+
   getAllValue() {
     this.quantity = 0;
     this.total = 0;
@@ -203,7 +211,6 @@ export class CartComponent implements OnInit {
   }
 
 
-
   detail(): string {
     let detail = '';
     let currentTime = new Date();
@@ -219,7 +226,6 @@ export class CartComponent implements OnInit {
     detail += ' vào lúc ' + formattedTime;
     return detail
   }
-
 
 
   buy() {
@@ -250,54 +256,57 @@ export class CartComponent implements OnInit {
       let check = true;
       let message = ''
       for (let i = 0; i < this.cart.length; i++) {
-            if (this.cart[i].quantity > this.cart[i].product.quantity) {
-              if (i+1 == this.cart.length) {
-                message += this.cart[i].quantity+' ' + this.cart[i].product.category.name.toLowerCase() + ' '
-                  + this.cart[i].product.name + ' ('+this.cart[i].product.quantity +' cái trong kho) '
-              } else {
-                message += this.cart[i].quantity+' '+ this.cart[i].product.category.name.toLowerCase() + ' '
-                  + this.cart[i].product.name + ' ('+ this.cart[i].product.quantity +' cái trong kho) và '
-              }
-              check = false;
-            }
+        if (this.cart[i].quantity > this.cart[i].product.quantity) {
+          if (i + 1 == this.cart.length) {
+            message += this.cart[i].quantity + ' ' + this.cart[i].product.category.name.toLowerCase() + ' '
+              + this.cart[i].product.name + ' (' + this.cart[i].product.quantity + ' cái trong kho) '
+          } else {
+            message += this.cart[i].quantity + ' ' + this.cart[i].product.category.name.toLowerCase() + ' '
+              + this.cart[i].product.name + ' (' + this.cart[i].product.quantity + ' cái trong kho) và '
+          }
+          check = false;
+        }
       }
-        message += ' đang có số lượng lớn hơn trong kho, quý khách vui lòng chỉnh sửa lại số lượng sản phẩm hoặc chọn sản phẩm khác.'
-       if (!check) {
-         Swal.fire({
-           title: 'Thông báo vượt quá số lượng',
-           imageUrl: 'https://i.imgur.com/dKc3V77.png',
-           text: 'Hiện tại trong giỏ hàng của bạn có ' + message,
-           showConfirmButton: true,
-           imageWidth: 200,
-           imageHeight: 200,
-           imageAlt: 'Custom image',
-           confirmButtonColor: '#005ec4',
-           confirmButtonText: 'Đồng ý',
-         })
-       }  else {
-         let currentTime = new Date();
-         let formattedTime = currentTime.toLocaleString();
-         this.cartService.buy(this.total,this.quantity, this.user.id, formattedTime).subscribe(
-           next => {
-             Swal.fire({
-               title: 'Chúc mừng bạn ' + this.user.name + ' đã mua hàng thành công!',
-               imageUrl: 'https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png',
-               text: 'Bạn đã mua ' + this.detail() +
-                 ', tổng hóa đơn thanh toán của bạn là ' + this.total + ' VNĐ!',
-               showConfirmButton: true,
-               imageWidth: 200,
-               imageHeight: 200,
-               imageAlt: 'Custom image',
-               confirmButtonText: 'Xác nhận',
-               confirmButtonColor: '#005ec4',
-             });
-             this.share.sendClickEvent();
-             this.getAll();
-           }
-         )
-       }
+      message += ' đang có số lượng lớn hơn trong kho, quý khách vui lòng chỉnh sửa lại số lượng sản phẩm hoặc chọn sản phẩm khác.'
+      if (!check) {
+        Swal.fire({
+          title: 'Thông báo vượt quá số lượng',
+          imageUrl: 'https://i.imgur.com/dKc3V77.png',
+          text: 'Hiện tại trong giỏ hàng của bạn có ' + message,
+          showConfirmButton: true,
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: 'Custom image',
+          confirmButtonColor: '#005ec4',
+          confirmButtonText: 'Xác nhận',
+        })
+      } else {
 
+        this.router.navigateByUrl('/cart/buy')
+        // let currentTime = new Date();
+        // let formattedTime = currentTime.toLocaleString();
+        // this.cartService.buy(this.total,this.quantity, this.user.id, formattedTime).subscribe(
+        //   next => {
+        //     Swal.fire({
+        //       title: 'Chúc mừng bạn ' + this.user.name + ' đã mua hàng thành công!',
+        //       imageUrl: 'https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png',
+        //       text: 'Bạn đã mua ' + this.detail() +
+        //         ', tổng hóa đơn thanh toán của bạn là ' + this.total + ' VNĐ!',
+        //       showConfirmButton: true,
+        //       imageWidth: 200,
+        //       imageHeight: 200,
+        //       imageAlt: 'Custom image',
+        //       confirmButtonText: 'Xác nhận',
+        //       confirmButtonColor: '#005ec4',
+        //     });
+        //     this.share.sendClickEvent();
+        //     this.getAll();
+        //   }
+        // )
+      }
     }
+
   }
+
 
 }

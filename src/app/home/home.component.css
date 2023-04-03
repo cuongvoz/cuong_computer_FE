@@ -23,6 +23,24 @@
   z-index: 30;
 
 }
+.productNew:hover {
+  padding: 0;
+  object-fit: cover;
+  -webkit-transform:scale(1.2);
+  -moz-transform:scale(1.2);
+  -ms-transform:scale(1.2);
+  -o-transform:scale(1.2);
+  transform:scale(1.2);
+  z-index: 30;
+}
+.productNew {
+  transition:.5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -o-transition: .5s;
+  transition: .5s;
+}
 .card {
   transition:.5s;
   -webkit-transition: .5s;

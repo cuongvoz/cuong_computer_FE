@@ -50,7 +50,13 @@
               <input type="text" [placeholder]="errorMessageKeyboard.compatible" formControlName="compatible" required  spellcheck="false">
               <label>Tương thích</label>
             </div>
-            <div [class.error]="errorKeyboard.connect == true" [class.input-field]="errorKeyboard.connect == false" class=" col-lg-6" style="width: 320px;margin-left: 180px">
+            <div  class=" col-lg-6" style="border: 0;width: 200px;margin-left: -10px;margin-top: 20px">
+              <select [compareWith]="compareFun" formControlName="localBrand" class="form-select text" style="width: 150px;display: inline;border: 2px solid #005ec4;margin-top: -40px">
+                <option  *ngFor="let x of brand" [ngValue]="x">{{x.name}}</option>
+              </select>
+            </div>
+
+            <div [class.error]="errorKeyboard.connect == true" [class.input-field]="errorKeyboard.connect == false" class=" col-lg-6" style="width: 320px;margin-left: 165px">
               <input type="text" [placeholder]="errorMessageKeyboard.connect"  formControlName="connect" required spellcheck="false">
               <label>Cổng kết nối</label>
             </div>
@@ -80,7 +86,8 @@
         </div>
 
       </div>
-      <button style="margin-left: 300px;" class="btn btn-primary font" type="submit">Xác nhận</button>
+
+      <button style="margin-left: 200px;;margin-top: -100px" class="btn btn-primary font" type="submit">Xác nhận</button>
     </form>
   </div>
   <img style="margin-left: 25px;height: 340px;object-fit: cover"

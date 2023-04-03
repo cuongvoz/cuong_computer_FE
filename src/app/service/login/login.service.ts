@@ -28,4 +28,11 @@ export class LoginService {
   profile(id):Observable<any> {
     return this.http.get<any>('http://localhost:8080/api/auth/profile/'+id);
   }
+  avatar(id,avatar):Observable<any> {
+    let dto = {
+      id:id,
+      avatar:avatar
+    }
+    return this.http.post<any>('http://localhost:8080/api/auth/avatar',dto);
+  }
 }

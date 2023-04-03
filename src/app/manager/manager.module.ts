@@ -13,10 +13,11 @@ import {AppRoutingModule} from "../app-routing.module";
 import {HomeRoutingModule} from "../home/home-routing.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {ReactiveFormsModule} from "@angular/forms";
+import { ProductManagerComponent } from './product-manager/product-manager.component';
 
 
 @NgModule({
-  declarations: [CreatePCComponent, CreateChairComponent, CreateKeyBoardComponent, CreateLaptopComponent, CreateMonitorComponent, CreateMouseComponent],
+  declarations: [CreatePCComponent, CreateChairComponent, CreateKeyBoardComponent, CreateLaptopComponent, CreateMonitorComponent, CreateMouseComponent, ProductManagerComponent],
   imports: [
     CommonModule,
     RouterModule,

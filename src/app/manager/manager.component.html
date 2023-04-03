@@ -2,7 +2,49 @@
      style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a><img
   src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
 <div class="container row " style="margin: 10px;display: inline-block;float: left">
+  <h2 style="width: 100%;background: #92999f;margin-left: 25px;height: 10px;margin-top: 20px">  <div class="text-center text" style="margin: 0 auto;line-height: 5px;padding-bottom:10px;background: white;width: 480px">LỊCH SỬ ĐẶT HÀNG</div></h2>
 
+  <table class="table-text table" style="margin-top: 20px">
+    <thead>
+    <tr style="background: #005ec4;color: white" class="text3">
+      <th>STT</th>
+      <th>Hình ảnh</th>
+      <th>Tên </th>
+      <th>Số điện thoại</th>
+      <th>Địa chỉ</th>
+      <th>Ngày mua</th>
+      <th>Số lượng</th>
+      <th>Tổng tiền</th>
+      <th>Chi tiết</th>
+    </tr>
+    </thead>
+    <tbody class="tbody">
+    <tr *ngFor="let x of bills;index as i">
+      <th>{{i + 1}}</th>
+      <th><img src="{{x.user.avatar}}" style="width: 50px;height: 50px;object-fit: cover;border: 1px solid #005ec4;border-radius: 50%"></th>
+      <th>{{x.user.name}}</th>
+      <th>+{{x.user.phoneNumber}}</th>
+      <th>{{x.user.address}}</th>
+      <th>{{x.buyDate}}</th>
+      <th>{{x.quantity}}</th>
+      <th>{{x.totalPayment | number}}đ</th>
+      <th>
+        <button (click)="check(x.id,x.user,x)" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="btn btn-primary"><i style="color: white"
+           class="fa-solid fa-circle-info"></i></button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+  <div style="margin-left: 375px;margin-top: -10px">
+    <button class="btn btn-outline-primary" [disabled]="first == true" (click)="changePage(page -1)"
+            style="border-radius: 0;margin: 10px"><i style="margin-right: 8px"
+                                                     class="fa-solid fa-circle-chevron-left"></i> <span class="text2">Trang trước</span>
+    </button>
+    <button class="btn btn-outline-primary" style="border-radius: 0;"><span class="text2">{{page + 1}}</span></button>
+    <button class="btn btn-outline-primary" [disabled]="last == true" (click)="changePage(page +1)"
+            style="border-radius: 0;margin: 10px"><span class="text2" style="margin-right: 8px">Trang sau</span> <i
+      class="fa-solid fa-circle-chevron-right"></i></button>
+  </div>
 </div>
 
 <div class="side-banner banner-right row "
@@ -11,3 +53,55 @@
   src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
 
 
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" style="width: 700px;margin-left: -100px">
+      <div class="modal-header" style="height: 20px;border-bottom: 0;margin-bottom: -10px;margin-top: 10px">
+        <h3 class="modal-title text" style="padding: 15px 0 0 -30px;" id="exampleModalLabel">Chi tiết đơn hàng</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row d-flex">
+          <div class="col-lg-7" >
+            <h5 class="text">Danh sách sản phẩm đã mua</h5>
+            <div style="height: 400px;overflow: scroll">
+              <div *ngFor="let x of buyHistorys" style="border: 1px solid #005ec4;position: relative;margin-bottom: 10px" >
+                 <img style="height: 50px;width: 50px;object-fit: cover;margin-left: 5px" src="{{x.product.image}}">
+                 <p class="text" style="position: absolute;top:0;left: 60px;display: inline;margin-left: 10px;color: #005ec4">{{x.product.name}}</p>
+                 <p class="text" style="position: absolute;top:20px;left: 60px;margin-left: 10px ">Số lượng {{x.quantity}}</p>
+                 <p class="text" style="position: absolute;top:20px;right: 10px;margin-left: 10px;color: #005ec4 ">{{x.product.price | number}}đ</p>
+              </div>
+            </div>
+            </div>
+          <div class="col-lg-5" >
+            <div style="position: relative">
+              <div style="width: 100%;background-image: url('https://img.freepik.com/free-vector/abstract-blue-geometric-shapes-background_1035-17545.jpg?w=2000');height: 100px">
+              </div>
+              <img src="{{userBill.avatar}}" style="width: 100px;margin-top: -55px;margin-left: 80px;border-radius: 50%;border: 3px solid white">
+               <p class="text2 text-center" style="font-size: 30px;color: #3a5876">{{userBill.name}}</p>
+              <div class="text" style="margin-top: -20px;">
+                <p style="margin-bottom: 5px"><i style="margin-right: 15px" class="fa-sharp fa-solid fa-envelope"></i> <span style="color: #005ec4">{{userBill.email}}</span></p>
+                <p style="margin-bottom: 5px"><i style="margin-right: 15px" class="fa-solid fa-phone"></i> <span style="color: #005ec4">+{{userBill.phoneNumber}}</span></p>
+                <p style="margin-bottom: 5px"><i style="margin-right: 15px" class="fa-solid fa-cake-candles"></i> <span style="color: #005ec4">{{userBill.dateOfBirth | date:'dd/MM/yyyy'}}</span></p>
+                <p *ngIf="userBill.address" style="margin-bottom: 5px"><i style="margin-right: 15px" class="fa-solid fa-location-dot"></i> <span style="color: #005ec4">{{userBill.address}}</span></p>
+              </div>
+              <div class="text"  style="position: relative">
+                <h5 style="margin-bottom: 5px">Thông tin đặt hàng</h5>
+                <p style=" margin-bottom: 5px">Ngày đặt</p> <p style="position: absolute;right: 0;top: 30px;color: #005ec4"> {{bill.buyDate }}</p>
+                <p style="margin-bottom: 5px">Số lượng </p>  <p style="position: absolute;right: 0;top: 58px;color: #005ec4"> {{bill.quantity}}</p>
+                <p style="margin-bottom: 5px">Tổng thanh toán </p> <p style="position: absolute;right: 0;top: 88px;color: red"> {{bill.totalPayment | number}}đ</p>
+              </div>
+            </div>
+
+            <div style="width: 100%;background: white ">
+              <a ><img src="https://www.tncstore.vn/catalog/view/theme/default/image/tien-mat.png" alt=""></a>
+              <a ><img src="https://www.tncstore.vn/catalog/view/theme/default/image/internet-bank.png" alt=""></a>
+              <a ><img src="https://www.tncstore.vn/catalog/view/theme/default/image/mastercard.png" alt=""></a>
+              <a ><img src="https://www.tncstore.vn/catalog/view/theme/default/image/visa.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -8,6 +8,8 @@ import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ListService} from "../../service/product/list.service";
+import {ShareService} from "../../service/login/share.service";
 
 @Component({
   selector: 'app-create-chair',
@@ -29,9 +31,11 @@ export class CreateChairComponent implements OnInit {
     brand: new FormControl(),
     model: new FormControl(),
     backrest: new FormControl(),
+    localBrand: new FormControl({name: 'E-Dra',
+      id: 20}),
     category: new FormControl({id: 6,name:'Ghế'}),
-
   })
+  brand = []
   errorChair = {
     name: false,
     price: false,
@@ -83,10 +87,11 @@ export class CreateChairComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   fb: string | undefined= 'https://minhancomputercdn.com/media/product/5808_gh____ch__i_game___a_ch___c_n__ng_cluvens_scorpion_computer_cockpit.jpg';
   src: string | undefined;
-  constructor(private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
+  constructor(private shareService:ShareService,private listService:ListService,private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
   isLoading = false;
   ngOnInit(): void {
     this.loader()
+    this.loadlist()
   }
   loader() {
     this.activate.paramMap.subscribe(next => {
@@ -105,6 +110,21 @@ export class CreateChairComponent implements OnInit {
         this.selectedImage = this.formChair.controls.image.value
       }
     })
+  }
+  compareFun(item1,item2){
+    return item1 && item2 ? item1.id === item2.id : item1 === item2
+  }
+  loadlist() {
+    let brands = this.listService.getBrandChair();
+    if (brands != undefined) {
+      for (let i = 0; i < brands.length; i++) {
+        let brand = {
+          id: brands[i].id,
+          name: brands[i].name
+        }
+        this.brand.push(brand)
+      }
+    }
   }
   showPreview(event: any) {
     this.errorChair.image = false;
@@ -153,7 +173,8 @@ export class CreateChairComponent implements OnInit {
             timer: 1500
           })
         }
-        this.router.navigateByUrl('/manager')
+        this.shareService.sendClickEvent()
+        this.router.navigateByUrl('/manager/product')
         this.formChair.reset()
       },error => {
         for (let i = 0; i < error.error.length; i++) {

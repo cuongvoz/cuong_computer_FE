@@ -50,7 +50,12 @@
               <input type="text" [placeholder]="errorMessageMonitor.connector" formControlName="connector" required  spellcheck="false">
               <label>Cổng kết nối</label>
             </div>
-            <div  [class.error]="errorMonitor.panels == true" [class.input-field]="errorMonitor.panels == false" class=" col-lg-6" style="width: 320px;margin-left: 180px">
+            <div    class=" col-lg-6" style="width: 320px;margin-left: -10px;border: 0;margin-top: 10px">
+              <select [compareWith]="compareFun" formControlName="localBrand" class="form-select text" style="width: 150px;display: inline;border: 2px solid #005ec4;margin-top: -40px">
+                <option  *ngFor="let x of brand" [ngValue]="x">{{x.name}}</option>
+              </select>
+            </div>
+            <div  [class.error]="errorMonitor.panels == true" [class.input-field]="errorMonitor.panels == false" class=" col-lg-6" style="width: 320px;margin-left: 45px;margin-top: 0">
               <input type="text" [placeholder]="errorMessageMonitor.panels"  formControlName="panels" required spellcheck="false">
               <label>Tấm nền</label>
             </div>
@@ -80,7 +85,8 @@
         </div>
 
       </div>
-      <button style="margin-left: 290px;margin-bottom: 20px" class="btn btn-primary font" type="submit">Xác nhận</button>
+
+      <button style="margin-left: 210px;margin-top: -120px" class="btn btn-primary font" type="submit">Xác nhận</button>
     </form>
   </div>
   <img style="margin-left: 25px;height: 340px;object-fit: cover;margin-top: -30px"

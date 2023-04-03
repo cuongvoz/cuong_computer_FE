@@ -11,7 +11,8 @@
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
       <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/">Trang chủ</h4>
       <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
-      <h4 class="text" [routerLink]="['/list/search/' +product.category.id +'/null']" style="margin-left: 30px;cursor: pointer">{{product.category.name}}</h4>
+      <h4 class="text" [routerLink]="['/list/search/' +product.category.id +'/null']"
+          style="margin-left: 30px;cursor: pointer">{{product.category.name}}</h4>
       <button [routerLink]="['/manager/create/' + product.category.id +'/'+ product.id]"
               style="position: absolute;right: 150px;" class="btn btn-primary"><i style="color: white"
                                                                                   class="fa-sharp fa-solid fa-gears"></i>
@@ -68,7 +69,7 @@
           <p class="line-high">- {{product.keyboard}}</p>
           <p class="line-high">- Kết nối {{product.connect}}</p>
           <p class="line-high">- Keycap {{product.keycap}}</p>
-          <p class="line-high">- Loại switch {{product.switchKeyboard}}</p>
+          <p class="line-high">- Loại switch {{product.switchKey}}</p>
           <p class="line-high">- Pin {{product.pin}}</p>
           <p class="line-high">- Tương thích {{product.os}}</p>
         </div>
@@ -83,10 +84,12 @@
           <p class="line-high" *ngIf="product.weight">- {{product.weight}}</p>
         </div>
         <div style="margin-top: 30px;margin-bottom: -20px ">
-          <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span *ngIf="product.quantity > 0" class="text"
-                                                                                         style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
-          <i *ngIf="product.quantity == 0" style="color: #cb2027" class="fa-sharp fa-solid fa-circle-xmark"></i> <span *ngIf="product.quantity == 0" class="text"
-                                                                                         style="color: #cb2027;margin-left: 10px">  HẾT HÀNG</span>
+          <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span
+          *ngIf="product.quantity > 0" class="text"
+          style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
+          <i *ngIf="product.quantity == 0" style="color: #cb2027" class="fa-sharp fa-solid fa-circle-xmark"></i> <span
+          *ngIf="product.quantity == 0" class="text"
+          style="color: #cb2027;margin-left: 10px">  HẾT HÀNG</span>
           <span class="text"
                 style="position: absolute;right: 200px;color: #92999f;text-decoration: line-through;">{{product.oldPrice | number:'1.0-0'}}
             đ</span>
@@ -178,5 +181,5 @@
 </div>
 <div class="side-banner banner-right row "
      style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
- alt="Helios 16 - 2023"><img
+  alt="Helios 16 - 2023"><img
   src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>

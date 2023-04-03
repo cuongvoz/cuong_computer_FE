@@ -8,6 +8,8 @@ import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ListService} from "../../service/product/list.service";
+import {ShareService} from "../../service/login/share.service";
 
 @Component({
   selector: 'app-create-mouse',
@@ -31,6 +33,8 @@ export class CreateMouseComponent implements OnInit {
     connect: new FormControl(),
     os: new FormControl(),
     reliability: new FormControl(),
+    localBrand: new FormControl({name: 'RAZER',
+      id: 12}),
     category: new FormControl({id: 5,name:'Chuột'}),
   })
   errorMouse = {
@@ -92,10 +96,27 @@ export class CreateMouseComponent implements OnInit {
   downloadURL: Observable<string> | undefined;
   fb: string | undefined= 'https://hanoicomputercdn.com/media/product/53012_mouse_logitech_g102_lightsync_rgb_black_0000_1.jpg';
   src: string | undefined;
-  constructor(private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
+  brand = [];
+  constructor(private shareService:ShareService,private listService:ListService,private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
   isLoading = false;
   ngOnInit(): void {
-    this.loader()
+    this.loader();
+    this.loadlist();
+  }
+  loadlist() {
+    let brands = this.listService.getBrandMouse();
+    if (brands != undefined) {
+      for (let i = 0; i < brands.length; i++) {
+        let brand = {
+          id: brands[i].id,
+          name: brands[i].name
+        }
+        this.brand.push(brand)
+      }
+    }
+  }
+  compareFun(item1,item2){
+    return item1 && item2 ? item1.id === item2.id : item1 === item2
   }
   loader() {
     this.activate.paramMap.subscribe(next => {
@@ -168,8 +189,9 @@ export class CreateMouseComponent implements OnInit {
             imageAlt: 'Custom image',
           })
         }
+        this.shareService.sendClickEvent()
         this.formMouse.reset()
-        this.router.navigateByUrl('/manager')
+        this.router.navigateByUrl('/manager/product')
       },error => {
         console.log(error)
         for (let i = 0; i < error.error.length; i++) {

@@ -3,121 +3,263 @@
 ><img
   src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
 
-<div class="container row " style="margin: 10px;display: inline-block;float: left">
-  <div style="margin: 5px 10px 10px 25px">
-    <div class="top-photo col-md-13 ">
-      <img src="https://storage-asset.msi.com/global/picture/wallpaper/wallpaper_1677042878615be0858ba1bcc6654c8df2c0d869cf.jpeg" style="height: 400px;object-fit: cover">
+<div class="container2 row " style="margin: 10px;display: inline-block;float: left">
+  <div class="container">
+    <div class="profile-header">
+      <div class="profile-img" style="position: relative">
+        <img src="{{user.avatar}}" width="200" alt="Profile Image">
+        <div class="button" >
+         <button data-bs-toggle="modal" data-bs-target="#avatarModal" class="buttonAvatar">Ảnh đại điện</button>
+        </div>
+      </div>
+      <div class="profile-nav-info" style="margin-bottom: -10px">
+        <h3 class="text2">{{user.name}}</h3>
+        <div class="address" style="color: #dddddd">
+          <p id="state" class="state">{{user.address}},</p>
+          <span id="country" class="country">Việt Nam.</span>
+        </div>
 
+      </div>
+      <div class="profile-option">
+        <div class="notification" data-bs-toggle="modal" data-bs-target="#editModal">
+          <i class="fa-solid fa-user-gear"></i>
+          <span class="alert-message">3</span>
+        </div>
+      </div>
     </div>
-    <div class="user">
-      <img src="{{user.avatar}}">
-    </div>
 
-    <div class="container">
+    <div class="main-bd">
+      <div class="left-side">
+        <div class="profile-side">
+          <p class="mobile-no"><i class="fa fa-phone"></i> +{{user.phoneNumber}}</p>
+          <p class="user-mail"><i class="fa fa-envelope"></i> {{user.email}}</p>
+          <div class="user-bio">
+            <h3>Bio</h3>
+            <p class="bio">
+              Lorem ipsum dolor sit amet, hello how consectetur adipisicing elit. Sint consectetur provident magni
+              yohoho consequuntur, voluptatibus ghdfff exercitationem at quis similique. Optio, amet!
+            </p>
+          </div>
+          <div class="profile-btn">
+            <button class="chatbtn" id="chatBtn"><i class="fa fa-comment"></i> Chat</button>
+            <button class="createbtn" id="Create-post"><i class="fa fa-plus"></i> Create</button>
+          </div>
+          <div class="user-rating">
+            <h3 class="rating">4.5</h3>
+            <div class="rate">
+              <div class="star-outer">
+                <div class="star-inner">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+              </div>
+              <span class="no-of-user-rate"><span>123</span>&nbsp;&nbsp;reviews</span>
+            </div>
 
-      <div class="row">
-        <div class="col-md-8">
-          <div class="tab-content profile-tab" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Họ tên</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{{user.name}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Email</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{{user.id}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Số điện thoại</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{{user.phoneNumber}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Giới tính</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{{user.gender}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Ngày sinh</label>
-                </div>
-                <div class="col-md-6">
-                  <p>{{user.dateOfBirth}}</p>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Experience</label>
-                </div>
-                <div class="col-md-6">
-                  <p>Expert</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Hourly Rate</label>
-                </div>
-                <div class="col-md-6">
-                  <p>10$/hr</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Total Projects</label>
-                </div>
-                <div class="col-md-6">
-                  <p>230</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>English Level</label>
-                </div>
-                <div class="col-md-6">
-                  <p>Expert</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <label>Availability</label>
-                </div>
-                <div class="col-md-6">
-                  <p>6 months</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <label>Your Bio</label><br/>
-                  <p>Your detail description</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
       </div>
+      <div class="right-side">
+
+        <div class="nav">
+          <ul>
+            <li style="width: 100px" (click)="show(0)" [class.active]="type == 0" class="user-post text">Giới Thiệu</li>
+            <li style="width: 100px" (click)="show(1)" [class.active]="type == 1" class="user-review text">Lịch Sử</li>
+            <li style="width: 100px" (click)="show(2)" [class.active]="type == 2" class="user-setting text"> Settings
+            </li>
+          </ul>
+        </div>
+        <div class="text">
+          <div *ngIf="type == 0" style="padding: 10px 15px">
+            <h1 style="font-family: 'Chakra Petch2'">THÔNG TIN CÁ NHÂN</h1>
+
+            <div class="text d-flex row" style="margin-top: 10px;font-size: 20px;border-bottom: 2px solid #005ec4">
+              <div class="check col-lg-6">
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-solid fa-user"></i>Họ và tên</p>
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-solid fa-face-smile"></i>Tuổi</p>
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-solid fa-phone"></i>Số điện thoại</p>
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-sharp fa-solid fa-envelope"></i>Email</p>
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-solid fa-venus-mars"></i>Giới
+                  tính</p>
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-solid fa-cake-candles"></i>Ngày
+                  sinh</p>
+                <p><i style="margin-right: 20px;color: #005ec4" class="fa-solid fa-address-book"></i>Địa
+                  chỉ</p>
+              </div>
+              <div class="name  col-lg-6">
+                <p> {{user.name}}</p>
+                <p> {{age}} Tuổi</p>
+                <p> +{{user.phoneNumber}}</p>
+                <p> {{user.email}}</p>
+                <p> {{user.gender ? 'Nam' : 'Nữ'}}</p>
+                <p> {{user.dateOfBirth | date: 'dd/MM/yyyy'}}</p>
+                <p> {{user.address}}</p>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="type == 1" style="padding: 10px 15px">
+            <h1 style="font-family: 'Chakra Petch2'">LỊCH SỬ MUA HÀNG</h1>
+            <div >
+              <table class="table-text table" >
+                <thead>
+                <tr style="background: #005ec4;color: white" class="text3">
+                  <th>STT</th>
+                  <th>Ngày mua</th>
+                  <th>Số Lượng</th>
+                  <th>Tổng tiền</th>
+                  <th>Chi tiết</th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+                <tr *ngFor="let x of bills;index as i">
+                  <th>{{i + 1}}</th>
+                  <th>{{x.buyDate }}</th>
+                  <th>{{x.quantity }}</th>
+                  <th>{{x.totalPayment | number}}đ</th>
+                  <th>
+                    <button data-bs-toggle="modal" data-bs-target="#billDetail" (click)="check(x.id)" class="btn btn-danger"><i style="padding: 4px" class="fa-sharp fa-solid fa-magnifying-glass"></i></button>
+                  </th>
+                </tr>
+                </tbody>
+              </table>
+              <div style="margin: 10px 0 0 200px">
+                <button [disabled]="first==true" (click)="changPage(page -1)" class="btn btn-outline-light buttonPage">Trang trước</button>
+                <span style="width:50px;margin:0 10px" class="btn btn-outline-light buttonPage">{{page + 1}}</span>
+                <button [disabled]="last==true" (click)="changPage(page +1)" class="btn btn-outline-light buttonPage">Trang sau</button>
+              </div>
+
+            </div>
+          </div>
+
+
+          <div *ngIf="type == 2">
+            <div class="account-setting">
+              <h1 style="font-family: 'Chakra Petch2'">CHỈNH SỬA THÔNG TIN</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit omnis eaque, expedita nostrum,
+                facere libero provident laudantium. Quis, hic doloribus! Laboriosam nemo tempora praesentium. Culpa quo
+                velit omnis, debitis maxime, sequi
+                animi dolores commodi odio placeat, magnam, cupiditate facilis impedit veniam? Soluta aliquam excepturi
+                illum natus adipisci ipsum quo, voluptatem, nemo, commodi, molestiae doloribus magni et. Cum, saepe enim
+                quam voluptatum vel debitis
+                nihil, recusandae, omnis officiis tenetur, ullam rerum.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-
+  </div>
+  <div class="modal fade" id="billDetail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+      <div class="modal-content" >
+        <div class="modal-header" style="height: 40px">
+          <h5 class="modal-title text3" style="padding: 5px 10px" id="exampleModalLabel" >Chi tiết Đơn hàng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="margin-right: 10px"></button>
+        </div>
+        <div class="modal-body">
+          <table class=" table">
+            <thead>
+            <tr style="background: #005ec4;color: white" class="text3">
+              <th>STT</th>
+              <th>Hình ảnh</th>
+              <th>Sản phẩm</th>
+              <th>Số Lượng</th>
+              <th>Tổng</th>
+            </tr>
+            </thead>
+            <tbody class="tbody">
+            <tr *ngFor="let x of buyHistorys;index as i">
+              <th>{{i + 1}}</th>
+              <th><img src="{{x.product.image}}" style="width: 60px;height: 60px;object-fit: cover;"></th>
+              <th>{{x.product.category.name.toLowerCase() +' ' + x.product.name }}</th>
+              <th>{{x.quantity }}</th>
+              <th>{{x.quantity * x.product.price | number}} đ</th>
+            </tr>
+            <tr style="background: #005ec4;color: white" class="text3">
+              <th colspan="3" style="text-align: left">Tổng thành tiền:</th>
+              <th colspan="1">| </th>
+              <th colspan="1"> {{total | number}} đ</th>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="side-banner banner-right row "
-     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-   alt="Helios 16 - 2023"><img
+     style="margin-left: -25px;width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
+  alt="Helios 16 - 2023"><img
   src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+
+
+<div class="modal fade" id="avatarModal" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" >
+      <div class="modal-header" style="height: 45px">
+        <h4 class="modal-title text text-center" id="exampleModalLabel2" style="padding: 10px">Cập nhật ảnh đại diện</h4>
+        <button id="avatarDissmiss" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label class="hoverable" for="fileInput">
+          <img class="img" *ngIf="isLoading == false" [src]="src ? fb : 'https://i.pinimg.com/736x/c6/e5/65/c6e56503cfdd87da299f72dc416023d4.jpg'">
+          <img class="img" *ngIf="isLoading == true" src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif?20151024034921">
+          <div class="background">
+            <i   class="fa-solid fa-image iconAvatar"></i>
+            <p class="textAvatar text-center">Chọn ảnh</p>
+          </div>
+        </label>
+        <br/>
+        <input id="fileInput" type='file' (change)="showPreview($event)">
+
+        <i style="margin-right: 10px" class="fa-solid fa-earth-americas"></i> <span class="text">Ảnh đại diện của bạn hiển thị công khai.</span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary text3" (click)="changeAvatar()">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="margin-top: 180px">
+      <div class="modal-body">
+       <div class="d-flex row">
+         <div class="col-lg-4">
+           <img src="https://img.freepik.com/free-vector/blue-paint_95678-59.jpg" style="height: 100px;width: 100%" >
+           <img src="{{user.avatar}}" style="object-fit: cover;height: 90px;width: 90px;margin: -50px 0 0 75px;border: 2px solid white;border-radius: 50%;">
+           <h4 class="text3 text-center">{{user.name}}</h4>
+           <p class="text-center text3" style="margin-bottom: 0">{{user.email}}</p>
+           <p class="text-center text3">Việt Nam</p>
+         </div>
+         <div style="border-left: 1px solid #92999f;position: relative" class="col-lg-8 text3">
+
+          <h5 style="cursor: pointer" data-bs-dismiss="modal" aria-label="Close" class="text" ><i style="margin-right: 10px" class="fa-sharp fa-solid fa-delete-left"></i> Quay lại</h5>
+           <div class="d-flex row">
+             <div class="col-lg-6">
+               <input [value]="user.name" class="form-control">
+               <input style="margin-top: 10px" [value]="user.phoneNumber" class="form-control">
+               <input type="date" style="margin-top: 10px" [value]="user.dateOfBirth" class="form-control">
+             </div>
+             <div class="col-lg-6">
+               <input style="margin-top: 5px" class="form-check-input" type="radio" name="gender" [value]="true"> Nam
+               <input style="margin-left: 10px;margin-top: 5px" class="form-check-input" [value]="false" type="radio" name="gender" > Nữ
+               <input type="email" style="margin-top: 10px" [value]="user.email" class="form-control">
+               <input type="text" style="margin-top: 10px" [value]="user.address" class="form-control">
+             </div>
+           </div>
+           <button class="btn btn-primary text3" style="position: absolute;right: 10px;bottom:10px;border: 1px solid #3a5876;border-radius: 0;">XÁC NHẬN</button>
+         </div>
+
+
+
+       </div>
+      </div>
+    </div>
+  </div>
+</div>

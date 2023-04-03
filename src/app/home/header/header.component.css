@@ -2,11 +2,16 @@
   font-family: 'Chakra Petch';
   src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
 }
-
+@font-face {
+  font-family: 'Chakra Petch2';
+  src: url('fonts/ChakraPetch-Bold.ttf') format('truetype');
+}
 * {
   color: #29324e;
 }
-
+.name {
+  font-family: "Chakra Petch2";
+}
 .input {
   vertical-align: baseline;
 }
@@ -101,3 +106,4 @@
   margin-bottom: -100px;
   height: 100px
 }
+

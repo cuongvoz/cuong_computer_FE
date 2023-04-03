@@ -84,7 +84,7 @@ export class LoginComponent implements OnInit {
 
 
       Toast.fire({
-        iconHtml: '<img style="width: 90px;height: 90px;" src="https://i.imgur.com/dKc3V77.png">',
+        iconHtml: '<img style="width: 90px;height: 90px;padding: 10px;border-radius: 50%" src="'+next.avatar+'">',
         title: 'Chào mừng ' + next.name + ' đã quay trở lại!'
       })
       if (this.cart != null) {

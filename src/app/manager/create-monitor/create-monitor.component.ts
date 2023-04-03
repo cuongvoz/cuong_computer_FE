@@ -8,6 +8,8 @@ import {finalize} from "rxjs/operators";
 import Swal from "sweetalert2";
 import {Title} from "@angular/platform-browser";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ListService} from "../../service/product/list.service";
+import {ShareService} from "../../service/login/share.service";
 
 @Component({
   selector: 'app-create-monitor',
@@ -30,6 +32,8 @@ export class CreateMonitorComponent implements OnInit {
     aspectRatio: new FormControl(),
     connector: new FormControl(),
     panels: new FormControl(),
+    localBrand: new FormControl({name: 'BenQ',
+      id: 14}),
     category: new FormControl({id: 4,name:'Màn hình'}),
   })
   errorMonitor = {
@@ -82,15 +86,33 @@ export class CreateMonitorComponent implements OnInit {
       panels: '',
     }
   }
+  brand = [];
   selectedImage: any ;
   url: any;
   downloadURL: Observable<string> | undefined;
   fb: string | undefined= 'https://fptshop.com.vn/Uploads/Originals/2022/8/26/637971113774126791_man-hinh-dell-ultrasharp-u2422h-trang-dd.jpg';
   src: string | undefined;
-  constructor(private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
+  constructor(private shareService:ShareService,private listService:ListService,private router:Router,private productService:ProductService,private storage: AngularFireStorage,private title:Title,private activate:ActivatedRoute) { }
   isLoading = false;
   ngOnInit(): void {
     this.loader()
+    this.loadlist()
+  }
+  loadlist() {
+    let brands = this.listService.getBrandMonitor();
+    if (brands != undefined) {
+      for (let i = 0; i < brands.length; i++) {
+        let brand = {
+          id: brands[i].id,
+          name: brands[i].name
+        }
+        this.brand.push(brand)
+      }
+    }
+
+  }
+  compareFun(item1,item2){
+    return item1 && item2 ? item1.id === item2.id : item1 === item2
   }
   loader() {
     this.activate.paramMap.subscribe(next => {
@@ -162,8 +184,9 @@ export class CreateMonitorComponent implements OnInit {
             imageAlt: 'Custom image',
           })
         }
+        this.shareService.sendClickEvent()
         this.formMonitor.reset()
-        this.router.navigateByUrl('/manager')
+        this.router.navigateByUrl('/manager/product')
       },error => {
         for (let i = 0; i < error.error.length; i++) {
           if (error.error[i].field == 'name') {

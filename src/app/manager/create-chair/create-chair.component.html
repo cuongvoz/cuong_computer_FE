@@ -50,6 +50,11 @@
               <input type="text" [placeholder]="errorMessageChair.backrest" formControlName="backrest" required  spellcheck="false">
               <label>Kiểu ngả lưng</label>
             </div>
+            <div  class=" col-lg-6" style="border: 0;width: 200px;margin-left: -10px;margin-top: 20px">
+              <select [compareWith]="compareFun" formControlName="localBrand" class="form-select text" style="width: 150px;display: inline;border: 2px solid #005ec4;margin-top: -40px">
+                <option  *ngFor="let x of brand" [ngValue]="x">{{x.name}}</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="col-lg-3" style="margin-left: 10px;border-left: 5px solid #005ec4 ;height: 320px">
@@ -76,7 +81,7 @@
         </div>
 
       </div>
-      <button style="margin:-50px 0 20px 300px;" class="btn btn-primary font" type="submit">Xác nhận</button>
+      <button style="margin:-40px 0 20px 300px;" class="btn btn-primary font" type="submit">Xác nhận</button>
     </form>
   </div>
   <img style="margin-left: 25px;margin-bottom: -300px;height: 340px;object-fit: cover"
