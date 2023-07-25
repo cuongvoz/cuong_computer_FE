@@ -138,6 +138,7 @@ export class ListComponent implements OnInit {
   }
 
   click(product: Product) {
+    this.isLogged = this.token.isLogger();
     this.share.sendClickEvent();
     if (this.isLogged) {
       if (product.quantity > 0) {
@@ -158,7 +159,7 @@ export class ListComponent implements OnInit {
       }
     } else {
       if (product.quantity > 0) {
-        this.token.addCartSession(product)
+        this.token.addCartSession(product,1)
         this.share.sendClickEvent()
       } else {
         Swal.fire({

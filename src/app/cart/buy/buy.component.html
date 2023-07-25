@@ -1,105 +1,138 @@
-<div class="side-banner banner-left row d-flex"
-     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a
-><img
-  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
-<div class="container row " style="margin: 10px;display: inline-block;float: left">
-  <div style="margin: 10px 20px 10px 20px">
-    <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
-      <div class="col-lg-8">
-        <div style="width: 100%;position: relative;font-size: 18px">
-          <div class="d-flex row">
-            <p class="text item-cart text-center">1. Chọn sản phẩm</p>
-            <p class="text item-cart text-center" style="width: 230px">2. Xác nhận đơn hàng</p>
-            <p class="text item-cart text-center">3. Thanh toán</p>
-          </div>
-          <h4 class="text">THÔNG TIN KHÁCH HÀNG</h4>
-         <p class="text2">Trường bắt buộc</p>
-          <div class="d-flex row">
-            <div class="col-4">
-              <p class="text textFont"> Họ tên quý khách *</p>
-              <p class="text textFont"> Địa chỉ email *</p>
-              <p class="text textFont"> Số điện thoại *</p>
-              <p class="text textFont"> Địa chỉ thường trú *</p>
-            </div>
-            <div class="col-4" style="margin-top: -5px">
-              <form [formGroup]="form">
-                <input formControlName="name" placeholder="Nhập tên khách hàng" class="text inputText">
-                <input formControlName="email" placeholder="Nhập email" class="text inputText">
-                <input formControlName="phoneNumber" placeholder="Nhập số điện thoại" class="text inputText">
-                <input formControlName="address" placeholder="Nhập địa chỉ" class="text inputText">
-              </form>
 
-            </div>
-          </div>
-      </div>
-        <hr>
-        <div style="width: 100%;position: relative;font-size: 18px">
-          <h4 class="text">THÔNG TIN GIAO HÀNG</h4>
-          <input (change)="userInfo = !userInfo" style="margin-right: 10px;" class="form-check-input" type="checkbox"> <span class="text2">Sử dụng thông tin khách hàng để giao hàng</span>
-          <p class="text2">Trường bắt buộc</p>
-          <div class="d-flex row " >
-            <div class="col-4 ">
-              <p class="text textFont" > Họ tên quý khách *</p>
-              <div *ngIf="userInfo == true">
-                <p class="text textFont"> Địa chỉ email *</p>
-                <p class="text textFont"> Số điện thoại *</p>
-                <p class="text textFont"> Ghi chú *</p>
+<div class="row" style="width: 100%">
+  <div class="col-lg-1" style="margin-bottom: 0">
+    <div class="side-banner banner-left"
+         style="width: 94.5px;left: 0;position: sticky;top:10%;;float: left;display: inline-block"><a
+    ><img
+      src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+  </div>
+  <div class="col-lg-10">
+ <div style="margin: 0 auto;text-align: center">
+
+    <div class="container row " style="margin: 10px;display: inline-block;">
+      <div style="margin: 10px 20px 10px 0px;text-align: left">
+        <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
+          <div class="col-lg-8">
+            <div style="width: 100%;position: relative;font-size: 18px">
+              <div class="d-flex row">
+                <p class="text item-cart text-center">1. Chọn sản phẩm</p>
+                <p class="text item-cart text-center" style="width: 230px">2. Xác nhận đơn hàng</p>
+                <p class="text item-cart text-center">3. Thanh toán</p>
+              </div>
+              <h4 class="text">THÔNG TIN KHÁCH HÀNG</h4>
+              <p class="text2">Trường bắt buộc</p>
+              <div class="d-flex row">
+                <div class="col-4">
+                  <p class="text textFont"> Họ tên quý khách *</p>
+                  <p class="text textFont"> Địa chỉ email *</p>
+                  <p class="text textFont"> Số điện thoại *</p>
+                  <p class="text textFont"> Địa chỉ thường trú *</p>
+                </div>
+                <div class="col-4" style="margin-top: -5px">
+                  <form [formGroup]="form">
+                    <input formControlName="name" readonly placeholder="Nhập tên khách hàng" class="text inputText">
+                    <input formControlName="email" readonly placeholder="Nhập email" class="text inputText">
+                    <input formControlName="phoneNumber" readonly placeholder="Nhập số điện thoại" class="text inputText">
+                    <input formControlName="address" readonly placeholder="Nhập địa chỉ" class="text inputText">
+                  </form>
+                  <p style="width: 450px;margin-bottom: 0" *ngIf="form.invalid && !userInfo && isCheck" class="text-danger text">Thông tin cá nhân đang bị thiếu, quy khách có thể tick vào ô bên dưới để nhập thông tin khác.</p>
+                </div>
               </div>
             </div>
-            <div class="col-4" style="margin-top: -5px">
-              <div *ngIf="userInfo == true">
-              <input  placeholder="Nhập tên khách hàng" class="text inputText" >
-              <input class="text inputText" placeholder="Nhập email" >
-              <input class="text inputText" placeholder="Nhập số điện thoại">
-              </div>
-              <textarea class="text inputText" style="height: 80px" placeholder="Nhập ghi chú" ></textarea>
-            </div>
-          </div>
-        </div>
-        <hr>
-        <div class="text2" style="width: 100%;position: relative;font-size: 18px">
-          <h4 class="text">HÌNH THỨC THANH TOÁN</h4>
-          <div>
-            <input class="form-check-input" type="radio" checked name="totalPayment"> <span style="margin-left: 10px">Thanh toán tại nơi giao hàng</span>
-          </div>
-         <div>
-           <input class="form-check-input" type="radio" name="totalPayment"> <span  style="margin-left: 10px">Thanh toán bằng chuyển khoản</span>
-           <p style="margin-bottom: 0">Tại Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam (Agribank) – CN Phú Thiện (Gia Lai)</p>
-           <p style="margin-bottom: 0">Số tài khoản : 5023205201210</p>
-           <p style="margin-bottom: 0">Tên TK: CT VO VAN CUONG.</p>
-         </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div style="background: #f0f3fc;width: 100%;position: relative">
-          <div style="padding: 20px" class="text">
-            <h4>THÔNG TIN GIỎ HÀNG</h4>
-            <p>Số lượng sản phẩm <span style="color: #005ec4;position: absolute;right: 20px">{{quantity}}</span></p>
-            <p style="margin-top: -15px">Tổng chi phí <span style="color: red;position: absolute;right: 20px">{{total | number}} đ</span>
-            </p>
-            <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 13px">Đã bao gồm VAT
-              (nếu có)</p>
-            <div *ngFor="let x of cart" style="margin-top: 20px">
-              <hr>
-              <div >
-                <span style="margin-top: -10px">{{x.product.category.name + ' ' + x.product.name}} x {{x.quantity}}</span>
+            <hr>
+            <div style="width: 100%;position: relative;font-size: 18px">
+              <h4 class="text">THÔNG TIN GIAO HÀNG</h4>
+              <input (change)="checkBox()" style="margin-right: 10px;" class="form-check-input" type="checkbox">
+              <span class="text2" style="color:#005ec4">Sử dụng thông tin khác để giao hàng</span>
+              <p class="text2">Trường bắt buộc</p>
+              <div class="d-flex row ">
+                <div class="col-4 ">
+                  <div >
+                    <p *ngIf="userInfo == true" class="text textFont"> Họ tên quý khách *</p>
+                    <br style="margin-bottom: 15px" *ngIf="formNote.controls.name.hasError('required') && userInfo && isCheck">
+                    <p *ngIf="userInfo == true " class="text textFont"> Địa chỉ giao hàng *</p>
+                    <br style="margin-bottom: 15px" *ngIf="formNote.controls.address.hasError('required') && userInfo && isCheck">
+
+                    <p *ngIf="userInfo == true" class="text textFont"> Số điện thoại *</p>
+                    <br style="margin-bottom: 15px" *ngIf="formNote.controls.phoneNumber.hasError('required') && userInfo && isCheck">
+
+                    <p class="text textFont"> Ghi chú *</p>
+                  </div>
+                </div>
+                <div class="col-4" style="margin-top: -5px">
+                  <div style="width: 100%">
+                    <form [formGroup]="formNote" style="position: relative">
+                      <input #sad *ngIf="userInfo == true" formControlName="name" placeholder="Nhập tên khách hàng" class="text inputText">
+                      <p style="width: 450px;margin-bottom: 0" *ngIf="formNote.controls.name.hasError('required') && userInfo && isCheck" class="text-danger text">Vui lòng nhập tên người nhận.</p>
+                      <input *ngIf="userInfo == true" formControlName="address" class="text inputText" placeholder="Nhập địa chỉ">
+                      <p style="width: 450px;margin-bottom: 0" *ngIf="formNote.controls.address.hasError('required') && userInfo && isCheck" class="text-danger text">Vui lòng nhập địa chỉ giao hàng.</p>
+
+                      <input *ngIf="userInfo == true" formControlName="phoneNumber" class="text inputText" placeholder="Nhập số điện thoại">
+                      <p style="width: 450px;margin-bottom: 0" *ngIf="formNote.controls.phoneNumber.hasError('required') && userInfo && isCheck" class="text-danger text">Vui lòng nhập số điện thoại.</p>
+                      <textarea formControlName="note" class="text inputText" style="height: 80px" placeholder="Nhập ghi chú"></textarea>
+
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
+            <hr>
+            <div class="text2" style="width: 100%;position: relative;font-size: 18px">
+              <h4 class="text">HÌNH THỨC THANH TOÁN</h4>
+              <div>
+                <input [(ngModel)]="payPal" [value]="false" class="form-check-input" [checked]="payPal == false" type="radio"  name="totalPayment" /> <span style="margin-left: 10px">Thanh toán tại nơi giao hàng</span>
+              </div>
+              <div>
+                <input [(ngModel)]="payPal" [value]="true" class="form-check-input" [checked]="payPal == true" type="radio"  name="totalPayment" /> <span style="margin-left: 10px">Thanh toán bằng chuyển khoản</span>
+                <p style="margin-bottom: 0">Tại Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam (Agribank) – CN Phú
+                  Thiện (Gia Lai)</p>
+                <p style="margin-bottom: 0">Số tài khoản : 5023205201210</p>
+                <p style="margin-bottom: 0">Tên TK: CT VO VAN CUONG.</p>
+              </div>
+            </div>
           </div>
-          <div style="width: 100px;margin-left: 60px;"  id="payments"></div>
-          <button *ngIf="isShow == false" class="btn btn-primary textButton" (click)="show()" style="margin-left: 50px;margin-bottom: 20px;border-radius: 0;padding: 10px 30px">XÁC NHẬN MUA HÀNG</button>
+          <div class="col-lg-4">
+            <div style="background: #f0f3fc;width: 100%;position: relative">
+              <div style="padding: 20px" class="text">
+                <h4>THÔNG TIN GIỎ HÀNG</h4>
+                <p>Số lượng sản phẩm <span style="color: #005ec4;position: absolute;right: 20px">{{quantity}}</span></p>
+                <p style="margin-top: -15px">Tổng chi phí <span
+                  style="color: red;position: absolute;right: 20px">{{total | number}} đ</span>
+                </p>
+                <p style="color: #92999f;position: absolute;right: 20px;margin-top: -13px;font-size: 13px">Đã bao gồm VAT
+                  (nếu có)</p>
+                <div *ngFor="let x of cart" style="margin-top: 20px">
+                  <hr>
+                  <div>
+                <span style="margin-top: -10px">{{x.product.category.name + ' ' + x.product.name}}
+                  x {{x.quantity}}</span>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 100px;margin-left: 60px;" id="payments"></div>
+              <button #isClickBuy *ngIf="!isShow" class="btn btn-primary textButton" (click)="show()"
+                      style="margin-left: 50px;margin-bottom: 20px;border-radius: 0;padding: 10px 30px">XÁC NHẬN MUA HÀNG
+              </button>
+
+            </div>
+
+          </div>
+
 
         </div>
-
       </div>
-
-
     </div>
+ </div>
+
+
+
+
+  </div>
+  <div class="col-lg-1" style=";margin-bottom: 0;margin-left: -15px">
+    <div class="side-banner banner-right row "
+         style="width: 93.5px;position: sticky;right: 0;top:10%;margin-right: 0;float: right"><a
+      alt="Helios 16 - 2023"><img
+      src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
   </div>
 </div>
 
-
-<div class="side-banner banner-right row "
-     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  alt="Helios 16 - 2023"><img
-  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>

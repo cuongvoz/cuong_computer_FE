@@ -130,7 +130,7 @@ export class ProductComponent implements OnInit {
       }
     } else {
       if (this.product.quantity > 0) {
-        this.token.addCartSessionDetail(this.product,parseInt(quantity))
+        this.token.addCartSession(this.product,parseInt(quantity))
       } else {
         Swal.fire({
           title: 'Hết mất rồi :(',

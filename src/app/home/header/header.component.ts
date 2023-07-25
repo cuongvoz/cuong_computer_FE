@@ -53,7 +53,6 @@ export class HeaderComponent implements OnInit {
     this.share.getClickEvent().subscribe(next => {
       this.isLogged = this.token.isLogger()
       this.loader();
-      this.getAllValue()
       this.getAllSessionCart()
     })
   }
@@ -169,7 +168,16 @@ export class HeaderComponent implements OnInit {
   }
 
   dropCart() {
-    if (this.cart.length == 0) {
+    if (this.cart == null) {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Giỏ hàng trống ,vui lòng chọn mặt hàng!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    else if (this.cart.length == 0) {
       Swal.fire({
         position: 'center',
         icon: 'warning',
@@ -193,4 +201,6 @@ export class HeaderComponent implements OnInit {
     this.getAllSessionCart()
     console.log(this.cart)
   }
+
+
 }

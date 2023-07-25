@@ -6,4 +6,9 @@ export interface Bill {
   totalPayment?:number,
   quantity?:number,
   user?:User
+  note?:string,
+  name?:string,
+  email?:string,
+  address?:string,
+  phoneNumber?:string,
 }

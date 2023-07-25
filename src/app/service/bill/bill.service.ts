@@ -12,9 +12,12 @@ export class BillService {
   }
 
   historyofUser(id:string):Observable<Bill[]> {
-    return this.http.get<Bill[]>('http://localhost:8080/api/bill/history/'+id)
+    return this.http.get<Bill[]>('https://dirty-cream-production.up.railway.app/api/bill/history/'+id)
   }
   getAll(what):Observable<Bill[]> {
-    return this.http.get<Bill[]>('http://localhost:8080/api/bill'+what)
+    return this.http.get<Bill[]>('https://dirty-cream-production.up.railway.app/api/bill'+what)
+  }
+  getSale():Observable<any[]> {
+    return this.http.get<any[]>('https://dirty-cream-production.up.railway.app/api/bill/sale')
   }
 }

@@ -161,12 +161,12 @@ export class CartComponent implements OnInit {
           imageHeight: 200,
           imageAlt: 'Custom image',
           confirmButtonColor: '#005ec4',
-          confirmButtonText: 'Đồng ý',
+          confirmButtonText: 'Xác Nhận',
         })
       }
     } else {
       if (product.quantity > 0) {
-        this.token.addCartSession(product)
+        this.token.addCartSession(product,1)
         this.share.sendClickEvent()
         this.getAll()
         this.getAllValue();
@@ -191,7 +191,7 @@ export class CartComponent implements OnInit {
 
   dropCart() {
 
-    if (this.cart.length == 0) {
+    if (this.cart == null) {
       Swal.fire({
         position: 'center',
         icon: 'warning',
@@ -199,7 +199,16 @@ export class CartComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       });
-    } else {
+    } else if(this.cart.length == 0) {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Giỏ hàng trống ,vui lòng chọn mặt hàng!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    else {
       if (this.isLogged) {
         this.token.dropCart(this.user.id)
         this.getAll();
@@ -229,7 +238,7 @@ export class CartComponent implements OnInit {
 
 
   buy() {
-    if (this.cart.length == 0) {
+    if ( this.cart == null) {
       Swal.fire({
         position: 'center',
         icon: 'warning',
@@ -237,7 +246,16 @@ export class CartComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500
       });
-    } else if (!this.token.isLogger()) {
+    } else if (this.cart.length == 0) {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Giỏ hàng trống ,vui lòng chọn mặt hàng!',
+        showConfirmButton: false,
+        timer: 1500
+      });
+    }
+    else if (!this.token.isLogger()) {
       Swal.fire({
         title: 'Bạn chưa đăng nhập, hãy đăng nhập để tiếp tục thanh toán!',
         imageUrl: 'https://cdn0.iconfinder.com/data/icons/people-137/513/gamer-512.png',

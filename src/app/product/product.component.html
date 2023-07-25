@@ -1,185 +1,209 @@
-<div class="side-banner banner-left row d-flex"
-     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a
-><img
-  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
 
-<div class="container row " style="margin: 10px;display: inline-block;float: left">
-  <div style="margin: 10px 20px 10px 20px">
+<div class="row" style="width: 100%;">
+  <div class="col-lg-1" style="margin-bottom: 0">
+    <div class="side-banner banner-left"
+         style="width: 94.5px;left: 0;position: sticky;top:10%;;float: left;display: inline-block"><a
+    ><img
+      src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+  </div>
+  <div class="col-lg-10" style="overflow-x: hidden;margin-left: -5px">
+    <div style="margin: 0 auto;text-align: center">
 
-    <div class="d-flex" style="font-size: 20px">
-      <i style="line-height: 1.6;cursor: pointer" routerLink="/" class="fa-sharp fa-solid fa-house"></i>
-      <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
-      <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/">Trang chủ</h4>
-      <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
-      <h4 class="text" [routerLink]="['/list/search/' +product.category.id +'/null']"
-          style="margin-left: 30px;cursor: pointer">{{product.category.name}}</h4>
-      <button [routerLink]="['/manager/create/' + product.category.id +'/'+ product.id]"
-              style="position: absolute;right: 150px;" class="btn btn-primary"><i style="color: white"
-                                                                                  class="fa-sharp fa-solid fa-gears"></i>
-      </button>
-      <button (click)="isDelete()" style="position: absolute;right: 200px;" class="btn btn-danger"><i
-        style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
-    </div>
-    <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
-      <div class="col-lg-6">
-        <img
-          src="{{product.image}}"
-          style="width: 400px;height: 400px;margin-left: 30px;object-fit: cover;border-radius: 20px;border: 1px solid #005ec4">
-      </div>
-      <div class="col-lg-6" style="border-left: 1px solid #005ec4;padding-left: 50px;margin-left: -30px">
-        <h3 class="text" style="color: #005ec4">{{product.name}}</h3>
-        <div *ngIf="product.category.id == 2">
-          <p class="line-high">- CPU: {{product.cpu}}</p>
-          <p class="line-high">- Mainboard: {{product.mainboard}}</p>
-          <p class="line-high">- SSD: {{product.ssd}}</p>
-          <p class="line-high">- RAM: {{product.ram}}</p>
-          <p class="line-high">- VGA: {{product.vga}}</p>
-          <p class="line-high">- Nguồn: {{product.psu}}</p>
-          <p class="line-high">- Vỏ case: {{product.cases}}</p>
+    <div class="container row " style="margin: 10px auto  ;text-align: left;display: inline-block;">
+      <div style="margin: 10px 20px 10px 0px">
+
+        <div class="d-flex" style="font-size: 20px">
+          <i style="line-height: 1.6;cursor: pointer" routerLink="/" class="fa-sharp fa-solid fa-house"></i>
+          <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
+          <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/">Trang chủ</h4>
+          <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
+          <h4 class="text" [routerLink]="['/list/search/' +product.category.id +'/null']"
+              style="margin-left: 30px;cursor: pointer">{{product.category.name}}</h4>
+          <button *ngIf="role == 'ROLE_ADMIN' || role == 'ROLE_EMPLOYEE'" [routerLink]="['/manager/create/' + product.category.id +'/'+ product.id]"
+                  style="position: absolute;right: 150px;" class="btn btn-primary"><i style="color: white"
+                                                                                      class="fa-sharp fa-solid fa-gears"></i>
+          </button>
+          <button *ngIf="role == 'ROLE_ADMIN' " (click)="isDelete()" style="position: absolute;right: 200px;" class="btn btn-danger"><i
+            style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
         </div>
-        <div *ngIf="product.category.id == 1">
-          <p class="line-high">- CPU: {{product.cpu}}</p>
-          <p class="line-high">- RAM: {{product.ram}}</p>
-          <p class="line-high">- Ổ cứng: {{product.hardDrive}}</p>
-          <p class="line-high">- VGA: {{product.vga}}</p>
-          <p class="line-high">- Màn hình: {{product.monitor}}</p>
-          <p class="line-high">- Nguồn: {{product.psu}}</p>
-          <p class="line-high" *ngIf="product.pin">- Pin: {{product.pin}}</p>
-          <p class="line-high">- Cân Nặng: {{product.weight}}</p>
-          <p class="line-high" *ngIf="product.color">- Màu sắc: {{product.color}}</p>
-          <p class="line-high">- OS: {{product.os}}</p>
+        <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
+          <div class="col-lg-6" style="position: relative">
+            <img
+              src="{{product.image}}"
+              style="width: 400px;height: 400px;margin-left: 30px;object-fit: cover;border-radius: 20px;border: 1px solid #005ec4">
+
+            <img  *ngIf="product.quantity == 0" style="padding: 0 !important;margin:0 !important;right: -20px;bottom: 90px;width: 300px;height: 300px;position: absolute;object-fit: cover" src="https://theme.hstatic.net/1000333546/1000986972/14/hethang.png?v=92">
+
+          </div>
+          <div class="col-lg-6" style="border-left: 1px solid #005ec4;padding-left: 50px;margin-left: -30px">
+            <h3 class="text" style="color: #005ec4">{{product.name}}</h3>
+            <div *ngIf="product.category.id == 2">
+              <p class="line-high" *ngIf="product.cpu">- CPU: {{product.cpu}}</p>
+              <p class="line-high" *ngIf="product.mainboard">- Mainboard: {{product.mainboard}}</p>
+              <p class="line-high" *ngIf="product.ssd">- SSD: {{product.ssd}}</p>
+              <p class="line-high" *ngIf="product.ram">- RAM: {{product.ram}}</p>
+              <p class="line-high" *ngIf="product.vga">- VGA: {{product.vga}}</p>
+              <p class="line-high" *ngIf="product.psu">- Nguồn: {{product.psu}}</p>
+              <p class="line-high" *ngIf="product.cases">- Vỏ case: {{product.cases}}</p>
+            </div>
+            <div *ngIf="product.category.id == 1">
+              <p class="line-high" *ngIf="product.cpu">- CPU: {{product.cpu}}</p>
+              <p class="line-high" *ngIf="product.ram">- RAM: {{product.ram}}</p>
+              <p class="line-high" *ngIf="product.hardDrive">- Ổ cứng: {{product.hardDrive}}</p>
+              <p class="line-high" *ngIf="product.vga">- VGA: {{product.vga}}</p>
+              <p class="line-high" *ngIf="product.monitor">- Màn hình: {{product.monitor}}</p>
+              <p class="line-high" *ngIf="product.psu">- Nguồn: {{product.psu}}</p>
+              <p class="line-high" *ngIf="product.pin">- Pin: {{product.pin}}</p>
+              <p class="line-high" *ngIf="product.weight">- Cân Nặng: {{product.weight}}</p>
+              <p class="line-high" *ngIf="product.color">- Màu sắc: {{product.color}}</p>
+              <p class="line-high" *ngIf="product.os">- OS: {{product.os}}</p>
+            </div>
+            <div *ngIf="product.category.id == 6">
+              <p class="line-high" *ngIf="product.material">- Chất liệu {{product.material}}</p>
+              <p class="line-high" *ngIf="product.brand">- Thương hiệu {{product.brand}}</p>
+              <p class="line-high" *ngIf="product.model">- Model {{product.model}}</p>
+              <p class="line-high" *ngIf="product.kneelings">- Kê tay {{product.kneelings}}</p>
+              <p class="line-high" *ngIf="product.color">- Màu sắc {{product.color}}</p>
+              <p class="line-high" *ngIf="product.weight">- Trọng tải theo góc đứng {{product.weight}}</p>
+            </div>
+            <div *ngIf="product.category.id == 4">
+              <p class="line-high" *ngIf="product.screenSize">- Kích thước {{product.screenSize}}</p>
+              <p class="line-high" *ngIf="product.resolution">- Độ phân giải {{product.resolution}}</p>
+              <p class="line-high" *ngIf="product.model">- Tấm nền {{product.model}}</p>
+              <p class="line-high" *ngIf="product.scanFrequency">- Tần số quét {{product.scanFrequency}}</p>
+              <p class="line-high" *ngIf="product.aspectRatio">- Tỉ lệ màn hình {{product.aspectRatio}}</p>
+              <p class="line-high" *ngIf="product.connector">- Cổng kết nối {{product.connector}}</p>
+            </div>
+            <div *ngIf="product.category.id == 3">
+              <p class="line-high" *ngIf="product.keyboard">- {{product.keyboard}}</p>
+              <p class="line-high" *ngIf="product.connect">- Kết nối {{product.connect}}</p>
+              <p class="line-high" *ngIf="product.keycap">- Keycap {{product.keycap}}</p>
+              <p class="line-high" *ngIf="product.switchKey">- Loại switch {{product.switchKey}}</p>
+              <p class="line-high" *ngIf="product.pin">- Pin {{product.pin}}</p>
+              <p class="line-high" *ngIf="product.reliability">- Độ chính xác {{product.reliability}}</p>
+              <p class="line-high" *ngIf="product.compatible">- Hỗ trợ {{product.compatible}}</p>
+              <p class="line-high" *ngIf="product.os">- Tương thích {{product.os}}</p>
+            </div>
+
+            <div *ngIf="product.category.id == 5">
+              <p class="line-high"  *ngIf="product.dpi">- {{product.dpi}}</p>
+              <p class="line-high"  *ngIf="product.reliability">- {{product.reliability}}</p>
+              <p class="line-high"  *ngIf="product.compatible">- {{product.compatible}}</p>
+              <p class="line-high"  *ngIf="product.sensor">- {{product.sensor}}</p>
+              <p class="line-high" *ngIf="product.connect">- Hỗ trợ kết nối {{product.connect}}</p>
+              <p class="line-high" *ngIf="product.os">- Tương thích {{product.os}}</p>
+              <p class="line-high" *ngIf="product.pin">- Pin {{product.pin}}</p>
+              <p class="line-high" *ngIf="product.weight">- {{product.weight}}</p>
+            </div>
+            <div style="position: relative">
+              <div style="margin-top: 30px;margin-bottom: -20px ">
+                <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span
+                *ngIf="product.quantity > 0" class="text"
+                style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
+                <i *ngIf="product.quantity == 0" style="color: #cb2027" class="fa-sharp fa-solid fa-circle-xmark"></i> <span
+                *ngIf="product.quantity == 0" class="text"
+                style="color: #cb2027;margin-left: 10px">  HẾT HÀNG</span>
+                <span class="text"
+                      style="position: absolute;right: 0;color: #92999f;text-decoration: line-through;">{{product.oldPrice | number:'1.0-0'}}
+                  đ</span>
+              </div>
+              <div style="margin-top: 30px; ">
+                <span class="text">Số lượng</span>
+                <input #element type="number" [min]="1" class="text text-center"
+                       style="margin-left: 20px;border: 1px solid #005ec4;width: 40px;height: 40px;color: #005ec4" value="1">
+                <span class="text"
+                      style="position: absolute;right: 0px;color:red;font-size: 40px;line-height: 1">{{ product.price | number}}
+                  đ</span>
+
+              </div>
+            </div>
+
+            <div style="margin-top: 20px; ">
+              <p  *ngIf="product.quantity == 0" class="btn btn-outline-danger d-flex justify-content-center" (click)="addToCart(element.value)" style="font-size: 20px;border-radius: 0;margin-left:-2px;border-right: 1px solid white;border-left: 1px solid white;font-family: 'Chakra Petch2'">HẾT HÀNG</p>
+
+              <button *ngIf="product.quantity > 0"  (click)="addToCart(element.value)" style="border-radius: 0;font-size: 20px;width: 200px"
+                      class="btn btn-outline-primary button-1"><i
+                class="fa-solid fa-plus button-1"></i> <b class="button-1"> THÊM VÀO GIỎ</b></button>
+              <button *ngIf="product.quantity > 0"  (click)="buy(element.value)"
+                      style="border-radius: 0;margin-left: 40px;font-size: 20px;width:200px;color: white"
+                      class="btn btn-primary"><i style="color: white" class="fa-solid fa-cart-shopping"></i><b
+                style="color: white"> MUA HÀNG</b></button>
+            </div>
+          </div>
         </div>
-        <div *ngIf="product.category.id == 6">
-          <p class="line-high">- Chất liệu {{product.material}}</p>
-          <p class="line-high">- Thương hiệu {{product.brand}}</p>
-          <p class="line-high">- Model {{product.model}}</p>
-          <p class="line-high">- Kê tay {{product.kneelings}}</p>
-          <p class="line-high">- Màu sắc {{product.color}}</p>
-          <p class="line-high">- Trọng tải theo góc đứng {{product.weight}}</p>
+        <div class="d-flex row" style="font-size: 15px;margin-top: 30px;margin-left: 5px">
+          <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
+            <p style="font-size: 50px;margin-top: 10px">
+              <i class="fa-regular fa-address-card"></i>
+            </p>
+            <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 25px">
+              <b> Hỗ trợ trả góp 0%, trả trước 0đ</b>
+            </p>
+          </div>
+          <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
+            <p style="font-size: 50px;margin-top: 10px">
+              <i class="fa-solid fa-money-check-dollar"></i>
+            </p>
+            <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 25px">
+              <b> Hoàn tiền 200% nếu có hàng giả</b>
+            </p>
+          </div>
+          <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
+            <p style="font-size: 50px;margin-top: 10px">
+              <i class="fa-solid fa-truck-fast"></i>
+            </p>
+            <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 15px">
+              <b> Giao hàng nhanh trên toàn quốc</b>
+            </p>
+          </div>
+          <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
+            <p style="font-size: 50px;margin-top: 10px">
+              <i class="fa-solid fa-message"></i>
+            </p>
+            <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 25px">
+              <b> Hỗ trợ kĩ thuật online 7/7</b>
+            </p>
+          </div>
         </div>
-        <div *ngIf="product.category.id == 4">
-          <p class="line-high">- Kích thước {{product.screenSize}}</p>
-          <p class="line-high">- Độ phân giải {{product.resolution}}</p>
-          <p class="line-high">- Tấm nền {{product.model}}</p>
-          <p class="line-high">- Tần số quét {{product.scanFrequency}}</p>
-          <p class="line-high">- Tỉ lệ màn hình {{product.aspectRatio}}</p>
-          <p class="line-high">- Cổng kết nối {{product.connector}}</p>
+        <h3 style="width: 100%;background: #92999f;height: 10px;margin-top: 30px"><h3 class="text-center text"
+                                                                                      style="margin: 30px 30px 30px 330px;padding-bottom: 10px;line-height: 8px;background: white;width: 380px">
+          QUÀ TẶNG KHUYẾN MÃI</h3></h3>
+        <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
+          <div class="col-lg-6">
+            <h4 class="text"><b style="font-size: 30px">Ưu đãi khi mua sản phẩm</b></h4>
+            <div style="width: 100%;border: 1px solid #005ec4;position: relative">
+              <p class="text" style="padding: 20px;width: 350px">
+                Gói quà tặng bao gồm:
+                - Tặng Voucher 200.000đ khi khách hàng build PC ( Đã trừ thẳng vào giá)
+                - Tặng PMH 200k áp dụng cho mua gear
+                - Giảm trực tiếp 3% khi khách hàng mua thêm tản khí hoặc pack fan
+                - Hỗ trợ trả góp với lãi suất 0%
+              </p>
+              <p class="text " style="position: absolute;top: 120px;right: 20px">
+                <b style="color: #32be8f;font-size: 30px"> Đang chọn</b>
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <img src="https://www.tncstore.vn/image/catalog/Qua%20Tang/BG%20qua%20tang.jpg"
+                 style="width: 500px;height: 300px;margin-left: 10px;object-fit: cover;border-radius: 0;border: 1px solid #005ec4;margin-top:40px">
+          </div>
         </div>
-        <div *ngIf="product.category.id == 3">
-          <p class="line-high">- {{product.keyboard}}</p>
-          <p class="line-high">- Kết nối {{product.connect}}</p>
-          <p class="line-high">- Keycap {{product.keycap}}</p>
-          <p class="line-high">- Loại switch {{product.switchKey}}</p>
-          <p class="line-high">- Pin {{product.pin}}</p>
-          <p class="line-high">- Tương thích {{product.os}}</p>
+
+        <div>
         </div>
-        <div *ngIf="product.category.id == 5">
-          <p class="line-high">- {{product.dpi}}</p>
-          <p class="line-high">- {{product.reliability}}</p>
-          <p class="line-high">- {{product.compatible}}</p>
-          <p class="line-high">- {{product.sensor}}</p>
-          <p class="line-high" *ngIf="product.connect">- Hỗ trợ kết nối {{product.connect}}</p>
-          <p class="line-high" *ngIf="product.os">- Tương thích {{product.os}}</p>
-          <p class="line-high" *ngIf="product.pin">- Pin {{product.pin}}</p>
-          <p class="line-high" *ngIf="product.weight">- {{product.weight}}</p>
-        </div>
-        <div style="margin-top: 30px;margin-bottom: -20px ">
-          <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span
-          *ngIf="product.quantity > 0" class="text"
-          style="color: #32be8f;margin-left: 10px">  CÒN HÀNG</span>
-          <i *ngIf="product.quantity == 0" style="color: #cb2027" class="fa-sharp fa-solid fa-circle-xmark"></i> <span
-          *ngIf="product.quantity == 0" class="text"
-          style="color: #cb2027;margin-left: 10px">  HẾT HÀNG</span>
-          <span class="text"
-                style="position: absolute;right: 200px;color: #92999f;text-decoration: line-through;">{{product.oldPrice | number:'1.0-0'}}
-            đ</span>
-        </div>
-        <div style="margin-top: 30px; ">
-          <span class="text">Số lượng</span>
-          <input #element type="number" [min]="1" class="text text-center"
-                 style="margin-left: 20px;border: 1px solid #005ec4;width: 40px;height: 40px;color: #005ec4" value="1">
-          <span class="text"
-                style="position: absolute;right: 200px;color:red;font-size: 40px;line-height: 1">{{ product.price | number}}
-            đ</span>
 
         </div>
-        <div style="margin-top: 20px; ">
-          <button (click)="addToCart(element.value)" style="border-radius: 0;font-size: 20px;width: 200px"
-                  class="btn btn-outline-primary button-1"><i
-            class="fa-solid fa-plus button-1"></i> <b class="button-1"> THÊM VÀO GIỎ</b></button>
-          <button (click)="buy(element.value)"
-                  style="border-radius: 0;margin-left: 40px;font-size: 20px;width:200px;color: white"
-                  class="btn btn-primary"><i style="color: white" class="fa-solid fa-cart-shopping"></i><b
-            style="color: white"> MUA HÀNG</b></button>
-        </div>
       </div>
-    </div>
-    <div class="d-flex row" style="font-size: 15px;margin-top: 30px;margin-left: 5px">
-      <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
-        <p style="font-size: 50px;margin-top: 10px">
-          <i class="fa-regular fa-address-card"></i>
-        </p>
-        <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 25px">
-          <b> Hỗ trợ trả góp 0%, trả trước 0đ</b>
-        </p>
-      </div>
-      <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
-        <p style="font-size: 50px;margin-top: 10px">
-          <i class="fa-solid fa-money-check-dollar"></i>
-        </p>
-        <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 25px">
-          <b> Hoàn tiền 200% nếu có hàng giả</b>
-        </p>
-      </div>
-      <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
-        <p style="font-size: 50px;margin-top: 10px">
-          <i class="fa-solid fa-truck-fast"></i>
-        </p>
-        <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 15px">
-          <b> Giao hàng nhanh trên toàn quốc</b>
-        </p>
-      </div>
-      <div class="d-flex" style="width: 220px;height: 104px;background: #f0f3fc;margin-left: 30px">
-        <p style="font-size: 50px;margin-top: 10px">
-          <i class="fa-solid fa-message"></i>
-        </p>
-        <p style="width: 150px;height: 200px; margin-left: 20px;font-size: 15px;margin-top: 25px">
-          <b> Hỗ trợ kĩ thuật online 7/7</b>
-        </p>
-      </div>
-    </div>
-    <h3 style="width: 100%;background: #92999f;height: 10px;margin-top: 30px"><h3 class="text-center text"
-                                                                                  style="margin: 30px 30px 30px 330px;padding-bottom: 10px;line-height: 8px;background: white;width: 380px">
-      QUÀ TẶNG KHUYẾN MÃI</h3></h3>
-    <div class="d-flex row" style="font-size: 20px;margin-top: 20px">
-      <div class="col-lg-6">
-        <h4 class="text"><b style="font-size: 30px">Ưu đãi khi mua sản phẩm</b></h4>
-        <div style="width: 100%;border: 1px solid #005ec4;position: relative">
-          <p class="text" style="padding: 20px;width: 350px">
-            Gói quà tặng bao gồm:
-            - Tặng Voucher 200.000đ khi khách hàng build PC ( Đã trừ thẳng vào giá)
-            - Tặng PMH 200k áp dụng cho mua gear
-            - Giảm trực tiếp 3% khi khách hàng mua thêm tản khí hoặc pack fan
-            - Hỗ trợ trả góp với lãi suất 0%
-          </p>
-          <p class="text " style="position: absolute;top: 120px;right: 20px">
-            <b style="color: #32be8f;font-size: 30px"> Đang chọn</b>
-          </p>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <img src="https://www.tncstore.vn/image/catalog/Qua%20Tang/BG%20qua%20tang.jpg"
-             style="width: 500px;height: 300px;margin-left: 10px;object-fit: cover;border-radius: 0;border: 1px solid #005ec4;margin-top:40px">
-      </div>
-    </div>
-
-    <div>
 
     </div>
   </div>
-
+  <div class="col-lg-1" style=";margin-bottom: 0;margin-left: -10px">
+    <div class="side-banner banner-right row "
+         style="width: 93.5px;position: sticky;right: 0;top:10%;margin-right: 0;float: right"><a
+      alt="Helios 16 - 2023"><img
+      src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+  </div>
 </div>
-<div class="side-banner banner-right row "
-     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  alt="Helios 16 - 2023"><img
-  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+
+

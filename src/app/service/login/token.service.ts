@@ -152,17 +152,17 @@ export class TokenService {
     })
     this.share.sendClickEvent()
   }
-  public addCartSession(product:Product) {
+  public addCartSession(product:Product,quantity) {
     // debugger
     if ( this.getCartSession() != undefined) {
       this.cart = this.getCartSession()
       let cartDto:Cart = {
         id:product.id,
         product:product,
-        quantity:1
+        quantity:quantity
       }
        if (this.checkExistSession(product.id,this.cart) != -1) {
-         this.cart[this.checkExistSession(product.id,this.cart)].quantity += 1;
+         this.cart[this.checkExistSession(product.id,this.cart)].quantity += quantity;
        } else {
           this.cart.push(cartDto)
        }
@@ -172,7 +172,7 @@ export class TokenService {
       let cart:Cart[] =[];
       let cartDto:Cart = {
         product:product,
-        quantity:1
+        quantity:quantity
       }
       cart.push(cartDto);
       this.setCart(cart);

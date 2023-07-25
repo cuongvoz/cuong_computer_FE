@@ -1,98 +1,108 @@
-<div class="side-banner banner-left row d-flex"
-     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a><img
-  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
-<div class="container row " style="margin: 10px;display: inline-block;float: left">
-  <div style="margin: 10px;">
-    <h2 style="width: 100%;background: #92999f;margin-left: 13px;height: 10px;margin-top: 20px">  <div class="text-center text" style="margin: 0 auto;line-height: 5px;padding-bottom:10px;background: white;width: 480px">QUẢN LÝ SẢN PHẨM</div></h2>
-    <a   style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #29324e;position: relative"
-        class="dropdown">
-      <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-        <button class="btn btn-primary textButton dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: #005ec4;border-radius: 0;border: 1px solid #29324e">Thêm mới <i class="fa-sharp fa-solid fa-laptop-medical"></i></button>
+
+<div class="row" style="width: 100%;">
+  <div class="col-lg-1" style="margin-bottom: 0">
+    <div class="side-banner banner-left"
+         style="width: 94.5px;left: 0;position: sticky;top:10%;;float: left;display: inline-block"><a
+    ><img
+      src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+  </div>
+  <div class="col-lg-10" style="margin-left: -25px">
+    <div style="margin: 0 auto;text-align: center">
+      <div class="container row " style="margin: 10px auto;display: inline-block;text-align: left">
+        <div style="margin: 10px;">
+          <h2 style="width: 100%;background: #92999f;margin-left: 13px;height: 10px;margin-top: 20px">  <div class="text-center text" style="margin: 0 auto;line-height: 5px;padding-bottom:10px;background: white;width: 480px">QUẢN LÝ SẢN PHẨM</div></h2>
+          <a   style="margin-left: 50px;cursor: pointer;text-decoration: none;color: #29324e;position: relative"
+               class="dropdown">
+            <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <button class="btn btn-primary textButton dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background: #005ec4;border-radius: 0;border: 1px solid #29324e">Thêm mới <i class="fa-sharp fa-solid fa-laptop-medical"></i></button>
+            </div>
+            <div  class=" dropdown-menu text" aria-labelledby="dropdownMenuButton1"  style="top: 55px;left:0;font-size: 20px;position: absolute">
+              <p class="category-item dropdown-item" routerLink="/manager/create/2/null" ><i class="fa-sharp fa-solid fa-computer" style="margin-right: 5px"></i> Thêm mới PC</p>
+              <p class="category-item dropdown-item" routerLink="/manager/create/1/null" ><i style="margin-right: 5px" class="fa-sharp fa-solid fa-laptop"></i> Thêm mới Laptop</p>
+              <p class="category-item dropdown-item" routerLink="/manager/create/5/null" ><i class="fa-sharp fa-solid fa-computer-mouse" style="margin-right: 5px"></i> Thêm mới Chuột</p>
+              <p class="category-item dropdown-item" routerLink="/manager/create/4/null" ><i class="fa-solid fa-tv" style="margin-right: 5px"></i> Thêm mới Màn hình</p>
+              <p class="category-item dropdown-item" routerLink="/manager/create/6/null" ><i class="fa-sharp fa-solid fa-chair" style="margin-right: 5px"></i> Thêm mới Ghế</p>
+              <p class="category-item dropdown-item" routerLink="/manager/create/3/null" ><i class="fa-sharp fa-solid fa-keyboard" style="margin-right: 5px"></i> Thêm mới Bàn phím</p>
+            </div>
+            <div class="d-flex row text" style="position: absolute;top: 24px;border: 2px solid #005ec4;right: 0;width: 476px">
+              <input class="input form-control " #name (keyup.enter)="searchName(name.value,select.value)" placeholder="Nhập tên cần tìm.." style="height: 35px;border: 0;display: inline;width: 220px"> <span style="display: inline;width: 1px;color: #005ec4;margin-top: 5px">|</span>
+              <select (change)="searchCategory(select.value)" #select class="form-select text-center" style=";width: 220px;height: 35px;border: 0 solid white;display: inline;">
+                <option [value]="7">Tất cả danh mục</option>
+                <option [value]="1">Laptop</option>
+                <option [value]="2">PC gaming</option>
+                <option [value]="5">Chuột</option>
+                <option [value]="3">Bàn phím</option>
+                <option [value]="6">Ghế</option>
+                <option [value]="4">Màn hình</option>
+              </select>
+            </div>
+          </a>
+
+
+        </div>
+        <table class="table-text table" >
+          <thead>
+          <tr style="background: #005ec4;color: white" class="text3">
+            <th>STT</th>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Danh mục</th>
+            <th>Chức năng</th>
+          </tr>
+          </thead>
+          <tbody class="tbody">
+          <tr *ngFor="let x of products;index as i">
+            <th>{{i + 1}}</th>
+            <th [routerLink]="['/product/detail/'+x.id]"><img src="{{x.image}}" style="cursor: pointer;width: 50px;height: 50px;object-fit: cover"></th>
+            <th style="cursor: pointer" [routerLink]="['/product/detail/'+x.id]">{{x.name}}</th>
+            <th>{{x.price | number}} đ</th>
+            <th>{{x.quantity}}</th>
+            <th>{{x.category.name}}</th>
+            <th>
+              <button (click)="checkProduct(x)" data-bs-toggle="modal" data-bs-target="#addQuantity" class="btn btn-success" style="margin-right: 5px"><i class="fa-solid fa-laptop-code"></i></button>
+              <button style="margin-right: 5px" [routerLink]="['/manager/create/' + x.category.id +'/'+ x.id]" class="btn btn-primary"><i style="color: white"
+                                                                                                                                          class="fa-sharp fa-solid fa-gears"></i></button>
+              <button         *ngIf="role == 'ROLE_ADMIN' " (click)="isDelete(x.id,x.category.name,x.name,x.image)" class="btn btn-danger"><i
+                style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+        <div style="margin-left: 375px;margin-top: -10px">
+          <button class="btn btn-outline-primary" [disabled]="first == true" (click)="changePage(page -1)" style="border-radius: 0;margin: 10px"><i style="margin-right: 8px" class="fa-solid fa-circle-chevron-left"></i> <span class="text2">Trang trước</span> </button>
+          <button class="btn btn-outline-primary" style="border-radius: 0;"><span class="text2">{{page +1}}</span></button>
+          <button class="btn btn-outline-primary" [disabled]="last == true" (click)="changePage(page +1)"  style="border-radius: 0;margin: 10px"><span class="text2" style="margin-right: 8px">Trang sau</span> <i class="fa-solid fa-circle-chevron-right"></i></button>
+        </div>
       </div>
-      <div  class=" dropdown-menu text" aria-labelledby="dropdownMenuButton1"  style="top: 55px;left:0;font-size: 20px;position: absolute">
-                <p class="category-item dropdown-item" routerLink="/manager/create/2/null" ><i class="fa-sharp fa-solid fa-computer" style="margin-right: 5px"></i> Thêm mới PC</p>
-                <p class="category-item dropdown-item" routerLink="/manager/create/1/null" ><i style="margin-right: 5px" class="fa-sharp fa-solid fa-laptop"></i> Thêm mới Laptop</p>
-                <p class="category-item dropdown-item" routerLink="/manager/create/5/null" ><i class="fa-sharp fa-solid fa-computer-mouse" style="margin-right: 5px"></i> Thêm mới Chuột</p>
-                <p class="category-item dropdown-item" routerLink="/manager/create/4/null" ><i class="fa-solid fa-tv" style="margin-right: 5px"></i> Thêm mới Màn hình</p>
-                <p class="category-item dropdown-item" routerLink="/manager/create/6/null" ><i class="fa-sharp fa-solid fa-chair" style="margin-right: 5px"></i> Thêm mới Ghế</p>
-                <p class="category-item dropdown-item" routerLink="/manager/create/3/null" ><i class="fa-sharp fa-solid fa-keyboard" style="margin-right: 5px"></i> Thêm mới Bàn phím</p>
-      </div>
-      <div class="d-flex row text" style="position: absolute;top: 24px;border: 2px solid #005ec4;right: 0;width: 476px">
-        <input class="input form-control " #name (keyup.enter)="searchName(name.value,select.value)" placeholder="Nhập tên cần tìm.." style="height: 35px;border: 0;display: inline;width: 220px"> <span style="display: inline;width: 1px;color: #005ec4;margin-top: 5px">|</span>
-        <select (change)="searchCategory(select.value)" #select class="form-select text-center" style=";width: 220px;height: 35px;border: 0 solid white;display: inline;">
-          <option [value]="7">Tất cả danh mục</option>
-          <option [value]="1">Laptop</option>
-          <option [value]="2">PC gaming</option>
-          <option [value]="5">Chuột</option>
-          <option [value]="3">Bàn phím</option>
-          <option [value]="6">Ghế</option>
-          <option [value]="4">Màn hình</option>
-        </select>
-      </div>
-    </a>
+    </div>
 
 
   </div>
-  <table class="table-text table" >
-    <thead>
-    <tr style="background: #005ec4;color: white" class="text3">
-      <th>STT</th>
-      <th>Hình ảnh</th>
-      <th>Tên sản phẩm</th>
-      <th>Giá</th>
-      <th>Số lượng</th>
-      <th>Danh mục</th>
-      <th>Chức năng</th>
-    </tr>
-    </thead>
-    <tbody class="tbody">
-    <tr *ngFor="let x of products;index as i">
-      <th>{{i + 1}}</th>
-      <th><img src="{{x.image}}" style="width: 50px;height: 50px;object-fit: cover"></th>
-      <th>{{x.name}}</th>
-      <th>{{x.price | number}} đ</th>
-      <th>{{x.quantity}}</th>
-      <th>{{x.category.name}}</th>
-      <th>
-        <button (click)="checkProduct(x)" data-bs-toggle="modal" data-bs-target="#addQuantity" class="btn btn-success" style="margin-right: 5px"><i class="fa-solid fa-laptop-code"></i></button>
-        <button style="margin-right: 5px" [routerLink]="['/manager/create/' + x.category.id +'/'+ x.id]" class="btn btn-primary"><i style="color: white"
-                   class="fa-sharp fa-solid fa-gears"></i></button>
-        <button (click)="isDelete(x.id,x.category.name,x.name,x.image)" class="btn btn-danger"><i
-          style="color: white" class="fa-sharp fa-solid fa-trash"></i></button>
-      </th>
-    </tr>
-    </tbody>
-  </table>
-  <div style="margin-left: 375px;margin-top: -10px">
-    <button class="btn btn-outline-primary" [disabled]="first == true" (click)="changePage(page -1)" style="border-radius: 0;margin: 10px"><i style="margin-right: 8px" class="fa-solid fa-circle-chevron-left"></i> <span class="text2">Trang trước</span> </button>
-    <button class="btn btn-outline-primary" style="border-radius: 0;"><span class="text2">{{page +1}}</span></button>
-    <button class="btn btn-outline-primary" [disabled]="last == true" (click)="changePage(page +1)"  style="border-radius: 0;margin: 10px"><span class="text2" style="margin-right: 8px">Trang sau</span> <i class="fa-solid fa-circle-chevron-right"></i></button>
+  <div class="col-lg-1" style=";margin-bottom: 0;margin-left: 10px">
+    <div class="side-banner banner-right row "
+         style="width: 93.5px;position: sticky;right: 0;top:10%;margin-right: 0;float: right"><a
+      alt="Helios 16 - 2023"><img
+      src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
   </div>
 </div>
-<div class="side-banner banner-right row "
-     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  alt="Helios 16 - 2023"><img
-  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
-<!-- Button trigger modal -->
 
 
-<!-- Modal -->
+
 <div class="modal fade" id="addQuantity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg ">
     <div class="modal-content" >
-      <div class="modal-header" style="height: 10px;border-bottom: 0 solid white">
-        <h3 class="modal-title text" id="exampleModalLabel" style="padding-top: 10px">Nhập kho</h3>
-        <button id="dissmiss" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
       <div class="modal-body">
         <div class="d-flex row">
           <div class="col-lg-5">
-            <img src="{{product.image}}" style="height: 300px;width: 300px;object-fit: cover;border: 1px solid #005ec4;border-radius: 10px ">
+            <img [routerLink]="['/product/detail/'+product.id]" src="{{product.image}}" style="height: 300px;width: 300px;object-fit: cover;border: 1px solid #005ec4;border-radius: 10px ">
+            <button id="dissmiss" style="display: none" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
           </div>
-          <div class="col-lg-7" style="border-left: 2px solid #005ec4">
+          <div class="col-lg-7" >
             <div style="display: inline;width: 100px;margin-left: 10px;">
-              <p class="text" style="margin-bottom: 10px;font-size: 30px;color: #005ec4;margin-top: -34px">{{product.name}}</p>
+              <p [routerLink]="['/product/detail/'+product.id]" class="text" style="margin-bottom: 10px;font-size: 30px;color: #005ec4;margin-top: -34px">{{product.name}}</p>
               <div *ngIf="product.category.id == 2">
                 <p class="line-high">- CPU: {{product.cpu}}</p>
                 <p class="line-high">- Mainboard: {{product.mainboard}}</p>
@@ -120,14 +130,14 @@
               <div *ngIf="product.category.id == 3">
                 <p class="line-high">- {{product.keyboard}}</p>
                 <p class="line-high">- Kết nối {{product.connect}}</p>
-                <p class="line-high">- Keycap {{product.keycap}}</p>
-                <p  class="line-high">- Loại switch {{product.switchKey}}</p>
+                <p *ngIf="product.keycap" class="line-high">- Keycap {{product.keycap}}</p>
+                <p *ngIf="product.switchKey" class="line-high">- Loại switch {{product.switchKey}}</p>
               </div>
               <div  *ngIf="product.category.id == 5">
                 <p class="line-high">- {{product.dpi}}</p>
                 <p class="line-high">- {{product.reliability}}</p>
-                <p class="line-high">- {{product.compatible}}</p>
-                <p class="line-high">- {{product.sensor}}</p>
+                <p *ngIf="product.compatible" class="line-high">- {{product.compatible}}</p>
+                <p *ngIf="product.sensor" class="line-high">- {{product.sensor}}</p>
               </div>
               <div style="margin-top: 10px; ">
                 <i *ngIf="product.quantity > 0" style="color: #32be8f" class="fa-sharp fa-solid fa-circle-check"></i> <span *ngIf="product.quantity > 0" class="text"

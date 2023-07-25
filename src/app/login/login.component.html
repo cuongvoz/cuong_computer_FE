@@ -1,68 +1,118 @@
-<div class="side-banner banner-left row d-flex"
-     style="width: 94.5px;float: left;position: sticky;top:5px;margin-bottom: 285px"><a
-><img
-  src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
-<div class="containerz row " style="margin: 0 0 0 20px;display: inline-block;float: left">
-  <section class="backgroundz" style="height: 1000px;margin-left: 30px;width: 1069px">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-          <div class="card" style="border-radius: 1rem;">
-            <div class="row g-0">
-              <div class="col-md-6 col-lg-5 d-none d-md-block">
-                <img
-                  src="https://i.imgur.com/zbtR9qs.png"
-                  alt="login form"
-                   style="border-radius: 1rem 0 0 1rem;height: 700px;width: 380px;object-fit: cover"
-                />
-              </div>
-              <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                <div class="card-body p-4 p-lg-5 text-black">
 
-                  <form style="margin-left: 20px" [formGroup]="form" (ngSubmit)="login()">
-
-                    <div class="d-flex align-items-center mb-3 pb-1">
-                      <img style="width: 70px;height: 70px" src="https://upload.wikimedia.org/wikipedia/commons/1/1e/RPC-JP_Logo.png">
-                      <img style="width: 300px;height: 100px;margin-left: -10px" src="https://i.imgur.com/lzXIvD1.png">
-<!--                      <span class="h3 fw-bold mb-0">CUONG COMPUTER</span>-->
+  <div class="row" style="width: 100%">
+    <div class="col-lg-1" style="margin-bottom: 0">
+      <div class="side-banner banner-left"
+           style="width: 94.5px;left: 0;position: sticky;top:10%;;float: left;display: inline-block"><a
+      ><img
+        src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+    </div>
+    <div class="col-lg-10" style="margin-left: 12px">
+      <div class="containerz row " style="margin: 0 auto;display: inline-block;">
+        <section class="backgroundz" style="height: 1000px;margin:0 auto;width: 100%">
+          <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+              <div class="col col-xl-10">
+                <div class="card" style="border-radius: 1rem;">
+                  <div class="row g-0">
+                    <div class="col-md-6 col-lg-5 d-none d-md-block">
+                      <img
+                        src="https://i.imgur.com/zbtR9qs.png"
+                        alt="login form"
+                        style="border-radius: 1rem 0 0 1rem;height: 700px;width: 380px;object-fit: cover"
+                      />
                     </div>
+                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                      <div class="card-body p-4 p-lg-5 text-black">
 
-                    <h5 class="fw-normal h2 mb-3 pb-3" style="letter-spacing: 1px;"><span class="text">HỆ THỐNG GEAR HÀNG ĐẦU VIỆT NAM</span>
-                      <i style="margin-left: 10px"  class="fa-solid fa-laptop"></i>
-                    </h5>
+                        <form style="margin-left: 20px" [formGroup]="form" (ngSubmit)="login()">
 
-                    <div class="form-outline mb-4">
-                      <input type="text" id="form2Example17"  formControlName="username" class="form-control form-control-lg text" />
-                      <label class="form-label h5 " for="form2Example17"><i class="fa-solid fa-user"></i><span class="text" style="margin-left: 10px">Tên đăng nhập</span> </label>
+                          <div class="d-flex align-items-center mb-3 pb-1">
+                            <img style="width: 70px;height: 70px" src="https://upload.wikimedia.org/wikipedia/commons/1/1e/RPC-JP_Logo.png">
+                            <img style="width: 300px;height: 100px;margin-left: -10px" src="https://i.imgur.com/lzXIvD1.png">
+                          </div>
+
+                          <h5 class="fw-normal h2 mb-3 pb-3" style="letter-spacing: 1px;"><span class="text">HỆ THỐNG GEAR HÀNG ĐẦU VIỆT NAM</span>
+                            <i style="margin-left: 10px"  class="fa-solid fa-laptop"></i>
+                          </h5>
+
+                          <div class="form-outline mb-4">
+                            <input type="text" id="form2Example17"  formControlName="username" class="form-control form-control-lg text" />
+                            <label class="form-label h5 " for="form2Example17"><i class="fa-solid fa-user"></i><span class="text" style="margin-left: 10px">Tên đăng nhập</span> </label>
+                          </div>
+
+                          <div class="form-outline mb-4" style="margin-top: -15px">
+                            <input type="password"  formControlName="password" id="form2Example27" class="form-control form-control-lg" />
+                            <label class="form-label h5 text" for="form2Example27"><i class="fa-solid fa-lock"></i><span class="text" style="margin-left: 10px">Mật khẩu</span></label>
+                          </div>
+                          <h4 class="text-danger text">{{message}}</h4>
+                          <div class="pt-1 mb-4" >
+                            <button  class="btn btn-primary btn-lg btn-block " style="color: white;border-radius: 0;background: #005ec4;width: 200px" type="submit"><span class="text" style="color: white">ĐĂNG NHẬP</span><i style="color: white;margin-left: 10px"  class="fa-sharp fa-solid fa-circle-check"></i> </button>
+                          </div>
+                          <input type="checkbox" formControlName="rememberMe" class="form-check-input">
+                          <a class="small text-muted text" style="margin-left: 10px;margin-top: -30px">Ghi nhớ đăng nhập ?</a> <br>
+                          <div class="text" style="margin-top: 60px;margin-bottom: -50px;font-size: 20px">
+                            <a data-bs-toggle="modal" data-bs-target="#signUpModal" style="color: #005ec4;cursor: pointer" class="small "> Bạn chưa có tài khoản ?</a>
+
+                          </div>
+                        </form>
+
+                      </div>
                     </div>
-
-                    <div class="form-outline mb-4" style="margin-top: -15px">
-                      <input type="password"  formControlName="password" id="form2Example27" class="form-control form-control-lg" />
-                      <label class="form-label h5 text" for="form2Example27"><i class="fa-solid fa-lock"></i><span class="text" style="margin-left: 10px">Mật khẩu</span></label>
-                    </div>
-                     <h4 class="text-danger text">{{message}}</h4>
-                    <div class="pt-1 mb-4" >
-                      <button  class="btn btn-primary btn-lg btn-block " style="color: white;border-radius: 0;background: #005ec4;width: 200px" type="submit"><span class="text" style="color: white">ĐĂNG NHẬP</span><i style="color: white;margin-left: 10px"  class="fa-sharp fa-solid fa-circle-check"></i> </button>
-                    </div>
-                     <input type="checkbox" formControlName="rememberMe" class="form-check-input">
-                    <a class="small text-muted text" style="margin-left: 10px">Ghi nhớ đăng nhập ?</a> <br>
-                   <div class="text" style="margin-top: 60px;margin-bottom: -50px;font-size: 20px">
-                     <a  style="color: #005ec4;" class="small ">CuongVV</a>
-                     <a  style="color: #005ec4;" class="small "> - C0822G1</a>
-                   </div>
-                  </form>
-
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </section>
+      </div>
+    </div>
+    <div class="col-lg-1" style=";margin-bottom: 0;margin-left: -26px">
+      <div class="side-banner banner-right row "
+           style="width: 93.5px;position: sticky;right: 0;top:10%;margin-right: 0;float: right"><a
+        alt="Helios 16 - 2023"><img
+        src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+    </div>
+  </div>
+
+
+
+
+
+
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border-radius: 120px 0 120px 0">
+      <div class="modal-body" style="margin: -14px 0 -57px -3px">
+        <div class="d-flex row">
+          <div  class="col-lg-7" style="padding-bottom: -10px;border-right: 1px solid green;border-radius: 120px 0 0 0;height: 500px;width:460px;background-repeat: no-repeat;background-image: url('https://images-platform.99static.com/2t1dZAvXQt0Gcu0UgVrRiCb0riw=/0x516:2040x2556/500x500/top/smart/99designs-contests-attachments/110/110824/attachment_110824061')">
+          </div>
+          <div class="col-lg-5 text" >
+            <form [formGroup]="formSignUp" (ngSubmit)="register()">
+
+
+            <h6  class="fw-normal h2 mb-3 pb-3" style="color: forestgreen; margin-top: 10px;letter-spacing: 1px;font-size: 27px"><span class="text" style="color: forestgreen">ĐĂNG KÍ VÀ TRẢI NGHIỆM MUA HÀNG</span>
+              <i style="margin-left: 10px;color: #005ec4"  class="fa-brands fa-teamspeak"></i>
+            </h6>
+            <h5 style="margin-top: -20px;margin-bottom: 0"><i style="color: forestgreen;margin-right: 5px" class="fa-sharp fa-solid fa-user"></i> Tên đăng nhập</h5>
+            <input [class.sussessInput]="errorFormSignUp.username.check == false" [class.errorInput]="errorFormSignUp.username.check == true" [placeholder]="errorFormSignUp.username.message" formControlName="username" class="form-control" >
+            <h5 style="margin-bottom: 0;margin-top: 10px"><i style="color: forestgreen;margin-right: 5px" class="fa-solid fa-face-smile"></i> Họ và tên</h5>
+            <input [class.sussessInput]="errorFormSignUp.name.check == false" [class.errorInput]="errorFormSignUp.name.check == true" [placeholder]="errorFormSignUp.name.message" formControlName="name"  class="form-control">
+            <h5 style="margin-bottom: 0;margin-top: 10px"><i style="color: forestgreen;margin-right: 5px" class="fa-solid fa-envelope"></i> Địa chỉ email</h5>
+            <input [class.sussessInput]="errorFormSignUp.email.check == false" [class.errorInput]="errorFormSignUp.email.check == true"  [placeholder]="errorFormSignUp.email.message" formControlName="email" type="email"  class="form-control">
+              <h5 style="margin-bottom: 0;margin-top: 10px"><i style="color: forestgreen;margin-right: 5px" class="fa-solid fa-lock-open"></i> Mật khẩu</h5>
+            <input [class.sussessInput]="errorFormSignUp.password.check == false" [class.errorInput]="errorFormSignUp.password.check == true" [placeholder]="errorFormSignUp.password.message" formControlName="password" type="password"  class="form-control">
+            <h5 style="margin-bottom: 0;margin-top: 10px"><i style="color: forestgreen;margin-right: 5px" class="fa-solid fa-lock"></i> Mật khẩu xác nhận</h5>
+            <input [class.sussessInput]="errorFormSignUp.confirmPassword.check == false" [class.errorInput]="errorFormSignUp.confirmPassword.check == true" [placeholder]="errorFormSignUp.confirmPassword.message" formControlName="confirmPassword" type="password"  class="form-control text" placeholder="Nhập ">
+          <br>
+           <div>
+             <button  class="btn btn-success btn-lg btn-block " style="border-radius: 0 0 50% 50%;margin-bottom: -10px;color: white;;background: forestgreen;width: 200px;margin-top: 5px;border-bottom:5px solid  white" type="submit"><span class="text" style="color: white">ĐĂNG KÍ</span><i style="color: white;margin-left: 10px"  class="fa-sharp fa-solid fa-circle-check"></i> </button>
+           </div>
+            <p style="display: none" id="dissMis" data-bs-dismiss="modal"></p>
+              <br>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </div>
-
-<div class="side-banner banner-right row "
-     style="width: 94.5px;float:left;position: sticky;right: 10px;top:5px;margin-bottom: 285px"><a
-  alt="Helios 16 - 2023"><img
-  src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>

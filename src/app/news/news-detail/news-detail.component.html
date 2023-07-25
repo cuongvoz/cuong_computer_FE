@@ -1,0 +1,325 @@
+
+<div class="row" style="width: 100%">
+  <div class="col-lg-1" style="margin-bottom: 0">
+    <div class="side-banner banner-left"
+         style="width: 94.5px;left: 0;position: sticky;top:10%;;float: left;display: inline-block"><a
+    ><img
+      src="https://i.imgur.com/uSTAVih.png" alt="Laptop Gaming 2023"></a></div>
+  </div>
+  <div class="col-lg-10">
+    <div style="text-align: center;margin: 0 auto">
+      <div class="container row " style="margin: 10px 0;display: inline-block;text-align: left">
+        <div class="d-flex row" style="margin-left: 20px">
+          <div class="d-flex" style="font-size: 20px;margin-left: 20px">
+            <i style="line-height: 1.6;cursor: pointer" routerLink="/"
+               class="fa-sharp fa-solid fa-house colors"></i>
+            <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
+            <h4 class="text" style="margin-left: 30px;cursor: pointer" routerLink="/body">Trang chủ</h4>
+            <i style="line-height: 1.6;margin-left: 30px" class="fa-sharp fa-solid fa-chevron-right"></i>
+            <h4 routerLink="/news" class="text"
+                style="margin-left: 30px;cursor: pointer">{{title | slice: 0:30}}...</h4>
+          </div>
+          <div style="margin-top: 30px;margin-left: 90px;width: 850px;display: block">
+            <div style="margin-left: 20px">
+              <div *ngIf="news == 1">
+                <h1 style="color: black" class="text">{{title}}</h1>
+                <div style="position: relative">
+                  <h5 class="text" style="display: inline">{{formattedTime}}</h5>
+                  <p style="position: absolute;right: 0;display: inline">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/640px-Facebook-icon-1.png"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+                         style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe5B150YaTzAhnoinwDofQ6LPqIb2vOvgh2A&usqp=CAU"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://img.freepik.com/free-vector/instagram-logo_1199-122.jpg"
+                         style="height: 30px;width: 30px;object-fit: cover">
+                  </p>
+                </div>
+                <img style="width: 100%;height: 385px;object-fit: cover;margin-top: 20px"
+                     src="https://www.tncstore.vn/image/catalog/nh%20b%C3%A0i%20vi%E1%BA%BFt%20bmin/T%E1%BA%A5t%20c%E1%BA%A3%20c%C3%A1c%20linh%20ki%E1%BB%87n%20%C4%91%E1%BB%81u%20gi%E1%BA%A3m%20nhi%E1%BB%87t%20nh%C6%B0ng%20gi%C3%A1%20c%E1%BB%A7a%20VGA%20v%E1%BA%ABn%20c%C3%B2n%20H%C6%A1i%20%C4%91%E1%BA%AFt%205.png">
+                <h3 style="color:black;margin: 10px 0;" class="text">Linh kiện PC đang giảm giá do nhu cầu thị trường đi
+                  xuống,
+                  thế nhưng riêng GPU vẫn còn đắt,
+                  không hề đi theo xu hướng đó</h3>
+                <p style="font-size: 20px;margin: 5px" class="text">Nếu bạn quan sát thị trường phần cứng PC giờ sẽ thấy ổ cứng, RAM DDR5, màn hình, bo mạch chủ,
+                  hay thậm chí là
+                  CPU giờ đã ó mức giá phải chăng hơn năm ngoái rất nhiều. Thế nhưng riêng card đồ họa thì chúng vẫn chưa chịu
+                  đi theo xu hướng đó các bạn ạ. Tại thời điểm bài viết, nếu muốn mua card Nvidia RTX thế hệ mới nhất (40
+                  series), mức giá thấp nhất mà bạn phải bỏ ra cũng tầm 25 triệu cho 1 chiếc RTX 4070 Ti. Vậy thì tại sao GPU
+                  đến giờ vẫn còn đắt, chưa chịu hạ nhiệt?</p>
+                <h3 style="color:black;margin: 10px 0;" class="text">TSMC có thể tăng giá của tấm wafer, nhưng đó chưa phải là
+                  tất cả
+                </h3>
+                <img style="width: 100%;object-fit: cover;margin: 10px 0"
+                     src="https://www.tncstore.vn/image/catalog/nh%20b%C3%A0i%20vi%E1%BA%BFt%20bmin/T%E1%BA%A5t%20c%E1%BA%A3%20c%C3%A1c%20linh%20ki%E1%BB%87n%20%C4%91%E1%BB%81u%20gi%E1%BA%A3m%20nhi%E1%BB%87t%20nh%C6%B0ng%20gi%C3%A1%20c%E1%BB%A7a%20VGA%20v%E1%BA%ABn%20c%C3%B2n%20H%C6%A1i%20%C4%91%E1%BA%AFt%201%204.png">
+                <p style="font-size: 20px;margin: 5px" class="text">Một trong những lý do mà bạn thường hay nghe nhiều người lấy ra bàn
+                  luận đó là do TSMC tăng chi phí của mỗi tấm wafer. Cơ bản thì TSMC chính là nhà máy sản xuất tất cả GPU AMD
+                  và Nvidia RTX 40 series. Dù vậy, chúng ta chẳng thể nào biết chính xác là mỗi hãng đã trả bao nhiêu tiền cho
+                  TSMC để sản xuất chip giùm, vì dù gì đây cũng là bí mật kinh doanh của mỗi bên. Tuy nhiên, nếu đúng là như
+                  vậy thì câu hỏi đặt ra sẽ là vì sao RTX 4090 có giá bán lẻ khuyến nghị chỉ mắc hơn RTX 3090 có 100 USD mà
+                  thôi?</p>
+                <img style="width: 100%;object-fit: cover;margin: 10px 0"
+                     src="https://www.tncstore.vn/image/catalog/nh%20b%C3%A0i%20vi%E1%BA%BFt%20bmin/T%E1%BA%A5t%20c%E1%BA%A3%20c%C3%A1c%20linh%20ki%E1%BB%87n%20%C4%91%E1%BB%81u%20gi%E1%BA%A3m%20nhi%E1%BB%87t%20nh%C6%B0ng%20gi%C3%A1%20c%E1%BB%A7a%20VGA%20v%E1%BA%ABn%20c%C3%B2n%20H%C6%A1i%20%C4%91%E1%BA%AFt%202.png">
+                <p style="font-size: 20px;margin: 5px" class="text">RTX 4090 hiện đang là GPU xịn nhất và đắt nhất trong RTX 40 series.
+                  Sản lượng (yield) của nó cũng vì thế mà thấp nhất luôn; cho nên nếu chi phí của tấm wafer tăng cao thì RTX
+                  4090 phải là GPU chịu ảnh hưởng nhiều nhất, và giá của nó phải cao hơn nhiều. Thế nhưng thực tế là RTX 3090
+                  có giá bán lẻ khuyến nghị là 1499 USD, trong khi RTX 4090 là 1599 USD, và mức giá 1599 USD đó thậm chí còn
+                  thấp hơn cả con số nếu tính đúng theo giá lạm phát nữa là đằng khác.
+                  Trong khi đó, giá bán lẻ khuyến nghị của RTX 4080 đã tăng lên thành 1199 USD, so với RTX 3080 chỉ có 699 USD
+                  mà thôi. Chưa kể, laptop trang bị RTX 4060 có giá chỉ hơn 1000 USD xíu thôi, chả mắc hơn bao nhiêu so với
+                  laptop RTX 3060 lúc nó mới ra mắt.
+                  Mà ngay cả GPU của AMD cũng không nằm ngoài vụ này đâu nhé. RX 7900 XT – card RX 7000 series thế hệ mới có
+                  mức giá mềm nhất ở thời điểm hiện tại – có giá bán lẻ khuyến nghị cũng lên tới 899 USD. Chính vì thế nên vấn
+                  đề không chỉ nằm ở giá của tấm wafer thôi đâu, mà còn lý do khác nữa. Vấn đề là chỉ có Nvidia và AMD mới
+                  biết chính xác lý do đó là gì.</p>
+                <img style="width: 100%;object-fit: cover;margin: 10px 0"
+                     src="https://www.tncstore.vn/image/catalog/nh%20b%C3%A0i%20vi%E1%BA%BFt%20bmin/T%E1%BA%A5t%20c%E1%BA%A3%20c%C3%A1c%20linh%20ki%E1%BB%87n%20%C4%91%E1%BB%81u%20gi%E1%BA%A3m%20nhi%E1%BB%87t%20nh%C6%B0ng%20gi%C3%A1%20c%E1%BB%A7a%20VGA%20v%E1%BA%ABn%20c%C3%B2n%20H%C6%A1i%20%C4%91%E1%BA%AFt%203.png">
+                <p  style="font-size: 20px;margin: 5px" class="text">Vậy nếu mua RX 6700 XT giá 350 USD (ở Việt Nam thì thấp nhất là tầm
+                  16 triệu đồng) thì sao? Nghe cũng hợp lý mà đúng không? Đúng thì có đúng đó, nhưng mà là đúng theo “tiêu
+                  chuẩn” ở thời điểm hiện tại mà thôi. 350 USD cho một chiếc card có hiệu năng đứng thứ 6 trong họ hàng RX
+                  6000 series (từ trên đếm xuống) vốn đã hơn 2 năm tuổi, đã vậy còn xài kiến trúc thế hệ cũ nữa, cho nên tính
+                  ra kèo này không quá thơm như bạn nghĩ đâu.</p>
+                <br> <br> <Br>
+              </div>
+
+
+              <div *ngIf="news == 2">
+                <h1 style="color: black" class="text">{{title2}}</h1>
+                <div style="position: relative">
+                  <h5 class="text" style="display: inline">{{formattedTime}}</h5>
+                  <p style="position: absolute;right: 0;display: inline">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/640px-Facebook-icon-1.png"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+                         style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe5B150YaTzAhnoinwDofQ6LPqIb2vOvgh2A&usqp=CAU"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://img.freepik.com/free-vector/instagram-logo_1199-122.jpg"
+                         style="height: 30px;width: 30px;object-fit: cover">
+                  </p>
+                </div>
+                <img style="width: 100%;object-fit: cover;margin-top: 20px"
+                     src="https://i.imgur.com/4kqxHPy.jpg">
+                <h3 style="color:black;margin: 10px 0;" class="text">DẪN ĐẦU PHONG CÁCH – CHINH PHỤC THỬ THÁCH</h3>
+                <h4 style="color:black;margin: 10px 0;" class="text">1. Thời gian khuyến mãi: </h4>
+                <span style="font-size: 20px" class="text">Nếu bạn quan sát thị trường phần cứng PC giờ sẽ thấy ổ cứng, RAM DDR5, màn hình, bo mạch chủ,
+                    Bất kì hóa đơn mua hàng, phiếu thu hoặc phiếu xuất kho có giá trị từ ngày 01/04/2023 đến 01/05/2023 hoặc cho đến khi hết quà
+
+                    Hạn chót đăng ký nhận quà: 05/05/2023</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">2. Sản phẩm áp dụng và quà tặng: </h4>
+                <span style="font-size: 20px" class="text">Tặng Áo khoác + Bình nước ROG phiên bản giới hạn khi mua combo di động gồm Tai nghe in-ear ROG Cetra True Wireless + Chuột gaming ROG KERIS AIMPOINT WL
+
+        Tặng lót chuột ROG Hone Ace Aim Lab Edition trị giá 1,000,000đ khi mua Bàn phím cơ gaming ROG Falchion</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">3. Các cửa hàng/ đại lý áp dụng: </h4>
+                <span style="font-size: 20px" class="text">Chương trình khuyến mãi áp dụng cho tất cả đại lý và cửa hàng bán các sản phẩm chính hãng ASUS ROG trên toàn quốc</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">4. Cách thức nhận quà:</h4>
+                <span style="font-size: 20px" class="text">Click vào nút “Đăng Ký” trên website sự kiện https://www.asus.com/vn/events/ <br>
+
+        Lưu Ý: Trong trường hợp không thể đăng ký trên hệ thống, quý khách hàng vui lòng gửi thông tin nhận quà như bên dưới về địa chỉ Email: dangkyasus@gmail.com với tiêu đề: “[Khuyen mai] GG” <br>
+         - Đính kèm hình ảnh hóa đơn mua hàng, phiếu thu, phiếu xuất kho có dấu xác nhận của cửa hàng, thể hiện rõ tên sản phẩm và ngày mua hàng trong thời gian chương trình diễn ra. <br>
+         - Đính kèm ảnh chụp số S/N của sản phẩm <br>
+         - Điền series của sản phẩm: <br>
+         - Điền Họ và tên người nhận quà <br>
+         - Điền Địa chỉ nhận quà <br>
+         - Điền Số điện thoại liên hệ<br>
+        Hình chụp số S/N trên sản phẩm phải chụp kèm với hoá đơn, chỉ chấp nhận hình chụp số S/N trên sản phẩm, số S/N trên hộp không có hiệu lực.</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">5. Các lưu ý khác:</h4>
+                <span style="font-size: 20px" class="text">- ASUS sẽ kiểm tra và liên hệ gửi quà tới bạn trong 20 ngày làm việc (ngoại trừ thứ 7 & Chủ nhật)
+         - Chương trình không áp dụng đồng thời với các chương trình khuyến mãi khác. <br>
+         - Quà tặng không có giá trị quy đổi thành tiền mặt hoặc các giá trị khác tương đương. <br>
+         - Hóa đơn/ phiếu thu/ phiếu xuất kho phải có con dấu của cửa hàng bán lẻ. <br>
+         - Chương trình chỉ dành cho khách hàng mua lẻ từ cửa hàng, tất cả hóa đơn từ nhà phân phối đều không được tham gia chương trình khuyến mãi này. <br>
+         - Dung lượng hình ảnh hóa đơn tải lên hệ thống <1Mb. <br>
+         - Trong trường hợp cần thiết nhằm bảo đảm quyền lợi khách hàng, phía ASUS sẽ cần thêm những thông tin khác để xác định khách mua hàng là chính xác như: hóa đơn đỏ, giấy tờ tùy thân có ảnh đại diện... <br>
+         - Mọi góp ý hay thắc mắc khác về chương trình, xin vui lòng post tại Hội linh kiện PC ASUS ROG Việt Nam</span>
+                <br> <br><br>
+              </div>
+
+
+              <div *ngIf="news == 3">
+                <h1 style="color: black" class="text">{{title3}}</h1>
+                <div style="position: relative">
+                  <h5 class="text" style="display: inline">{{formattedTime}}</h5>
+                  <p style="position: absolute;right: 0;display: inline">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/640px-Facebook-icon-1.png"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+                         style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe5B150YaTzAhnoinwDofQ6LPqIb2vOvgh2A&usqp=CAU"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://img.freepik.com/free-vector/instagram-logo_1199-122.jpg"
+                         style="height: 30px;width: 30px;object-fit: cover">
+                  </p>
+                </div>
+                <img style="width: 100%;object-fit: cover;margin-top: 20px"
+                     src="https://i.imgur.com/P5kGWP5.jpg">
+                <h3 style="color:black;margin: 10px 0;" class="text">CHƯƠNG TRÌNH KHUYẾN MÃI: NHẬN NGAY QUÀ TẶNG TỔNG TRỊ GIÁ LÊN ĐẾN 15 TRIỆU ĐỒNG KHI MUA SẢN PHẨM ASUS TUF GAMING!!!</h3>
+                <h4 style="color:black;margin: 10px 0;" class="text">1. Thời gian</h4>
+                <span style="font-size: 20px" class="text">Bất kì hóa đơn mua hàng, phiếu thu hoặc phiếu xuất kho có giá trị từ ngày 01/03/2023 đến 30/04/2023 hoặc cho đến khi hết quà. <br> <br>
+        Hạn chót đăng ký nhận quà: 05/05/2023.</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">2. Nội dung chương trình</h4>
+                <span style="font-size: 20px" class="text">MUA SẢN PHẨM ASUS TUF GAMING - NHẬN NGAY QUÀ TRỊ GIÁ 15 TRIỆU ĐỒNG <br>
+
+        Khi anh em đến của hàng TNC Store mua những sản phẩm được liệt kê trong danh sách, anh em sẽ có cơ hội nhận ngay những phần quà hấp dẫn bao gồm: Đồng hồ, Ghế Gaming, Giá đỡ Card, Box SSD, Áo thun EVA, Áo khoác ASUS TUF Gaming.</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">* Các sản phẩm áp dụng bao gồm: </h4>
+                <span style="font-size: 20px" class="text">
+                    - Bo mạch chủ: TUF GAMING B760 series/ Z790 series <br>
+                    - Card đồ họạ: TUF GAMING GEFORCE RTX 40xx series <br>
+                    - Case: TUF GAMING GT501/ GT502 <br>
+                    - Nguồn: TUF GAMING 1000G/ 850G <br>
+                    - Tản: TUF LC240 ARGB <br>
+                    - Màn hình: TUF GAMING VG27AQ/ VG27AQ1A/ VG27BQ/ VG27WQ/ VG27WQ1B/ VG27AQGL1A/ VG28UQL1A <br>
+                    - Phím: TUF GAMING K1/ K3/ K7 <br>
+                    - Chuột: TUF GAMING M3/ M4 AIR/ M4 WL <br>
+                    - Tai nghe: TUF GAMING H1/ H3/ H1 WL/ H3 WL <br>
+         - Thiết bị ngoại vi router: TUF GAMING AX3000/ AX5400
+                  </span>
+                <h4 style="color:black;margin: 10px 0;" class="text">3. Cách thức tính quà</h4>
+                <span style="font-size: 20px" class="text">- Mua Bo mạch chủ + Card đồ hoạ + Case + Nguồn + Tản + Màn hình + Thiết bị ngoại vi router + Bàn phím + Tai nghe + Chuột tặng Giá đỡ card ROG HERCULX + Box SSD ASUS TUF Gaming A1 + áo thun EVA +  áo khoác ASUS TUF Gaming phiên bản giới hạn + đồng hồ ASUS Vivowatch 5 (hoặc ghế Gaming ROG Chariot Core tổng trị giá 15,000,000đ <br> <br>
+         - Mua Bo mạch chủ + Card đồ hoạ + Case + Nguồn + Tản tặng Giá đỡ card ROG HERCULX +  Box SSD ASUS TUF Gaming A1 tổng trị giá 2,220,000đ <br> <br>
+         - Mua Bo mach chủ + Card đồ hoa + Màn hình tặng Giá đỡ card ROG HERCULX +  áo thun EVA phiên bản giới hạn tổng trị giá 2,000,000đ <br> <br>
+         - Mua Bo mach chủ + Card đồ hoa + Thiết bị ngoại vi router tặng Giá đỡ card ROG HERCULX +  áo khoác ASUS TUF Gaming phiên bản giới hạn tổng trị giá 2,000,000đ <br> <br>
+         - Mua Bo mach chủ + Card đồ hoa + Bàn phím + Tai nghe + Chuột tặng Giá đỡ card ROG HERCULX +  áo khoác ASUS TUF Gaming phiên bản giới hạn tổng trị giá 2,000,000đ <br> <br>
+         - Mua Bo mạch chủ + Card đồ hoạ tặng Giá đỡ card ROG HERCULX trị giá 1,070,000đ</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">4. Cách thức nhận quà</h4>
+                <span style="font-size: 20px" class="text">Click vào nút “Đăng Ký” trên website sự kiện https://www.asus.com/vn/events/ <br>
+        Lưu Ý: Trong trường hợp không thể đăng ký trên hệ thống, quý khách hàng vui lòng gửi thông tin nhận quà như bên dưới về địa chỉ Email: dangkyasus@gmail.com với tiêu đề: “[Khuyen mai] TUF Gaming” <br>
+         - Đính kèm hình ảnh hóa đơn mua hàng, phiếu thu, phiếu xuất kho có dấu xác nhận của cửa hàng, thể hiện rõ tên sản phẩm và ngày mua hàng trong thời gian chương trình diễn ra. <br>
+         - Đính kèm ảnh chụp số S/N của sản phẩm <br>
+         - Điền series của sản phẩm: <br>
+         - Điền Họ và tên người nhận quà <br>
+         - Điền Địa chỉ nhận quà <br>
+         - Điền Số điện thoại liên hệ <br>
+        Hình chụp số S/N trên sản phẩm phải chụp kèm với hoá đơn như hình dưới đây, chỉ chấp nhận hình chụp số S/N trên sản phẩm, số S/N trên hộp không có hiệu lực.</span>
+                <h4 style="color:black;margin: 10px 0;" class="text">5. Lưu ý</h4>
+                <span style="font-size: 20px" class="text">- ASUS sẽ kiểm tra và liên hệ gửi quà tới bạn trong 20 ngày làm việc (ngoại trừ thứ 7 & Chủ nhật) <br>
+         - Chương trình không áp dụng đồng thời với các chương trình khuyến mãi khác. <br>
+         - Quà tặng không có giá trị quy đổi thành tiền mặt hoặc các giá trị khác tương đương. <br>
+         - Hóa đơn/ phiếu thu/ phiếu xuất kho phải có con dấu của cửa hàng bán lẻ. <br>
+         - Chương trình chỉ dành cho khách hàng mua lẻ từ cửa hàng, tất cả hóa đơn từ nhà phân phối đều không được tham gia chương trình khuyến mãi này. <br>
+         - Dung lượng hình ảnh hóa đơn tải lên hệ thống <1Mb. <br>
+         - Trong trường hợp cần thiết nhằm bảo đảm quyền lợi khách hàng, phía ASUS sẽ cần thêm những thông tin khác để xác định khách mua hàng là chính xác như: hóa đơn đỏ, giấy tờ tùy thân có ảnh đại diện... <br>
+         - Mọi góp ý hay thắc mắc khác về chương trình, xin vui lòng post tại Hội linh kiện PC ASUS ROG Việt Nam</span>
+                <br> <br><br>
+              </div>
+
+
+              <div *ngIf="news == 4">
+                <h1 style="color: black" class="text">{{title4}}</h1>
+                <div style="position: relative">
+                  <h5 class="text" style="display: inline">{{formattedTime}}</h5>
+                  <p style="position: absolute;right: 0;display: inline">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Facebook-icon-1.png/640px-Facebook-icon-1.png"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124021.png"
+                         style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSe5B150YaTzAhnoinwDofQ6LPqIb2vOvgh2A&usqp=CAU"
+                      style="margin-right: 10px;height: 30px;width: 30px;object-fit: cover">
+                    <img src="https://img.freepik.com/free-vector/instagram-logo_1199-122.jpg"
+                         style="height: 30px;width: 30px;object-fit: cover">
+                  </p>
+                </div>
+                <h3 style="color:black;margin: 10px 0;" class="text">Giới thiệu qua về Dying Light Enhanced Edition</h3>
+                <span style="font-size: 20px" class="text">Dying Light Enhanced Edition là một trong những tựa game sinh tồn kinh dị được yêu thích nhất của hãng game Techland. Game đã ra mắt vào năm 2015 và được cập nhật, phát hành phiên bản nâng cấp Enhanced Edition vào năm 2016 với nhiều tính năng mới nâng cao hơn.</span>
+                <img style="width: 100%;object-fit: cover;margin-top: 20px"
+                     src="https://www.tncstore.vn/image/catalog/nh%20b%C3%A0i%20vi%E1%BA%BFt%20bmin/Dying%20Light%20Enhanced%20Edition%20s%E1%BA%BD%20%C4%91%C6%B0%E1%BB%A3c%20ph%C3%A1t%20t%E1%BA%B7ng%20mi%E1%BB%85n%20ph%C3%AD%201.png">
+                <span style="font-size: 20px" class="text">
+           Trong game, người chơi sẽ vào vai Kyle Crane, một điều tra viên bí mật được gửi đến thành phố Harran để điều tra và giải cứu các nhà nghiên cứu đang bị mắc kẹt trong thành phố, nơi đang bị lây nhiễm bởi một loại virus kinh hoàng biến người thành những xác sống hung hãn. Điều đặc biệt ở Dying Light Enhanced Edition là game có hệ thống chuyển đổi ngày đêm rất thú vị và ảnh hưởng rất lớn đến cách chơi của game thủ.</span>
+                <p style="font-size: 20px" class="text">Ban ngày, các nhân vật trong game sẽ phải đi tìm và thu thập tài
+                  nguyên cần thiết để sống sót như thức ăn, nước uống, vũ khí, vật liệu xây dựng và vật phẩm hữu ích khác. Ban
+                  đêm, các xác sống sẽ xuất hiện nhiều hơn và hung hãn hơn, khiến cho người chơi phải phối hợp với đồng đội để
+                  chiến đấu và sống sót.</p>
+                <p style="font-size: 20px" class="text"> Dying Light Enhanced Edition có đồ họa đẹp mắt và chất lượng cao, cùng với âm nhạc và âm thanh sống động giúp cho người chơi có cảm giác như đang tham gia vào một bộ phim kinh dị. Ngoài ra, game còn cung cấp nhiều loại vũ khí và trang bị khác nhau cho người chơi, từ dao kiếm đến súng và cả vật liệu để tạo ra các vũ khí tùy chỉnh.</p>
+                <img style="width: 100%;object-fit: cover;margin-top: 20px"
+                     src="https://www.tncstore.vn/image/catalog/nh%20b%C3%A0i%20vi%E1%BA%BFt%20bmin/Dying%20Light%20Enhanced%20Edition%20s%E1%BA%BD%20%C4%91%C6%B0%E1%BB%A3c%20ph%C3%A1t%20t%E1%BA%B7ng%20mi%E1%BB%85n%20ph%C3%AD%202.png">
+                <p style="font-size: 20px" class="text">Ngoài chế độ chơi đơn, Dying Light Enhanced Edition còn có chế độ chơi đa người chơi trực tuyến với tối đa 4 người chơi. Trong chế độ này, người chơi có thể phối hợp với nhau để chiến đấu và sống sót hoặc cạnh tranh với nhau để giành lấy tài nguyên và vũ khí.</p>
+                <h3 style="color:black;margin: 10px 0;" class="text">Dự kiến ngày Dying Light Enhanced Edition sẽ được phát tặng miễn phí</h3>
+                <p style="font-size: 20px" class="text">Theo dự kiến, Dying Light Enhanced Edition sẽ được phát tặng miễn phí trên Epic Games Store từ ngày 6/4. Các bạn quan tâm nhớ đăng ký và nhận game nhé.
+                </p>
+
+
+                <br> <br><br>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text"
+             style="margin-left: 0;background: #dddfe6;width: 100%;height: 15px;margin-top: 20px;margin-bottom: 20px"><h4
+          class="text-center"
+          style="padding-bottom: 10px;margin: -10px auto 0 auto;background: white;width: 330px;line-height: 18px">
+          CÁC BÀI VIẾT KHÁC</h4></div>
+        <div class="d-flex row" style="margin-left: 0">
+          <div *ngIf="news != 1" class="col-4" style="height: 500px">
+            <img (click)="change(1)" routerLink="/news/detail"
+                 style="cursor: pointer;width: 340px;height: 180px;object-fit: cover;margin-left: -11px"
+                 src="https://i.imgur.com/nBV3vZI.png">
+            <h5 (click)="change(1)" class="text" routerLink="/news/detail" style="cursor: pointer;margin: 10px 0;color: black">
+              Tất cả các linh kiện đều giảm nhiệt nhưng giá của VGA vẫn còn "Hơi đắt"
+            </h5>
+            <p class="text" style="text-align: justify;margin-bottom: 0;line-height: normal;">
+              Nếu bạn quan sát thị trường phần cứng PC giờ sẽ thấy ổ cứng, RAM DDR5, màn hình, bo mạch chủ, hay thậm
+              chí
+              là CPU giờ đã ó mức giá phải chăng hơn năm ngoái rất nhiều. Thế nhưng riêng card đồ họa thì chúng vẫn
+              chưa
+              chịu đi theo xu hướng đó các bạn ạ...
+            </p>
+          </div>
+          <div *ngIf="news != 2" class="col-4" style="height: 500px">
+            <img (click)="change(2)" routerLink="/news/detail"
+                 style="cursor: pointer;width: 340px;height: 180px;object-fit: cover;margin-left: -11px"
+                 src="https://i.imgur.com/4kqxHPy.jpg">
+            <h5 (click)="change(2)" class="text" routerLink="/news/detail" style="cursor: pointer;margin: 10px 0;color: black">
+              DẪN ĐẦU PHONG CÁCH – CHINH PHỤC THỬ THÁCH
+            </h5>
+            <p class="text" style="text-align: justify;margin-bottom: 0;line-height: normal;">
+              Tặng Áo khoác + Bình nước ROG phiên bản giới hạn khi mua combo di động gồm Tai nghe in-ear ROG Cetra
+              True Wireless + Chuột gaming ROG KERIS AIMPOINT WL Tặng lót chuột ROG Hone Ace Aim Lab Edition trị giá
+              1,000,000đ khi mua Bàn phím cơ gaming ROG...
+            </p>
+          </div>
+          <div *ngIf="news != 4" class="col-4" style="height: 500px">
+            <img (click)="change(4)" routerLink="/news/detail"
+                 style="cursor: pointer;width: 340px;height: 180px;object-fit: cover;margin-left: -11px"
+                 src="https://i.imgur.com/a4KtiJk.jpg">
+            <h5 class="text" (click)="change(4)" style="cursor: pointer;margin: 10px 0;color: black">
+              Dying Light Enhanced Edition sẽ được phát tặng miễn phí
+            </h5>
+            <p class="text" style="text-align: justify;margin-bottom: 0;line-height: normal;">
+              Dying Light Enhanced Edition là một trong những tựa game sinh tồn kinh dị được yêu thích nhất của hãng
+              game Techland. Game đã ra mắt vào năm 2015 và được cập nhật, phát hành phiên bản nâng cấp Enhanced
+              Edition vào năm 2016 với nhiều tính năng mới nâng...
+            </p>
+          </div>
+          <div *ngIf="news != 3" class="col-4" style="height: 500px">
+            <img (click)="change(3)"
+                 style="cursor: pointer;width: 340px;height: 180px;object-fit: cover;margin-left: -11px"
+                 src="https://i.imgur.com/P5kGWP5.jpg">
+            <h5 class="text" (click)="change(3)" style="cursor: pointer;margin: 10px 0;color: black">
+              NHẬN NGAY QUÀ TẶNG TỔNG TRỊ GIÁ LÊN ĐẾN 15 TRIỆU ĐỒNG KHI MUA SẢN PHẨM ASUS TUF GAMING!!!
+            </h5>
+            <p class="text" style="text-align: justify;margin-bottom: 0;line-height: normal;">
+              MUA SẢN PHẨM ASUS TUF GAMING - NHẬN NGAY QUÀ TRỊ GIÁ 15 TRIỆU ĐỒNG...
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-1" style=";margin-bottom: 0;margin-left: -15px">
+    <div class="side-banner banner-right row "
+         style="width: 93.5px;position: sticky;right: 0;top:10%;margin-right: 0;float: right"><a
+      alt="Helios 16 - 2023"><img
+      src="https://i.imgur.com/qAXtaSp.png" alt="Helios 16 - 2023"></a></div>
+  </div>
+</div>
+
+

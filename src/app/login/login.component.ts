@@ -33,6 +33,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl(),
     rememberMe: new FormControl(true),
   });
+  formSignUp = new FormGroup({
+    username: new FormControl(),
+    password: new FormControl(),
+    confirmPassword: new FormControl(),
+    name: new FormControl(),
+    email: new FormControl(),
+    roles: new FormControl(['customer']),
+  });
+  errorFormSignUp = {
+    username:{message: '' , check:false},
+    password:{message: '' , check:false},
+    confirmPassword:{message: '' , check:false},
+    name:{message: '' , check:false},
+    email:{message: '' , check:false},
+  }
   name = 'Thông tin cá nhân';
   message = ''
   isBuying = false;
@@ -42,7 +57,15 @@ export class LoginComponent implements OnInit {
 
   }
 
-
+ resetError() {
+   this.errorFormSignUp = {
+     username:{message: '' , check:false},
+     password:{message: '' , check:false},
+     confirmPassword:{message: '' , check:false},
+     name:{message: '' , check:false},
+     email:{message: '' , check:false},
+   }
+ }
   ngOnInit(): void {
     window.scroll(0, 340)
     this.activate.paramMap.subscribe(next => {
@@ -66,11 +89,10 @@ export class LoginComponent implements OnInit {
     this.cart = this.token.getCartSession();
   }
   async login() {
-    console.log('vao ben tren ne`')
+    this.message = '';
     if(this.islogged || this.token.isLogger()) {
       return
     }
-    console.log('vao login ne`')
     this.loginService.login(this.form.value).subscribe(next => {
         if (this.form.controls.rememberMe.value) {
           this.token.rememberMe(next.token, next.id, next.name, next.username, next.phoneNumber, next.email, next.address, next.age,
@@ -81,10 +103,8 @@ export class LoginComponent implements OnInit {
             next.gender, next.dateOfBirth, next.avatar, next.roles, 'session');
         }
       this.islogged = true
-
-
       Toast.fire({
-        iconHtml: '<img style="width: 90px;height: 90px;padding: 10px;border-radius: 50%" src="'+next.avatar+'">',
+        iconHtml: '<img style="width: 90px;height: 90px;padding: 10px;border-radius: 50%;object-fit: cover" src="'+next.avatar+'">',
         title: 'Chào mừng ' + next.name + ' đã quay trở lại!'
       })
       if (this.cart != null) {
@@ -106,18 +126,53 @@ export class LoginComponent implements OnInit {
       }
       }, error => {
         console.log(error)
-        if (error.error) {
+        if ( error.status == 400) {
           for (let i = 0; i < error.error.length; i++) {
             this.message = error.error[i].defaultMessage
           }
-        }
-        if (error.error.message) {
-          this.message = error.error.message
+        }  else {
+          this.message = 'Sai tài khoản hoặc mật khẩu'
         }
       }
     )
 
   }
-
+  register() {
+    this.resetError()
+    this.loginService.register(this.formSignUp.value).subscribe(
+      next => {
+        document.getElementById('dissMis').click()
+        Toast.fire({
+          iconHtml: '<img style="width: 90px;height: 90px;object-fit: cover" src="https://i.imgur.com/dKc3V77.png">',
+          title: 'Chúc mừng bạn ' + this.formSignUp.controls.name.value + ' đã tạo tài khoản thành công!'
+        })
+        this.formSignUp.reset()
+      } ,error => {
+        for (let i = 0; i < error.error.length; i++) {
+          if (error.error[i].field == 'name') {
+            this.errorFormSignUp.name.message = error.error[i].defaultMessage;
+            this.errorFormSignUp.name.check = true;
+            this.formSignUp.controls.name.reset()
+          } else if (error.error[i].field == 'username') {
+            this.errorFormSignUp.username.check = true;
+            this.errorFormSignUp.username.message = error.error[i].defaultMessage;
+            this.formSignUp.controls.username.reset()
+          } else if (error.error[i].field == 'email') {
+            this.errorFormSignUp.email.message = error.error[i].defaultMessage;
+            this.errorFormSignUp.email.check = true;
+            this.formSignUp.controls.email.reset()
+          }else if (error.error[i].field == 'password') {
+            this.errorFormSignUp.password.check = true;
+            this.errorFormSignUp.password.message = error.error[i].defaultMessage;
+            this.formSignUp.controls.password.reset()
+          }else if (error.error[i].field == 'confirmPassword') {
+            this.errorFormSignUp.confirmPassword.check = true;
+            this.errorFormSignUp.confirmPassword.message = error.error[i].defaultMessage;
+            this.formSignUp.controls.confirmPassword.reset()
+          }
+        }
+      }
+    )
+  }
 
 }

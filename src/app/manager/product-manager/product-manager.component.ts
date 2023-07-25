@@ -26,6 +26,7 @@ export class ProductManagerComponent implements OnInit {
      name: '',
      category: {name: ''}
    };
+   role = '';
   constructor(private listService:ListService,private loginService: LoginService, private share: ShareService, private token: TokenService, private title: Title, private router: Router, private productService: ProductService, private activate: ActivatedRoute) {
 
   }
@@ -82,6 +83,7 @@ export class ProductManagerComponent implements OnInit {
         imageAlt: 'Custom image',
       })
       document.getElementById('dissmiss').click();
+      this.share.sendClickEvent()
       this.getAll()
     })
   }
@@ -107,6 +109,7 @@ export class ProductManagerComponent implements OnInit {
     this.last = what['last']
   }
   getAll() {
+    this.role = this.token.getRole();
      this.productService.getHome('?size=6').subscribe(next => this.getList(next))
     this.type = 0
   }

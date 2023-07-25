@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 import {LoginService} from "../../service/login/login.service";
 import {ProductService} from "../../service/product/product.service";
 import Swal from "sweetalert2";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import { render } from 'creditcardpayments/creditCardPayments';
 import {CurrencyPipe, DatePipe, DecimalPipe} from "@angular/common";
 @Component({
@@ -23,12 +23,20 @@ export class BuyComponent implements OnInit {
   quantity = 0;
   total = 0;
   user: User;
-  userInfo = true;
+  isCheck = false;
+  payPal = true;
+  userInfo = false;
   form = new FormGroup({
-    name: new FormControl(),
-    email: new FormControl(),
-    phoneNumber: new FormControl(),
-    address: new FormControl(),
+    name: new FormControl('',[Validators.required]),
+    email: new FormControl('',[Validators.required]),
+    phoneNumber: new FormControl('',[Validators.required]),
+    address: new FormControl('',[Validators.required]),
+  })
+  formNote = new FormGroup({
+    name: new FormControl('',[Validators.required]),
+    phoneNumber: new FormControl('',[Validators.required]),
+    address: new FormControl('',[Validators.required]),
+    note: new FormControl(),
   })
   isShow = false
   constructor(private datePipe:DatePipe,
@@ -73,20 +81,34 @@ export class BuyComponent implements OnInit {
     )
   }
   show() {
-    this.isShow = true
-    let money = +(this.total / 23485.48).toFixed(2);
-    render(
-      {
-        id: "#payments",
-        currency: "USD",
-        value: String(money),
-        onApprove: (details) => {
-         this.buy();
-          this.router.navigateByUrl('/')
-          this.share.sendClickEvent()
-        }
+    this.isCheck = false;
+    if (this.userInfo && this.formNote.invalid || !this.userInfo && this.form.invalid) {
+      this.isCheck = true;
+      return
+    }
+    if (this.payPal) {
+      if (this.userInfo && this.formNote.valid || !this.userInfo && this.form.valid) {
+        this.isShow = true
+        let money = +(this.total / 23485.48).toFixed(2);
+        render(
+          {
+            id: "#payments",
+            currency: "USD",
+            value: String(money),
+            onApprove: (details) => {
+              this.buy();
+              this.router.navigateByUrl('/')
+              this.share.sendClickEvent()
+            }
+          }
+        );
       }
-    );
+    } else {
+      this.buy();
+      this.router.navigateByUrl('/')
+      this.share.sendClickEvent()
+    }
+
   }
   getAll() {
     this.cartService.getCartByUser(this.user.id).subscribe(
@@ -140,7 +162,27 @@ export class BuyComponent implements OnInit {
   buy() {
     let currentTime = new Date();
     let formattedTime = currentTime.toLocaleString();
-    this.cartService.buy(this.total, this.quantity, this.user.id, formattedTime).subscribe(
+    let buyDTO = {
+      id: this.user.id,
+      quantity:this.quantity,
+      total:this.total,
+      time:formattedTime,
+      name:'',
+      note:this.formNote.controls.note.value,
+      email:this.user.email,
+      address:'',
+      phoneNumber:'',
+    }
+    if (!this.userInfo) {
+      buyDTO.name = this.user.name;
+      buyDTO.address = this.form.controls.address.value;
+      buyDTO.phoneNumber = this.form.controls.phoneNumber.value;
+    } else {
+      buyDTO.name = this.formNote.controls.name.value;
+      buyDTO.address = this.formNote.controls.address.value;
+      buyDTO.phoneNumber = this.formNote.controls.phoneNumber.value;
+    }
+    this.cartService.buy(buyDTO).subscribe(
       next => {
         Swal.fire({
           title: 'Chúc mừng bạn ' + this.user.name + ' đã đặt hàng thành công!',
@@ -155,9 +197,12 @@ export class BuyComponent implements OnInit {
           confirmButtonColor: '#005ec4',
         });
         this.share.sendClickEvent();
-        this.getAll();
       }
     )
   }
 
+  checkBox() {
+    this.isCheck = false
+    this.userInfo = !this.userInfo;
+  }
 }

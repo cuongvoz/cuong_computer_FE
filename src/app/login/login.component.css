@@ -11,8 +11,8 @@
 
 }
 .containerz {
-
-  width: 1100px;
+  overflow-x: hidden;
+  width: 100%;
   margin: 10px;
 }
 .gradient-custom-2 {
@@ -28,7 +28,7 @@
 .backgroundz {
   background-image: url('https://i.redd.it/aytsl87x8cp61.jpg');
 
-  background-size: 1200px 1000px;
+  background-size: 100%;
   background-repeat: no-repeat;
   object-fit: cover;
   background-attachment: fixed;
@@ -43,4 +43,10 @@
     border-top-right-radius: .3rem;
     border-bottom-right-radius: .3rem;
   }
+}
+.sussessInput {
+  border: 2px solid forestgreen
+}
+.errorInput {
+  border: 2px solid red;
 }

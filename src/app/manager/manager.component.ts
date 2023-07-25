@@ -17,6 +17,7 @@ import {BillService} from "../service/bill/bill.service";
 import {BuyHistory} from "../entity/buy-history";
 import {BuyHistoryService} from "../service/buyHistory/buy-history.service";
 import {User} from "../entity/user";
+import {Chart} from 'chart.js';
 
 @Component({
   selector: 'app-manager',
@@ -26,24 +27,51 @@ import {User} from "../entity/user";
 export class ManagerComponent implements OnInit {
   bills: Bill[] = []
   page = 0;
+  size = 0;
+  chart: Chart
+  // sales: Chart[] =[]
   first: boolean;
   last: boolean;
-  userBill:User = {};
+  userBill: User = {};
   type = 0;
   category: 0;
   name = '';
-  bill:Bill = {};
-  buyHistorys:BuyHistory[] = [];
+  bill: Bill = {};
+  buyHistorys: BuyHistory[] = [];
+  listCategory = [];
+  listTotal = [];
 
-  constructor(private buyHistoryService:BuyHistoryService,private billService: BillService, private share: ShareService, private token: TokenService, private title: Title) {
+  constructor(private router:Router,private buyHistoryService: BuyHistoryService, private billService: BillService, private share: ShareService, private token: TokenService, private title: Title) {
 
   }
 
   ngOnInit(): void {
+    if (!this.token.isLogger()) {
+      this.router.navigateByUrl('/error')
+    } else if (this.token.getRole() != 'ROLE_ADMIN' && this.token.getRole() != 'ROLE_EMPLOYEE'){
+      this.router.navigateByUrl('/error')
+    }
     this.title.setTitle('Quản lí bán hàng')
     this.getAll()
     this.share.getClickEvent().subscribe(next => {
       this.getAll()
+    })
+  }
+
+  drawChart(name: string[], revenues: number[]) {
+    var barColors = ["red", "green","blue","orange","brown","pink"];
+    this.chart = new Chart('myChart', {
+      type: 'bar',
+      data: {
+        labels: name,
+        datasets: [{
+          label: 'Doanh thu',
+          data: revenues,
+          backgroundColor: barColors,
+          borderColor: 'black',
+          borderWidth: 3,
+        }],
+      }
     })
   }
 
@@ -53,27 +81,40 @@ export class ManagerComponent implements OnInit {
         this.getList(next)
       }
     )
+    this.billService.getSale().subscribe(next => {
+      for (let i = 0; i < next.length; i++) {
+        this.listTotal.push(next[i].total)
+        this.listCategory.push(next[i].category)
+      }
+      this.drawChart(this.listCategory, this.listTotal)
+      {
+
+      }
+    })
   }
 
   changePage(page) {
-    this.billService.getAll('?page='+page).subscribe(
+    this.billService.getAll('?page=' + page).subscribe(
       next => {
         this.getList(next)
       }
     )
   }
-  check(id:number,user:User,bill:Bill) {
+
+  check(id: number, user: User, bill: Bill) {
     this.bill = bill
     this.userBill = user;
     this.buyHistoryService.historyofBill(id.toString()).subscribe(
       next => {
         this.buyHistorys = next
-      } )
+      })
   }
+
   getList(what: any) {
     this.bills = what['content'];
     this.page = what['number'];
     this.first = what['first'];
-    this.last = what['last']
+    this.last = what['last'];
+    this.size = what['size'];
   }
 }

@@ -10,7 +10,7 @@ import {LoginComponent} from './login/login.component';
 import {ProductComponent} from './product/product.component';
 import {CartComponent} from './cart/cart.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ProfileComponent} from './profile/profile.component';
 import {HomeModule} from "./home/home.module";
 import {AngularFireStorage, AngularFireStorageModule} from "@angular/fire/storage";
@@ -20,6 +20,10 @@ import {ManagerModule} from "./manager/manager.module";
 import {ManagerComponent} from "./manager/manager.component";
 import {CartModule} from "./cart/cart.module";
 import {CurrencyPipe, DatePipe, DecimalPipe} from "@angular/common";
+import { AuthInterceptor } from './service/login/auth.interceptor';
+import {NewsModule} from "./news/news.module";
+import {NewsComponent} from "./news/news.component";
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import {CurrencyPipe, DatePipe, DecimalPipe} from "@angular/common";
     ProductComponent,
     CartComponent,
     ProfileComponent,
-    ManagerComponent
+    ManagerComponent,
+    NewsComponent,
+    ErrorComponent
   ],
   imports: [
     HttpClientModule,
@@ -41,12 +47,17 @@ import {CurrencyPipe, DatePipe, DecimalPipe} from "@angular/common";
     ReactiveFormsModule,
     HomeModule,
     CartModule,
+    NewsModule,
     ManagerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [DatePipe,
     CurrencyPipe,
-    DecimalPipe
+    DecimalPipe,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

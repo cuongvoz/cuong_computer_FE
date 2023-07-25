@@ -40,7 +40,8 @@
   font-family: Chakra Petch;
 }
 .container {
-  width: 1100px;
+  overflow-x: hidden;
+  width: 1098px;
   margin: 10px;
 }
 .text3 {

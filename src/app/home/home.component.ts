@@ -79,7 +79,7 @@ export class HomeComponent implements OnInit {
       }
     } else {
       if (product.quantity > 0) {
-        this.token.addCartSession(product)
+        this.token.addCartSession(product,1)
         this.share.sendClickEvent()
       } else {
         Swal.fire({
@@ -126,4 +126,6 @@ export class HomeComponent implements OnInit {
 
 
   }
+
+
 }

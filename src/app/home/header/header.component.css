@@ -2,18 +2,32 @@
   font-family: 'Chakra Petch';
   src: url('fonts/ChakraPetch-SemiBold.ttf') format('truetype');
 }
+
 @font-face {
   font-family: 'Chakra Petch2';
   src: url('fonts/ChakraPetch-Bold.ttf') format('truetype');
 }
+
 * {
   color: #29324e;
 }
+
 .name {
   font-family: "Chakra Petch2";
 }
+
 .input {
+  display: inline;
+  width: 300px;
+  border: 0 solid white;
   vertical-align: baseline;
+}
+
+.select-drop {
+  display: inline;
+  width: 300px;
+  border: 0 solid;
+  cursor: pointer
 }
 
 .dropdown {
@@ -84,21 +98,27 @@
   height: 45px;
   border-radius: 50%;
 }
-.button-hover:hover  {
+
+.button-hover:hover {
   color: white;
 }
+
 .newText {
   font-family: Chakra Petch;
 
 }
+
 .newText2 {
   font-family: Chakra Petch;
   color: #29324e;
 }
+
 .newText:hover {
   font-family: Chakra Petch;
-  margin-left: 3px;color: white;
+  margin-left: 3px;
+  color: white;
 }
+
 .divTong {
   border: 1px solid #005ec4;
   width: 500px;
@@ -106,4 +126,79 @@
   margin-bottom: -100px;
   height: 100px
 }
+
+.div-1 {
+  width: 100%;
+  background: #005ec4;
+  overflow-x: hidden
+}
+
+.text-1 {
+  padding: 7px;
+  color: white;
+  position: relative;
+  right: -50%;
+  font-family: Chakra Petch;
+  font-size: 120%;
+  font-weight: bold
+}
+
+.div-2 {
+  width: 100%;
+  margin-top: -20px;
+  background: white
+}
+
+.logo-title {
+  width: 90px;
+  height: 90px;
+  margin-left: 50px;
+  display: inline;
+  cursor: pointer
+}
+
+.div-3 {
+  display: inline;
+  width: 400px;
+  margin: 0 auto;
+  text-align: center
+}
+
+.div-4 {
+  padding: 10px;
+  border: 1px solid #005ec4;
+  display: inline;
+  margin: 0 auto
+}
+
+@media only screen and (max-width: 739px) {
+  .cart-icon {
+    display: none;
+  }
+  .select-drop{
+    width: 80px;
+  }
+  .input {
+    width: 80px;
+  }
+
+  .div-3 {
+    width: 80px;
+  }
+
+  .logo-title {
+    width: 60px;
+    height: 60px;
+    margin-left: 5px;
+  }
+
+  .text-1 {
+    font-size: 90%;
+    position: relative;
+    right: 0;
+    text-align: right;
+  }
+}
+
+
 

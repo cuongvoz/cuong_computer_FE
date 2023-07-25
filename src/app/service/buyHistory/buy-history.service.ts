@@ -12,6 +12,6 @@ export class BuyHistoryService {
   constructor(private http: HttpClient) {
   }
   historyofBill(id:string):Observable<BuyHistory[]> {
-    return this.http.get<BuyHistory[]>('http://localhost:8080/api/buyHistory/check/'+id)
+    return this.http.get<BuyHistory[]>('https://dirty-cream-production.up.railway.app/api/buyHistory/check/'+id)
   }
 }

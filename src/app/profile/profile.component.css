@@ -51,7 +51,9 @@
 }
 
 .container2 {
-  width: 1100px;
+  overflow-x: hidden;
+  /*width: 1098px;*/
+  width: 1110px;
   margin: 10px;
 }
 
@@ -63,7 +65,7 @@
   background-image: url("https://i.imgur.com/SOrE08B.png");
   object-fit: cover;
   margin-right: -20px;
-  margin-left: 30px;;
+  margin-left: 35px;;
   width: 1052px;
   display: flex;
   height: 190px;
@@ -317,7 +319,7 @@ button.createbtn i {
 
   .profile-header {
     background-image: url("https://www.cyberpunk.net/build/images/home7/keyart-edgerunners@desktop-3d25f0e2.jpg");
-    width: 850px;
+    width: 100%;
     margin-right: -20px;
     display: flex;
     height: 100%;
@@ -436,7 +438,6 @@ button.createbtn i {
 
 .name {
   margin-bottom: 10px;
-  border-left: 3px solid #005ec4;
   margin-left: 30px;
   font-weight: bold
 }
@@ -560,5 +561,13 @@ button.createbtn i {
 
 #fileInput {
   display: none;
+}
+
+
+.checkStatus {
+  margin-top: -10px;
+  padding-top: -10px;
+  color: #005ec4;
+
 }
 
